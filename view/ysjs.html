@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>云上集市-农牧云</title>
+    <link rel="icon" href="/static/img/农牧云logo1.png">
+    <link rel="stylesheet" href="/static/css/ysjs.css">
+    <script src="/static/js/index.js"></script>
+    <!-- <script src="/static/js/jquery-3.1.1.js"></script> -->
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+    <!-- <script src="/static/js/lunbo.js"></script> -->
+    <!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script> -->
+</head>
+
+<body>
+    <div id="tall">
+        <div id="logonp">
+            <p>农牧云欢迎你！</p>
+            <div class="lo-re"><a href="https://www.linchongyang.cn:4320/check" id="logo">登录</a>
+                <div class="line"></div>
+                <a href="https://www.linchongyang.cn:4320/register" id="register">注册</a>
+            </div>
+        </div>
+        <!-- 导航栏 -->
+        <div id="marg-All">
+            <img src="/static/img/农牧云logo1.png" alt="">
+            <ul>
+                <a :href="na.hrefs" v-for="na in navcs">
+                    <div class="line-bottom"></div>
+                    <li>{{na.name}}</li>
+                </a>
+            </ul>
+        </div>
+
+        <!--轮播和菜单-->
+        <div id="carousel">
+            <div class="img-wrap" v-for="(lun,index) in lunimg">
+                <a href="javascript:;" class="img-item" style="display: block;"><img :src="lun.imgs" v-show="index==num" /></a>
+            </div>
+
+            <!--轮播下方按钮列表-->
+            <div class="btn-list">
+                <div class="btn active"></div>
+                <div class="btn"></div>
+                <div class="btn"></div>
+                <div class="btn"></div>
+            </div>
+            <!--左右箭头-->
+            <div class="tab left" v-on:click="sen1()">《</div>
+            <div class="tab right" v-on:click="sen2()">》</div>
+        </div>
+
+        <!--优质精选推荐-->
+        <div id="recommend">
+            <h1 style="margin: 10px;">优质精选推荐</h1>
+            <div class="recommend1" v-for="good in goodrecom">
+                <a :href="good.hrefs" target="_blank">
+                    <img :src="good.imgs" />
+                    <div class="recommend1Detail">
+                        <span>
+							{{good.mess}}<br />
+						</span>
+                        <span> {{good.momess}}<br />
+						</span>
+                        <button>立即购买</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!--水果商城1F 2F-->
+        <div id="shopList">
+            <div class="oneFloor">
+                <a href="javascript:;"><img src="/static/img/images/product_list02.jpg" /></a>
+            </div>
+
+            <div class="itemList">
+                <div class="items">
+                    <div class="item" v-for="sp1 in shoplist1">
+                        <a :href="sp1.hrefs" target="_blank"><img :src="sp1.imgs" /></a>
+                        <div class="itemDetail">
+                            <p>{{sp1.mess}}</p>
+                            <button v-on:click="nowsend(sp1.id)">加入购物车</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="shopList">
+            <div class="oneFloor">
+                <a href="javascript:;"><img src="/static/img/images/product_list01.jpg" /></a>
+            </div>
+
+            <div class="itemList">
+                <div class="items">
+                    <div class="item" v-for="sp1 in shoplist2">
+                        <a :href="sp1.hrefs" target="_blank"><img :src="sp1.imgs" /></a>
+                        <div class="itemDetail">
+                            <p>{{sp1.mess}}</p>
+                            <button v-on:click="nowsend(sp1.id)">加入购物车</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--底部图片-->
+        <div class="bottom">
+            <img src="/static/img/images/bottom.jpg" style="width:100%;" />
+        </div>
+    </div>
+
+
+</body>
+
+</html>

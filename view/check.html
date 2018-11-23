@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>农牧云</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/static/img/农牧云logo1.png">
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/css/check.css" />
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/layui/css/layui.mobile.css">
+    <style>
+        body {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tall">
+
+        <div class="layui-carousel" id="test1">
+            <div carousel-item>
+                <div><img src="/static/img/kapian/bg1.jpg" alt=""></div>
+                <div><img src="/static/img/kapian/bg2.jpg" alt=""></div>
+                <div><img src="/static/img/kapian/bg3.jpg" alt=""></div>
+                <div><img src="/static/img/kapian/bg4.jpg" alt=""></div>
+                <div><img src="/static/img/kapian/bg5.jpg" alt=""></div>
+            </div>
+        </div>
+        <!-- 条目中可以是任意内容，如：<img src=""> -->
+
+        <script src="/static/layui/layui.all.js"></script>
+        <script src="/static/layui/layui.js"></script>
+        <script>
+            layui.use('carousel', function() {
+                var carousel = layui.carousel;
+                //建造实例
+                carousel.render({
+                    elem: '#test1',
+                    width: '100%' //设置容器宽度
+                        ,
+                    height: '100%',
+                    arrow: 'always' //始终显示箭头
+                        //,anim: 'updown' //切换动画方式
+                });
+            });
+        </script>
+
+        <div class="check">
+            <h2 class="check-h2">农牧云</h2>
+            <div style="height:20px;"></div>
+            用户名：<input type="text" name="name" id="name">
+            <br> 密码：
+            <input type="password" name="pass" id="pass">
+            <button type="button" onclick="login()" id="login">点击登录</button>
+            <a href="https://www.linchongyang.cn:4320/viewlost" target="_blank" class="loser" style="font-size:18px;">忘记密码</a>
+            <a href="https://www.linchongyang.cn:4320/register" target="_blank" class="register" style="font-size:18px;">点击注册</a>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script>
+    function login() {
+        var name = $("#name").val()
+        var pass = $("#pass").val()
+        if (name == "" || pass == "") {
+            alert("输入用户名信息不能为空")
+            return false
+        } else {
+            $.post({
+                url: "/checknp",
+                data: {
+                    name: name,
+                    mima: pass
+                },
+                success: function(data) {
+                    // console.log(pass == data.Pass)
+                    // console.log(name == data.Name)
+                    // console.log(data)
+                    if (data == "信息错误") {
+                        alert("输入信息不正确")
+                        return false
+                    }
+
+                    if (pass == data.Pass || name == data.Name) {
+                        alert("输入信息不正确")
+                        $("#name").val()
+                        $("#pass").val()
+                        return false
+                    }
+                    window.location.href = "/viewmain"
+
+                }
+            })
+        }
+    }
+    //通过点击enter键实行跳转
+    $(document).keyup(function(event) {
+        if (event.keyCode == 13) {
+            $("#login").trigger("click")
+        }
+    })
+</script>
+
+</html>

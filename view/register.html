@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>注册页面</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            word-break: break-all;
+        }
+        
+        #reg {
+            width: 1000px;
+            height: 1100px;
+            border: 1px dashed rgb(167, 165, 165);
+            margin: 50px auto;
+            text-align: center;
+        }
+        
+        h2 {
+            font-family: '楷体';
+            font-size: 2.6em;
+            font-weight: bold;
+            padding-top: 40px;
+        }
+        
+        div {
+            height: 30px;
+        }
+        
+        .left {
+            /* margin-top: 30px; */
+            display: inline-block;
+            width: 150px;
+            font-family: '楷体';
+            font-size: 1.15em;
+            /* text-align: left; */
+        }
+        
+        .right input {
+            /* float: left; */
+            display: inline-block;
+            /* box-sizing: border-box; */
+            width: 350px;
+            height: 40px;
+            background: rgba(165, 164, 164, 0.4);
+            padding-left: 10px;
+            font-family: '楷体';
+            /* font-weight: bold; */
+            font-size: 1.1em;
+            /* margin-top: 40px; */
+        }
+        
+        #btn {
+            margin-top: 60px;
+            width: 120px;
+            height: 40px;
+            background-color: rgb(2, 113, 165);
+            font-family: '楷体';
+            font-size: 1.5em;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            border-radius: 5px 5px;
+            box-shadow: 0 0 2px 2px rgba(192, 189, 189, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="reg">
+        <h2>页面注册</h2>
+        <div></div>
+        <div class="left"><b>姓名:</b></div>
+        <div class="right"><input type="text" name="name" id="name" value="姓名" onclick=" this.value=''" oninput="this.style.color='black'"></div>
+        <br>
+        <div class="left"><b>身份证号:</b></div>
+        <div class="right"><input type="text" name="idcard" id="idcard" value="身份证号" onclick="this.value=''" oninput="this.style.color='black'"></div>
+        <br>
+        <div class="left"><b>邮箱(Email):</b></div>
+        <div class="right"><input type="text" name="email" id="email" value="xxx@.com" onclick="this.value=''" oninput="this.style.color='black'"></div>
+
+        <br>
+        <div class="left"><b>住址栏填写:</b></div>
+        <div class="right"><input type="text" name="address" id="address"></div>
+
+        <br>
+        <div class="left"><b>电话号码:</b></div>
+        <div class="right"><input type="text" name="tel" id="tel"></div>
+
+        <br>
+        <div class="left"><b>昵称:</b></div>
+        <div class="right"><input type="text" name="new_name" id="new_name"></div>
+
+        <br>
+        <div class="left"><b>密码:</b></div>
+        <div class="right"><input type="password" name="pass" id="pass"></div>
+
+        <br>
+        <div class="left"><b>再次输入密码:</b></div>
+        <div class="right"><input type="password" name="again_pass" id="again_pass"></div>
+
+        <br>
+        <button type="button" onclick="login()" id="btn">点击注册</button>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript">
+    function login() {
+        var name = $("#name").val()
+        var idcard = $("#idcard").val()
+        var email = $("#email").val()
+        var address = $("#address").val()
+        var tel = $("#tel").val()
+        var new_name = $("#new_name").val()
+        var pass = $("#pass").val()
+        var again_pass = $("#again_pass").val()
+
+        //对名字进行验证
+        var regName = /^[\u4e00-\u9fa5]{2,4}$/;
+        if (!regName.test(name)) {
+            alert('真实姓名填写有误');
+            return false;
+        }
+
+        //对身份证号进行验证
+        // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X 
+        var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        if (!reg.test(idcard)) {
+            alert("身份证输入不合法");
+            return false;
+
+        }
+
+        //对邮件进行判断
+        if (email.length > 0) {
+            if (email == null || email.length < 2) {
+                alert('邮件格式不正确，请重新输入！');
+                return false;
+            }
+            //需出現'@',且不是首字符.
+            var aPos = email.indexOf("@", 1);
+            if (aPos < 0) {
+                alert('邮件格式不正确，请重新输入！');
+                return false;
+            }
+            // '@'後出現'.',且不緊跟其後.
+            if (email.indexOf(".", aPos + 2) < 0) {
+                alert('邮件格式不正确，请重新输入！');
+                return false;
+            }
+            //判斷'.'是否爲最後一個字符
+            if (email.indexOf('.') == email.length - 1) {
+                alert('邮件格式不正确，请重新输入！');
+                return false;
+            }
+        }
+
+        //对电话号码进行验证
+        if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(tel))) {
+            alert("不是完整的11位手机号或者正确的手机号前七位");
+            document.mobileform.mobile.focus();
+            return false;
+        }
+
+        // 对昵称进行验证
+        var regName = /^[\u4e00-\u9fa5]{1,6}$/;
+        if (!regName.test(new_name)) {
+            alert('昵称填写有误');
+            return false;
+        }
+
+        //对两次密码是否一致进行判断       
+        if (pass.length > 7 && pass.length <= 15) {  
+            if (pass != again_pass) {
+                alert(`输入的密码不一致`)
+                return false
+            }
+        } else {
+            alert(`至少输入8~15位有效字符`)
+            return false
+        }
+
+        $.post("/regis", {
+            name: name,
+            idcard: idcard,
+            email: email,
+            address: address,
+            tel: tel,
+            new_name: new_name,
+            pass: pass,
+            again_pass: again_pass
+        }, function(resp) {
+            alert(resp)
+        })
+        $.get("/regis/email", {
+            email: email,
+        }, function(resp) {
+            for (var i = 0; i < resp.length; i++) {
+                if (resp[i].email == email) {
+                    alert("该邮箱已经被注册过，请重新注册新的邮箱")
+                    return
+                }
+            }
+            // alert("注册成功")
+        })
+    }
+</script>
+
+</html>

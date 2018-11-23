@@ -1,0 +1,86 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    word-break: break-all;
+}
+
+body {
+    height: 100%;
+}
+
+.tall {
+    position: relative;
+    width: 1100px;
+    height: 580px;
+    /* border: 1px solid red; */
+    margin: 100px auto;
+    box-shadow: 0 0 10px 10px rgb(236, 234, 234);
+}
+
+#test1 div img {
+    width: 1100px;
+    height: 580px;
+}
+
+.check {
+    position: absolute;
+    top: 74px;
+    right: 70px;
+    width: 300px;
+    height: 400px;
+    /* border: 1px solid black; */
+    box-shadow: 0 0 2px 2px rgb(214, 245, 245);
+    text-align: center;
+    background: rgba(167, 235, 235, 0.4);
+}
+
+.check-h2 {
+    margin-top: 15px;
+    font-family: '楷体';
+    /* font-size: 2.5em; */
+    font-weight: bolder;
+    text-shadow: 0px 6px 6px rgb(175, 173, 173);
+}
+
+.check {
+    font-family: '楷体';
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.check input {
+    margin-top: 10px;
+    width: 230px;
+    height: 40px;
+    background: rgba(75, 73, 73, 0.4);
+    border-radius: 5px 5px;
+}
+
+#name {
+    /* margin-top: 30px; */
+    color: rgb(204, 206, 207);
+    font-size: .5em;
+}
+
+#login {
+    width: 160px;
+    height: 35px;
+    margin-top: 40px;
+    background-color: rgb(143, 231, 243);
+    border: 4px 4px;
+    color: rgba(7, 7, 7, 0.4);
+}
+
+.loser {
+    font-size: 18px;
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+}
+
+.register {
+    font-size: 18px;
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+}

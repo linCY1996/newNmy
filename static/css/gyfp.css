@@ -1,0 +1,337 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #000;
+}
+
+body {
+    min-width: 1500px;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+.pstyle {
+    padding: 5px 5px;
+    line-height: 25px;
+}
+
+.linestyle {
+    width: 80%;
+    margin: 20px auto;
+}
+
+#tall {
+    width: 100%;
+}
+
+
+/*顶部菜单栏*/
+
+
+/*登录注册点击*/
+
+#logonp {
+    position: relative;
+    width: 100%;
+    /* min-width: 1300px; */
+    height: 38px;
+    background-color: rgb(9, 182, 101);
+}
+
+#logonp p {
+    font-size: 1.4em;
+    font-weight: bold;
+    line-height: 38px;
+    position: absolute;
+    right: 650px;
+    color: white;
+}
+
+.lo-re {
+    width: 95px;
+    height: 38px;
+    position: absolute;
+    right: 500px;
+    /* border: 1px solid black; */
+}
+
+#logonp a {
+    text-decoration: none;
+    color: white;
+    line-height: 38px;
+    font-family: '楷体';
+    font-size: 1.4em;
+    font-weight: bold;
+    position: absolute;
+}
+
+#logonp a:hover {
+    color: black;
+}
+
+#logo {
+    position: absolute;
+    left: 2px;
+}
+
+.line {
+    width: 2px;
+    height: 26px;
+    background-color: white;
+    position: absolute;
+    left: 51px;
+    top: 6px;
+}
+
+#register {
+    position: absolute;
+    right: -6px;
+}
+
+
+/* 导航栏 */
+
+#marg-All {
+    width: 100%;
+    height: 80px;
+    background: rgba(168, 223, 240, 0.4);
+    /* border: 1px solid black; */
+}
+
+#marg-All img {
+    position: absolute;
+    left: 281px;
+    width: 148px;
+    height: 80px;
+}
+
+#marg-All ul {
+    padding: 0px;
+    position: absolute;
+    left: 435px;
+    width: 966px;
+    height: 80px;
+    /* background-color: rgb(151, 166, 180); */
+}
+
+.line-bottom {
+    display: none;
+    width: 140px;
+    height: 5px;
+    background-color: aqua;
+    position: absolute;
+    bottom: 0px;
+}
+
+#marg-All ul a {
+    width: 140px;
+    text-align: center;
+    float: left;
+    margin-left: 20px;
+    font-weight: bolder;
+    line-height: 80px;
+    font-family: '楷体';
+    font-size: 1.8em;
+}
+
+#marg-All ul a:hover .line-bottom {
+    display: inherit;
+}
+
+#marg-All ul a:hover {
+    color: aqua;
+}
+
+.nav {
+    height: 120px;
+    width: 100%;
+    background-color: red;
+    margin: 0 auto;
+}
+
+
+/*帮扶成果、数据展示
+ 其他文字摘要*/
+
+.txtDetail {
+    margin: 10px auto;
+    font-size: 18px;
+    width: 80%;
+    height: 120px;
+    background-color: #FFB6C1;
+}
+
+
+/*公益活动轮播*/
+
+#carousel {
+    height: 380px;
+    width: 80%;
+    margin: 0 auto;
+    background-color: #ebf0f5;
+}
+
+.img-wrap {
+    width: 100%;
+    height: 340px;
+    display: flex;
+    flex-direction: row;
+    margin: 5px auto;
+}
+
+.img-item {
+    width: 35%;
+    height: 340px;
+    margin: 10px 20px;
+}
+
+.img-item img {
+    width: 100%;
+    height: 100%;
+}
+
+.newsTxt {
+    width: 60%;
+    height: 340px;
+    margin: 10px 40px;
+}
+
+
+/*帮扶村庄名单*/
+
+.countryList {
+    margin: 25px auto;
+    font-size: 20px;
+    width: 80%;
+    height: 240px;
+    position: relative;
+}
+
+.countryList ul {
+    display: inline-block;
+    width: 100%;
+    height: 210px;
+    /* border: 1px solid black; */
+    /* display: block; */
+}
+
+.countryList ul li {
+    float: left;
+    margin-top: 15px;
+}
+
+.countrName {
+    text-decoration: none;
+    line-height: 45px;
+    display: block;
+    width: 300px;
+    height: 48px;
+    background-color: #99CCCC;
+    /*padding: 20px;*/
+    text-align: center;
+    margin-left: 65px;
+    position: relative;
+    border: 1px solid #99CCCC;
+    border-radius: 5px;
+}
+
+.listItem i {
+    position: absolute;
+    right: 18px;
+    top: 12px;
+}
+
+
+/*日志列表*/
+
+.blogList {
+    width: 80%;
+    height: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.blogItem {
+    border: 1px solid green;
+    width: 35%;
+    height: 580px;
+    margin: 5px 10px;
+    background-color: #ebf0f5;
+    position: relative;
+}
+
+.blogItem img {
+    width: 95%;
+    height: 330px;
+    padding: 10px;
+}
+
+.blogDetail {
+    width: 95%;
+    height: 100px;
+    margin: 10px auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.blogMore {
+    position: absolute;
+    right: 5%;
+    color: #99cccc;
+    font-weight: bold;
+}
+
+.blogMore:hover {
+    color: #0066cc;
+}
+
+
+/* 网站底部 */
+
+.foot {
+    position: relative;
+    margin-top: 60px;
+    width: 100%;
+    height: 300px;
+    /* border: 1px solid black; */
+    background-color: black;
+    text-align: center;
+}
+
+.nav-foot {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin-top: 50px;
+    margin-left: 27%;
+    width: 800px;
+    height: 200px;
+    background: rgba(224, 224, 224, 0.3);
+    /* border: 1px solid white; */
+    text-align: center;
+    /* padding-top: 50px; */
+}
+
+.nav-foot p {
+    margin-top: 48px;
+    color: white;
+    font-family: '楷体';
+    font-size: 1.5em;
+}
+
+.pppp {
+    position: absolute;
+    top: 35px;
+    left: 132px;
+}

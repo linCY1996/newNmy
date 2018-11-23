@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>农牧云</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/static/img/农牧云logo1.png">
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/css/viewmain.css" />
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/layui/css/layui.mobile.css">
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+    <script src="/static/jq/jquery.js"></script>
+    <script src="/static/js/index.js"></script>
+</head>
+
+<body>
+    <div id="tall">
+        <div id="logonp">
+            <p>农牧云欢迎你！</p>
+            <div class="lo-re"><a href="https://www.linchongyang.cn:4320/check" id="logo">登录</a>
+                <div class="line"></div>
+                <a href="https://www.linchongyang.cn:4320/register" id="register">注册</a>
+            </div>
+        </div>
+        <!-- 导航栏 -->
+        <div id="marg-All">
+            <img src="/static/img/农牧云logo1.png" alt="">
+            <ul>
+                <a :href="na.hrefs" v-for="na in navcs">
+                    <div class="line-bottom"></div>
+                    <li>{{na.name}}</li>
+                </a>
+            </ul>
+        </div>
+        <!-- video及其下部部分 -->
+        <div class="nav-All">
+            <div class="videos" v-for="v in vides">
+                <video id="vid" :src="v.video" autoplay="autoplay" loop="loop">你的浏览器不支持此视频播放</video>
+            </div>
+            <div class="some-Msg">
+                <div class="some-Msg-Ch1" v-for="mes in messg">
+                    <img :src="mes.imgs" alt="">
+                    <p class="some-Msg-Text">{{mes.mess}}</p>
+                    <p class="some-Msg-Text1">{{mes.content}}</p>
+                </div>
+            </div>
+            <!-- 优质信息的推选 -->
+            <p class="good-Msg">
+                <my-message></my-message>
+            </p>
+            <P class="good-Msg-Litte">
+                <my-mess></my-mess>
+            </P>
+            <div class="food-Msg">
+                <div class="food-Msg-Ch1" v-for="pr in titl">
+                    <div>
+                        <img :src="pr.imgs" alt="">
+                        <p id="food-Msg-text">{{pr.message}}</p>
+                        <p id="food-Msg-text1">单价：&nbsp;&nbsp;<b>¥{{pr.price}}元/份</b></p>
+                    </div>
+                </div>
+            </div>
+            <p class="good-Msg">
+                <my-message></my-message>
+            </p>
+            <P class="good-Msg-Litte">
+                <my-mess></my-mess>
+            </P>
+
+            <div class="nav-alls">
+                <!-- 新闻部分 -->
+                <div class="nav-body-text1">
+                    <div class="nav-body-text1-ch1">
+                        <ul>
+                            <li><a href="javascript:;">农新闻</a></li>
+                            <li><a href="javascript:;">农快讯</a></li>
+                            <li><a href="javascript:;">时事新闻</a></li>
+                        </ul>
+                        <p class="pp"><a href="#">进入新闻>></a></p>
+                    </div>
+                    <div class="tab-box">
+                        <div style="display:block;">
+                            <ul class="infor-first">
+                                <li class="one" v-for="is in item">
+                                    <span class="infor-date">{{is.times}}</span>
+                                    <div>
+                                        <a :href="is.links" title="标题：我们的大学生活发表时间：9.12">{{is.name}}</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="display:none;">
+                            <ul class="infor-first">
+                                <li class="one" v-for="its in item1">
+                                    <span class="infor-date">{{its.times}}</span>
+                                    <div>
+                                        <a :href="its.links" title="标题：我们的大学生活发表时间：9.12">{{its.name}}</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="display:none;">
+                            <ul class="infor-first">
+                                <li class="one" v-for="iqs in item2">
+                                    <span class="infor-date">{{iqs.times}}</span>
+                                    <div>
+                                        <a :href="iqs.links" title="标题：我们的大学生活发表时间：9.12">{{iqs.name}}</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- 视频要闻部分 -->
+                <div class="nav-body-text1">
+                    <div class="nav-body-text1-ch2">
+                        <ul>
+                            <li><a href="javascript:;">农视频</a></li>
+                            <li><a href="javascript:;">农业资讯</a></li>
+                            <li><a href="javascript:;">农业分享</a></li>
+                        </ul>
+                        <p class="pp"><a href="#">进入新闻>></a></p>
+                    </div>
+                    <div class="tab-box2">
+                        <div style="display:block;">
+                            <ul class="infor-first">
+                                <li class="one" v-for="is in item">
+                                    <span class="infor-date">{{is.times}}</span>
+                                    <div>
+                                        <a :href="is.links" title="标题：我们的大学生活发表时间：9.12">{{is.name}}</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="display:none;">
+                            <ul class="infor-first">
+                                <li class="one" v-for="its in item1">
+                                    <span class="infor-date">{{its.times}}</span>
+                                    <div>
+                                        <a :href="its.links" title="标题：我们的大学生活发表时间：9.12">{{its.name}}</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="display:none;">
+                            <ul class="infor-first">
+                                <li class="one" v-for="iqs in item2">
+                                    <span class="infor-date">{{iqs.times}}</span>
+                                    <div>
+                                        <a :href="iqs.links" title="标题：我们的大学生活发表时间：9.12">{{iqs.name}}</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 友情链接 -->
+            <div class="friend">
+                <h2>友情链接：</h2>
+                <ul class="friend-nav">
+                    <li v-for="fr in friendlin"><a :href="fr.hrefs">{{fr.names}}</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <!-- 网站底部 -->
+        <div class="foot">
+            <div class="nav-foot">
+                <p>四川省南充市西华师范大学数学与信息学院信息与计算科学专业2016级8班</p>
+                <p class="pppp"><b>Tel</b>:13350058238/3628098186&nbsp;&nbsp;<b>Email</b>:1653709489@qq.com</p>
+                <p>农牧云平台</p>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+<!-- <script>
+    window.onload = function() {
+        $(".nav-body-text1-ch1 li").mouseover(function() {
+            //通过 .index()方法获取元素下标，从0开始，赋值给某个变量
+            var index = $(this).index();
+            //让内容框的第 _index 个显示出来，其他的被隐藏
+            $(".tab-box>div").eq(index).show().siblings().hide();
+            //改变选中时候的选项框的样式，移除其他几个选项的样式
+            $(this).addClass("change").siblings().removeClass("change");
+            // $(this).addClass("change").show();
+        });
+    }
+</script> -->
+
+</html>
