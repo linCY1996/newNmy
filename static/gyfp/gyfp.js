@@ -1,13 +1,40 @@
 window.onload = function() {
+    new Vue({
+        el: "#logonp",
+        data: {
+            href: "car.html?token=" + localStorage.getItem("token")
+        }
+    })
     var gy = new Vue({
         el: '#tall',
         data: {
+            num: 0,
             navcs: [],
-            gyfpmsg: [], //公益扶贫上部信息
+            gyfpimg: [], //公益扶贫上部信息
+            gyfpmsg: '',
             country: [], //乡村信息
             textdetial: [], //农牧云的故事
+
         },
         methods: {
+            nec: function() {
+                axios.get('/car.html', {
+                    params: {
+                        token: localStorage.getItem("token")
+                    }
+                }).then(function(resp) {
+                    if (resp.data.code == 301) {
+                        window.location.href = ("/check")
+                    } else {
+                        window.location.href = "car.html?token=" + localStorage.getItem("token")
+                    }
+                })
+            },
+            tui: function() {
+                localStorage.removeItem("token")
+                window.location.href = ("/check")
+                console.log("sadasd")
+            },
             navs: function() {
                 axios({
                     method: 'get',
@@ -19,7 +46,15 @@ window.onload = function() {
                     console.log(error)
                 })
             },
-            gyfpmsgs: function() {
+            Gyfpimg: function() {
+                axios.get('/api/gyfp/gyfpimg', ).then(function(resp) {
+                    // console.log(resp)
+                    gy.gyfpimg = resp.data
+                }).catch(function(error) {
+                    console.log(error)
+                })
+            },
+            Gyfpmsg: function() {
                 axios.get('/api/gyfp/gyfpmsg', ).then(function(resp) {
                     // console.log(resp)
                     gy.gyfpmsg = resp.data
@@ -43,10 +78,23 @@ window.onload = function() {
                     console.log(error)
                 })
             },
+            //轮播图实现部分
+            autoplay: function() {
+                var that = this
+                that.num++;
+                if (that.num == that.gyfpimg.length) {
+                    that.num = 0
+                }
+            },
+            play: function() {
+                setInterval(this.autoplay, 2000)
+            },
         },
         mounted: function() {
+            this.play();
             this.navs();
-            this.gyfpmsgs();
+            this.Gyfpimg();
+            this.Gyfpmsg();
             this.gycountry();
             this.gytextdetial();
         }

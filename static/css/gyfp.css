@@ -1,7 +1,7 @@
 * {
     padding: 0px;
     margin: 0px;
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Times New Roman'; */
     color: #000;
 }
 
@@ -24,7 +24,7 @@ li {
 }
 
 .linestyle {
-    width: 80%;
+    width: 100%;
     margin: 20px auto;
 }
 
@@ -35,125 +35,25 @@ li {
 
 /*顶部菜单栏*/
 
-
-/*登录注册点击*/
-
-#logonp {
-    position: relative;
-    width: 100%;
-    /* min-width: 1300px; */
-    height: 38px;
-    background-color: rgb(9, 182, 101);
-}
-
-#logonp p {
-    font-size: 1.4em;
-    font-weight: bold;
-    line-height: 38px;
+.heh {
+    width: 93px;
+    height: 70px;
     position: absolute;
-    right: 650px;
-    color: white;
-}
-
-.lo-re {
-    width: 95px;
-    height: 38px;
-    position: absolute;
-    right: 500px;
+    top: -7px;
+    right: 18%;
     /* border: 1px solid black; */
 }
 
-#logonp a {
-    text-decoration: none;
-    color: white;
-    line-height: 38px;
-    font-family: '楷体';
-    font-size: 1.4em;
-    font-weight: bold;
-    position: absolute;
-}
-
-#logonp a:hover {
-    color: black;
-}
-
-#logo {
-    position: absolute;
-    left: 2px;
-}
-
-.line {
-    width: 2px;
-    height: 26px;
-    background-color: white;
-    position: absolute;
-    left: 51px;
-    top: 6px;
-}
-
-#register {
-    position: absolute;
-    right: -6px;
-}
-
-
-/* 导航栏 */
-
-#marg-All {
-    width: 100%;
-    height: 80px;
-    background: rgba(168, 223, 240, 0.4);
+.heh img {
+    width: 93px;
+    height: 70px;
     /* border: 1px solid black; */
 }
 
-#marg-All img {
-    position: absolute;
-    left: 281px;
-    width: 148px;
-    height: 80px;
-}
-
-#marg-All ul {
-    padding: 0px;
-    position: absolute;
-    left: 435px;
-    width: 966px;
-    height: 80px;
-    /* background-color: rgb(151, 166, 180); */
-}
-
-.line-bottom {
-    display: none;
-    width: 140px;
-    height: 5px;
-    background-color: aqua;
-    position: absolute;
-    bottom: 0px;
-}
-
-#marg-All ul a {
-    width: 140px;
-    text-align: center;
-    float: left;
-    margin-left: 20px;
-    font-weight: bolder;
-    line-height: 80px;
-    font-family: '楷体';
-    font-size: 1.8em;
-}
-
-#marg-All ul a:hover .line-bottom {
-    display: inherit;
-}
-
-#marg-All ul a:hover {
-    color: aqua;
-}
-
-.nav {
-    height: 120px;
-    width: 100%;
-    background-color: red;
+.navMargs {
+    width: 80%;
+    min-width: 1400px;
+    /* border: 1px solid black; */
     margin: 0 auto;
 }
 
@@ -164,9 +64,9 @@ li {
 .txtDetail {
     margin: 10px auto;
     font-size: 18px;
-    width: 80%;
+    width: 100%;
     height: 120px;
-    background-color: #FFB6C1;
+    background: rgba(0, 152, 199, 0.4);
 }
 
 
@@ -174,23 +74,30 @@ li {
 
 #carousel {
     height: 380px;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     background-color: #ebf0f5;
 }
 
 .img-wrap {
     width: 100%;
-    height: 340px;
+    height: 370px;
     display: flex;
+    /* border: 1px solid navy; */
     flex-direction: row;
     margin: 5px auto;
 }
 
-.img-item {
+.ims {
     width: 35%;
-    height: 340px;
+    height: 350px;
     margin: 10px 20px;
+    /* border: 1px solid navy; */
+}
+
+.ims img {
+    width: 100%;
+    height: 350px;
 }
 
 .img-item img {
@@ -200,8 +107,14 @@ li {
 
 .newsTxt {
     width: 60%;
-    height: 340px;
+    height: 350px;
     margin: 10px 40px;
+    /* border: 1px solid navy; */
+}
+
+.newsTxt h1 {
+    font-family: '楷体';
+    font-size: 2.1em;
 }
 
 
@@ -210,7 +123,7 @@ li {
 .countryList {
     margin: 25px auto;
     font-size: 20px;
-    width: 80%;
+    width: 100%;
     height: 240px;
     position: relative;
 }
@@ -218,6 +131,7 @@ li {
 .countryList ul {
     display: inline-block;
     width: 100%;
+    min-width: 1400px;
     height: 210px;
     /* border: 1px solid black; */
     /* display: block; */
@@ -292,46 +206,4 @@ li {
 
 .blogMore:hover {
     color: #0066cc;
-}
-
-
-/* 网站底部 */
-
-.foot {
-    position: relative;
-    margin-top: 60px;
-    width: 100%;
-    height: 300px;
-    /* border: 1px solid black; */
-    background-color: black;
-    text-align: center;
-}
-
-.nav-foot {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    margin-top: 50px;
-    margin-left: 27%;
-    width: 800px;
-    height: 200px;
-    background: rgba(224, 224, 224, 0.3);
-    /* border: 1px solid white; */
-    text-align: center;
-    /* padding-top: 50px; */
-}
-
-.nav-foot p {
-    margin-top: 48px;
-    color: white;
-    font-family: '楷体';
-    font-size: 1.5em;
-}
-
-.pppp {
-    position: absolute;
-    top: 35px;
-    left: 132px;
 }

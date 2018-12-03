@@ -1,0 +1,795 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    list-style: none;
+    font-family: arial;
+}
+
+body {
+    overflow-x: hidden;
+    min-width: 1200px;
+}
+
+h1 {
+    font-size: 70px;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    font-family: "楷体";
+}
+
+p {
+    color: rgb(187, 187, 187);
+    line-height: 25px;
+    font-family: "宋体";
+    line-height: 30px;
+}
+
+#subject {
+    width: 100%;
+    min-width: 1500px;
+}
+
+
+/*首页开始*/
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 938px;
+    background: url(/static/img/img/bag.jpg) no-repeat;
+    background-size: cover;
+}
+
+.tittle {
+    height: 938px;
+    width: 1200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -600px;
+    margin-top: -469px;
+}
+
+.findHome {
+    position: fixed;
+    right: 5px;
+    bottom: 5px;
+    height: 50px;
+    width: 40px;
+    z-index: 99;
+}
+
+.tittle h2 {
+    color: white;
+    font-weight: bold;
+    font-family: "微软雅黑";
+    font-size: 50px;
+    animation: fly 1.5s linear 1;
+    transform-origin: center center;
+    position: absolute;
+    top: 0px;
+}
+
+@keyframes fly {
+    0% {
+        transform: rotate(0deg);
+    }
+    10% {
+        transform: rotate(30deg);
+    }
+    20% {
+        transform: rotate(0deg);
+    }
+    30% {
+        transform: rotate(-30deg);
+    }
+    40% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(15deg);
+    }
+    60% {
+        transform: rotate(0deg);
+    }
+    70% {
+        transform: rotate(-15deg);
+    }
+    80% {
+        transform: rotate(0deg);
+    }
+    90% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -30px;
+    margin-left: -300px;
+    height: 64px;
+    width: 604px;
+    border: 2px solid white;
+    box-sizing: border-box;
+}
+
+.form li {
+    position: relative;
+    float: left;
+    border: 1px solid white;
+    box-sizing: border-box;
+    height: 60px;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.form li:hover a {
+    color: rgb(23, 77, 1);
+    font-weight: bold;
+}
+
+.line {
+    position: absolute;
+    height: 60px;
+    width: 2px;
+    background: white;
+}
+
+.form li:hover .lineleft {
+    left: -3px;
+    transition: all 0.2s;
+    animation: rotl 0.2s linear 1;
+    animation-fill-mode: forwards;
+    transform-origin: left top;
+}
+
+@keyframes rotl {
+    from {
+        top: 0px;
+        left: -3px;
+        transform: rotate(0deg);
+    }
+    to {
+        top: 2px;
+        left: 20px;
+        transform: rotate(-90deg);
+    }
+}
+
+.form li:hover .lineright {
+    left: 98px;
+    animation: rotr 0.2s linear 1;
+    transform-origin: left bottom;
+    animation-fill-mode: forwards;
+}
+
+@keyframes rotr {
+    from {
+        bottom: 0px;
+        left: 98px;
+        transform: rotate(0deg);
+    }
+    to {
+        bottom: 0px;
+        left: 80px;
+        transform: rotate(-90deg);
+    }
+}
+
+.form li a {
+    line-height: 60px;
+    color: white;
+    font-size: 20px;
+}
+
+.down {
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    bottom: 0px;
+    left: 590px;
+    animation: jump 2s linear infinite;
+}
+
+@keyframes jump {
+    0% {
+        bottom: 0px;
+    }
+    25% {
+        bottom: 80px;
+    }
+    50% {
+        bottom: 0px;
+    }
+    75% {
+        bottom: 40px;
+    }
+    100% {
+        bottom: 0px;
+    }
+}
+
+
+/*首页结束*/
+
+
+/*欢迎开始*/
+
+#welcome {
+    display: inline-block;
+    position: relative;
+    width: 1200px;
+    /* border: 2px solid black; */
+    left: 50%;
+    margin-left: -600px;
+    background: white;
+}
+
+#welcome h5 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: rgb(36, 192, 245);
+    font-size: 20px;
+    letter-spacing: 5px;
+    font-family: "宋体";
+}
+
+#welcome>p {
+    text-indent: 2em;
+    padding: 0 85px;
+}
+
+.intro .box {
+    overflow: hidden;
+    position: relative;
+    float: left;
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    margin-top: 50px;
+    margin-left: 77px;
+}
+
+.intro .box img {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 0px;
+}
+
+.intro .box:hover img {
+    animation: leftmove 0.4s linear 1;
+    animation-fill-mode: forwards;
+    transition: all 0.5s;
+}
+
+@keyframes leftmove {
+    from {
+        left: 0px;
+    }
+    to {
+        left: -200px;
+    }
+}
+
+.intro .box h6 {
+    color: rgb(247, 111, 102);
+    margin: 40px 0px 20px 20px;
+    font-size: 20px;
+    font-family: "宋体";
+}
+
+.intro .box p {
+    color: rgb(187, 187, 187);
+    margin: 0 20px;
+}
+
+
+/*欢迎结束*/
+
+
+/*关于开始*/
+
+.about {
+    position: relative;
+    width: 1500px;
+    /* border: 2px solid black; */
+    left: 50%;
+    margin-left: -600px;
+    font-family: '宋体';
+    background: white;
+}
+
+.ourLacation {
+    vertical-align: 55px;
+    background: rgb(236, 236, 236);
+    display: inline-block;
+    width: 720px;
+    border: 1px solid rgb(2, 182, 243);
+    box-sizing: border-box;
+}
+
+.ourLacation img {
+    height: 150px;
+    width: 200px;
+    float: left;
+    margin: 40px 40px 100px 40px;
+}
+
+.ourLacation p {
+    color: rgb(153, 153, 153);
+    margin-right: 50px;
+}
+
+.ourLacation p:nth-of-type(1) {
+    /* margin-top: 40px; */
+}
+
+.ourLacation p:nth-of-type(2) {
+    /* margin-top: 20px; */
+}
+
+.latformFeature {
+    background: rgb(236, 236, 236);
+    width: 420px;
+    height: 360px;
+    border: 1px solid rgb(47, 203, 255);
+    display: inline-block;
+    margin-left: 50px;
+}
+
+.latformFeature h6 {
+    color: rgb(247, 111, 102);
+    margin: 50px 0px 20px 20px;
+    font-size: 20px;
+    font-family: "宋体";
+}
+
+.latformFeature p {
+    color: black;
+    padding: 7px 0px;
+    margin-left: 20px;
+}
+
+.latformFeature p span {
+    margin-right: 10px;
+}
+
+
+/*关于结束*/
+
+
+/*成果开始*/
+
+.resultsShow {
+    position: relative;
+    margin: 0 auto;
+    margin-top: 60px;
+    font-family: '宋体';
+    height: 400px;
+    width: 1200px;
+    background: url(/static/img/img/pig.jpg) no-repeat;
+    background-size: 1200px 400px;
+    left: 50%;
+    margin-left: -600px;
+    /*border: 3px solid yellow;*/
+}
+
+.local:hover img {
+    animation: magnify 2s linear infinite;
+    transition: all 0.5s;
+    background: rgb(0, 182, 243);
+    border: 1px solid rgb(0, 182, 243);
+}
+
+.local:hover .sty {
+    display: none;
+}
+
+.local:hover .sty1 {
+    display: inline-block;
+}
+
+@keyframes magnify {
+    0% {
+        border-bottom: 4px solid darkgray;
+        border-left: 4px solid darkgray;
+        border-top: 4px solid white;
+        border-right: 4px solid white;
+    }
+    25% {
+        border-bottom: 4px solid white;
+        border-left: 4px solid darkgray;
+        border-top: 4px solid darkgray;
+        border-right: 4px solid white;
+    }
+    50% {
+        border-bottom: 4px solid white;
+        border-left: 4px solid white;
+        border-top: 4px solid darkgray;
+        border-right: 4px solid darkgray;
+    }
+    75% {
+        border-bottom: 4px solid darkgray;
+        border-left: 4px solid white;
+        border-top: 4px solid white;
+        border-right: 4px solid darkgray;
+    }
+    100% {
+        border-bottom: 4px solid darkgray;
+        border-left: 4px solid darkgray;
+        border-top: 4px solid white;
+        border-right: 4px solid white;
+    }
+}
+
+.resultsShow h1 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: 50px;
+    color: white;
+}
+
+.local {
+    cursor: pointer;
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    /*border: 1px solid red;*/
+    text-align: center;
+}
+
+.local div:nth-of-type(1) {
+    margin-top: 15px;
+    color: rgb(120, 216, 248);
+    font-weight: bold;
+}
+
+.local div:nth-of-type(2) {
+    color: white;
+    font-weight: bold;
+}
+
+.sales {
+    left: 200px;
+}
+
+.help {
+    left: 450px;
+}
+
+.interest {
+    left: 700px;
+}
+
+.stock {
+    left: 950px;
+}
+
+.sty {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    border: 1px solid rgb(0, 182, 243);
+}
+
+.sty1 {
+    display: none;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    border: 1px solid rgb(0, 182, 243);
+}
+
+
+/*成果结束*/
+
+
+/*成员开始*/
+
+#teamMembers {
+    position: relative;
+    width: 1200px;
+    /*border: 2px solid black;*/
+    left: 50%;
+    margin-left: -600px;
+    font-family: '宋体';
+    background: white;
+    height: 800px;
+}
+
+#teamMembers::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.leftDirection {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    left: 520px;
+    bottom: 80px;
+}
+
+.rightDirection {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    left: 1070px;
+    bottom: 80px
+}
+
+.sp {
+    width: 100px;
+    height: 100px;
+    float: right;
+    position: absolute;
+    bottom: 60px;
+    right: 150px;
+}
+
+.word {
+    display: none;
+}
+
+.bp {
+    position: absolute;
+    left: 200px;
+    bottom: 200px;
+    height: 396px;
+    width: 311px;
+}
+
+#teamMembers h3 {
+    font-weight: bold;
+    font-size: 30px;
+    margin-left: 600px;
+    margin-bottom: 10px;
+}
+
+#teamMembers p {
+    margin-left: 600px;
+    color: black;
+    padding-right: 15px;
+}
+
+
+/*成员结束*/
+
+
+/*动态开始*/
+
+#companyDynamic {
+    position: relative;
+    width: 1200px;
+    /*border: 2px solid black;*/
+    left: 50%;
+    margin-left: -600px;
+    font-family: '宋体';
+    background: white;
+}
+
+#companyDynamic ul {
+    margin: 0 auto;
+    height: 50px;
+    width: 650px;
+    border: 1px solid rgb(214, 214, 214);
+}
+
+#companyDynamic ul li {
+    height: 50px;
+    width: 110px;
+    float: left;
+    line-height: 50px;
+    text-align: center;
+    /* border: 1px solid red; */
+}
+
+#companyDynamic ul li:hover {
+    text-decoration: underline;
+}
+
+#companyDynamic ul li:hover a {
+    color: rgb(74, 203, 246);
+}
+
+#companyDynamic ul li:nth-of-type(1) {
+    margin-left: 50px;
+}
+
+#companyDynamic a {
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    height: 50px;
+    width: 100px;
+}
+
+.imag1 {
+    display: none;
+    margin-top: 40px;
+    /*border: 2px solid black;*/
+    box-sizing: border-box;
+    width: 1200px;
+    position: relative;
+    overflow: hidden;
+}
+
+#companyDynamic img {
+    height: 200px;
+    width: 350px;
+    margin-left: 35px;
+}
+
+.imag1 img:hover {
+    animation: upMove 0.5s linear forwards;
+    transition: all 0.5s;
+}
+
+.imag1 div:hover p {
+    display: block;
+}
+
+@keyframes upMove {
+    from {
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+    to {
+        margin-bottom: 50px;
+        margin-top: 50px;
+    }
+}
+
+.imag1 div {
+    display: inline-block;
+    position: relative;
+}
+
+.imag1 p {
+    display: none;
+    color: black;
+    position: absolute;
+    bottom: 20px;
+    margin-left: 150px;
+    font-weight: bold;
+}
+
+
+/*动态结束*/
+
+
+/*联系开始*/
+
+#contactUs {
+    position: relative;
+    width: 1200px;
+    /*border: 2px solid black;*/
+    left: 50%;
+    margin-left: -600px;
+    font-family: '宋体';
+    background: white;
+}
+
+.client {
+    display: inline-block;
+    position: relative;
+    border: 1px dashed darkgray;
+    height: 280px;
+    width: 700px;
+    padding-left: 5px;
+}
+
+. h2 {
+    color: rgb(79, 205, 247);
+    font-family: "宋体";
+    font-size: 25px;
+}
+
+.client p {
+    line-height: 30px;
+    font-size: 16px;
+}
+
+.input1 {
+    height: 40px;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+.input2 {
+    margin-top: 10px;
+    height: 80px;
+    width: 639px;
+    padding-top: 0px;
+}
+
+.input3 {
+    color: white;
+    margin-top: 10px;
+    height: 40px;
+    width: 100px;
+    background: rgb(2, 182, 243);
+    border: none;
+    transition: all 0.5s;
+}
+
+.input3:hover {
+    background: rgb(244, 69, 56);
+}
+
+.msg {
+    display: inline-block;
+    height: 220px;
+    width: 250px;
+    border-left: 1px solid red;
+    position: absolute;
+    left: 800px;
+}
+
+.msg h2 {
+    color: rgb(2, 182, 243);
+    padding-left: 10px;
+}
+
+.msg img {
+    height: 15px;
+    width: 15px;
+    padding: 0 5px;
+}
+
+.msg p {
+    font-size: 14px;
+    color: gray;
+    line-height: 30px;
+}
+
+
+/*联系结束*/
+
+
+/*脚本*/
+
+.footer {
+    background: rgb(2, 182, 243);
+    padding-top: 20px;
+    position: relative;
+    width: 1200px;
+    /*border: 2px solid black;*/
+    left: 50%;
+    margin-left: -600px;
+    font-family: '宋体';
+    height: 50px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.footer p {
+    color: white;
+}
+
+.footer a {
+    padding-left: 5px;
+    font-family: "宋体";
+    color: white;
+    cursor: pointer;
+}
+
+.footer a:hover {
+    color: rgb(244, 69, 56);
+    font-weight: bold;
+    text-decoration: underline;
+}

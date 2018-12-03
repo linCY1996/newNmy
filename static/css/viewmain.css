@@ -14,132 +14,39 @@ a {
 }
 
 body {
-    min-width: 1900px;
+    min-width: 1500px;
 }
 
 #tall {
     width: 100%;
-    height: 1000px;
+    min-width: 1500px;
+    /* height: 1000px; */
     /* min-width: 1300px; */
-    /* border: 1px solid rgb(0, 0, 0); */
     margin: 0 auto;
     /* background-color: aqua; */
 }
 
 
-/*登录注册点击*/
+/* .navTall {
+    width: 80%;
+    min-width: 1400px;
+    margin: 0 auto;
+    border: 1px solid rgb(0, 0, 0);
+} */
 
-#logonp {
-    position: relative;
-    width: 100%;
-    /* min-width: 1300px; */
-    height: 38px;
-    background-color: rgb(9, 182, 101);
-}
-
-#logonp p {
-    font-family: '楷体';
-    font-size: 1.4em;
-    font-weight: bold;
-    line-height: 38px;
+.heh {
+    width: 93px;
+    height: 70px;
     position: absolute;
-    right: 650px;
-    color: white;
-}
-
-.lo-re {
-    width: 95px;
-    height: 38px;
-    position: absolute;
-    right: 500px;
+    top: -7px;
+    right: 18%;
     /* border: 1px solid black; */
 }
 
-#logonp a {
-    text-decoration: none;
-    color: white;
-    line-height: 38px;
-    font-family: '楷体';
-    font-size: 1.4em;
-    font-weight: bold;
-    position: absolute;
-}
-
-#logonp a:hover {
-    color: black;
-}
-
-#logo {
-    position: absolute;
-    left: 2px;
-}
-
-.line {
-    width: 2px;
-    height: 26px;
-    background-color: white;
-    position: absolute;
-    left: 47px;
-    top: 6px;
-}
-
-#register {
-    position: absolute;
-    right: 2px;
-}
-
-
-/* 导航栏 */
-
-#marg-All {
-    width: 100%;
-    height: 80px;
-    background: rgba(168, 223, 240, 0.4);
+.heh img {
+    width: 93px;
+    height: 70px;
     /* border: 1px solid black; */
-}
-
-#marg-All img {
-    position: absolute;
-    left: 281px;
-    width: 148px;
-    height: 80px;
-}
-
-#marg-All ul {
-    padding: 0px;
-    position: absolute;
-    left: 435px;
-    width: 966px;
-    height: 80px;
-    /* background-color: rgb(151, 166, 180); */
-}
-
-.line-bottom {
-    display: none;
-    width: 140px;
-    height: 5px;
-    background-color: aqua;
-    position: absolute;
-    bottom: 0px;
-}
-
-#marg-All ul a {
-    width: 140px;
-    text-align: center;
-    float: left;
-    margin-left: 20px;
-    font-weight: bolder;
-    line-height: 80px;
-    font-family: '楷体';
-    font-size: 1.8em;
-}
-
-#marg-All ul a:hover .line-bottom {
-    display: inherit;
-}
-
-#marg-All ul a:hover {
-    color: aqua;
 }
 
 
@@ -149,18 +56,18 @@ body {
     margin: 0 auto;
     width: 70%;
     /* height: 3500px; */
-    min-width: 800px;
+    min-width: 1400px;
     /* background-color: antiquewhite; */
 }
 
 .videos {
-    margin-top: -7px;
     width: 100%;
     height: 765px;
     /* border: 1px solid black; */
 }
 
 #vid {
+    margin: -1px;
     width: 100%;
     height: 765px;
 }
@@ -200,7 +107,7 @@ body {
     width: 150px;
     height: 50px;
     font-family: '楷体';
-    font-size: 2.4em;
+    font-size: 1.7em;
     font-weight: bolder;
     line-height: 50px;
     text-align: center;
@@ -215,7 +122,7 @@ body {
     right: 5px;
     width: 210px;
     /* right: 30px; */
-    font-size: 1.3em;
+    font-size: 1.2em;
     color: rgb(130, 131, 133);
     text-align: center;
 }
@@ -314,20 +221,28 @@ body {
 }
 
 .nav-body-text1 {
+    width: 48%;
     margin-top: 60px;
+    min-width: 500px;
     position: relative;
+    /* border: 1px solid black; */
 }
 
-.nav-body-text1-ch1,
-.nav-body-text1-ch2 {
-    width: 600px;
+.nav-body-text1-ch1 {
+    width: 100%;
     height: 55px;
-    background-color: rgb(85, 165, 231);
+    background: rgba(42, 148, 235, 0.8);
+}
+
+.nav-body-text1-ch2 {
+    width: 100%;
+    height: 55px;
+    background: rgba(13, 202, 202, 0.8);
 }
 
 .tab-box,
 .tab-box2 {
-    width: 600px;
+    min-width: 480px;
     /* border: 1px solid black; */
     border-bottom: 1px solid rgb(231, 231, 231);
 }
@@ -367,7 +282,7 @@ body {
 }
 
 .nav-body-text1-ch1 ul li a {
-    text-shadow: 2px 1px 1px rgb(255, 255, 255);
+    /* text-shadow: 2px 1px 1px rgb(255, 255, 255); */
     /* color: transparent; */
     /* color: antiquewhite; */
     font-size: 1.5em;
@@ -375,10 +290,11 @@ body {
     line-height: 38px;
     font-weight: 600;
     font-family: '宋体';
+    color: rgb(87, 87, 87);
 }
 
 .nav-body-text1-ch2 ul li a {
-    text-shadow: 2px 1px 1px rgb(255, 255, 255);
+    /* text-shadow: 2px 1px 1px rgb(255, 255, 255); */
     /* color: transparent; */
     /* color: antiquewhite; */
     font-size: 1.5em;
@@ -386,6 +302,7 @@ body {
     line-height: 38px;
     font-weight: 600;
     font-family: '宋体';
+    color: rgb(87, 87, 87);
 }
 
 .nav-body-text1-ch1 ul li:hover {
@@ -394,7 +311,7 @@ body {
 
 .nav-body-text1-ch1 ul li:hover a {
     color: rgb(82, 186, 235);
-    font-weight: 600;
+    /* font-weight: 600; */
     margin-top: 10px;
     font-family: '宋体';
 }
@@ -405,7 +322,7 @@ body {
 
 .nav-body-text1-ch2 ul li:hover a {
     color: rgb(82, 186, 235);
-    font-weight: 600;
+    /* font-weight: 600; */
     margin-top: 10px;
     font-family: '宋体';
 }
@@ -417,7 +334,7 @@ body {
 .change a {
     /* background-color: white; */
     color: rgb(82, 186, 235);
-    font-weight: 600;
+    /* font-weight: 600; */
     /* margin-top: 10px; */
     font-family: '宋体';
 }
@@ -471,11 +388,12 @@ body {
     padding-left: 25px;
     line-height: 35px;
     font-size: 25px;
+    color: black;
 }
 
 .one a:hover {
-    color: rgb(52, 82, 92);
-    font-weight: 600;
+    color: rgb(66, 94, 104);
+    /* font-weight: 600; */
 }
 
 .movie {
@@ -532,46 +450,4 @@ body {
 .friend-nav li:hover {
     background-color: rgb(205, 246, 246);
     color: rgb(78, 45, 2);
-}
-
-
-/* 网站底部 */
-
-.foot {
-    position: relative;
-    margin-top: 60px;
-    width: 100%;
-    height: 300px;
-    /* border: 1px solid black; */
-    background-color: black;
-    text-align: center;
-}
-
-.nav-foot {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    margin-top: 50px;
-    margin-left: 27%;
-    width: 800px;
-    height: 200px;
-    background: rgba(224, 224, 224, 0.3);
-    /* border: 1px solid white; */
-    text-align: center;
-    /* padding-top: 50px; */
-}
-
-.nav-foot p {
-    margin-top: 48px;
-    color: white;
-    font-family: '楷体';
-    font-size: 1.5em;
-}
-
-.pppp {
-    position: absolute;
-    top: 35px;
-    left: 132px;
 }

@@ -1,0 +1,74 @@
+/*登录注册点击*/
+
+#logonp {
+    position: relative;
+    width: 100%;
+    /* min-width: 1300px; */
+    height: 38px;
+    background-color: rgb(9, 182, 101);
+}
+
+#logonp p {
+    font-family: '楷体';
+    font-size: 1.4em;
+    font-weight: bold;
+    line-height: 38px;
+    position: absolute;
+    right: 650px;
+    color: white;
+}
+
+.lo-re {
+    width: 95px;
+    height: 38px;
+    position: absolute;
+    right: 500px;
+    /* border: 1px solid black; */
+}
+
+#logonp a {
+    text-decoration: none;
+    color: white;
+    line-height: 38px;
+    font-family: '楷体';
+    font-size: 1.4em;
+    font-weight: bold;
+    position: absolute;
+}
+
+#logonp span {
+    text-decoration: none;
+    color: white;
+    line-height: 38px;
+    font-family: '楷体';
+    font-size: 1.4em;
+    font-weight: bold;
+    position: absolute;
+}
+
+#logonp a:hover {
+    color: black;
+}
+
+#logonp span:hover {
+    color: black;
+}
+
+#logo {
+    position: absolute;
+    left: 2px;
+}
+
+.line {
+    width: 2px;
+    height: 26px;
+    background-color: white;
+    position: absolute;
+    left: 51px;
+    top: 6px;
+}
+
+#register {
+    position: absolute;
+    right: -6px;
+}

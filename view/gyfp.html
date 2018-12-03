@@ -7,10 +7,14 @@
     <link rel="icon" href="/static/img/农牧云logo1.png">
     <link rel="stylesheet" href="/static/css/gyfp.css">
     <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/css/publ.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <link rel="stylesheet" href="/static/css/loginnp.css">
     <script src="/static/js/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
     <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
     <script src="/static/gyfp/gyfp.js"></script>
+    <!-- <script src="/static/pub/pub.js"></script> -->
 </head>
 
 <body>
@@ -19,73 +23,81 @@
             <p style="font-family: '楷体';">农牧云欢迎你！</p>
             <div class="lo-re"><a href="https://www.linchongyang.cn:4320/check" id="logo">登录</a>
                 <div class="line"></div>
-                <a href="https://www.linchongyang.cn:4320/register" id="register">注册</a>
+                <span id="register" @click="tui()" style="cursor:pointer;">退出</span>
             </div>
+            <a class="heh" @click="nec()"><img src="/static/img/cart-hl.png" alt=""></a>
         </div>
+
         <!-- 导航栏 -->
         <div id="marg-All">
-            <img src="/static/img/农牧云logo1.png" alt="">
-            <ul>
-                <a :href="na.hrefs" v-for="na in navcs">
-                    <div class="line-bottom"></div>
-                    <li style="font-family: '楷体';">{{na.name}}</li>
-                </a>
-            </ul>
-        </div>
-
-        <!--帮扶成果、数据展示-->
-        <div class="txtDetail">
-            <p class="pstyle">帮扶成果、数据展示</p>
-        </div>
-
-        <!--公益活动轮播-->
-        <div id="carousel">
-            <div class="img-wrap">
-                <a href="javascript:;" class="img-item" style="display: block;"><img :src="gyfpmsg.imgs" /></a>
-                <a href="javascript:;" class="newsTxt" style="display: block;">
-                    <div id="newsTxt">
-                        <h1>{{gyfpmsg.messtitle}}</h1>
-                        <h3>&nbsp;&nbsp;&nbsp;{{gyfpmsg.msg}}</h3>
-                    </div>
-                </a>
+            <div class="navtit">
+                <img src="/static/img/农牧云logo1.png" alt="">
+                <ul>
+                    <a :href="na.hrefs" v-for="na in navcs">
+                        <div class="line-bottom"></div>
+                        <li>{{na.name}}</li>
+                    </a>
+                </ul>
             </div>
         </div>
-        <hr class="linestyle" style="height:1px;border:none;border-top:2px dashed #0066CC;" />
-        <!--帮扶对象--带领脱贫致富-->
-        <p class="txtDetail pstyle">
-            帮扶对象--带领脱贫致富<i class="fa fa-handshake-o" aria-hidden="true"></i>
-        </p>
 
-        <div class="countryList">
-            <ul>
-                <li v-for="cn in country"><a :href="cn.links" class="countrName">{{cn.countrysidename}}<i class="fa fa-paper-plane" aria-hidden="true"></i></a></li>
-            </ul>
-            <a href="javascript:;">
-                <p class="blogMore pstyle">查看更多<i class="fa fa-chevron-circle-right" aria-hidden="true" style="margin: 2px;"></i></p>
-            </a>
-        </div>
-        <hr class="linestyle" style="height:1px;border:none;border-top:2px dashed #0066CC;" />
-        <!--农牧云的故事-->
-        <div class="txtDetail">
-            <p class="pstyle">农牧云的故事<i class="fa fa-book" aria-hidden="true"></i></p>
-            <p class="pstyle">我们公益的故事</p>
-            <p class="pstyle">无论是在高校还是在农村，农牧云携手合作伙伴，谱写一个又一个感人的故事</p>
-        </div>
+        <div class="navMargs">
+            <!--帮扶成果、数据展示-->
+            <div class="txtDetail">
+                <p class="pstyle" style="font-family: '楷体';font-size: 1.3em;">帮扶成果、数据展示</p>
+            </div>
 
-        <!--日志列表-->
-        <div class="blogList">
-            <div class="blogItem" v-for="msg in textdetial">
-                <img :src="msg.imgs" />
-                <h2 class="blogTitle" style="padding:8px;">{{msg.gytitle}}</h2>
-                <div class="blogDetail">{{msg.gymsg}}</div>
-                <p class="blogMore pstyle"><i class="fa fa-chevron-right" aria-hidden="true"></i>点击进入</p>
+            <!--公益活动轮播-->
+            <div id="carousel">
+                <div class="img-wrap">
+                    <div class="ims">
+                        <a href="javascript:;" style="display: block;" v-for="(im,index) in gyfpimg"><img :src="im.imgs" v-show="index==num" /></a>
+                    </div>
+                    <a href="javascript:;" class="newsTxt" style="display: block;">
+                        <div id="newsTxt">
+                            <h1>{{gyfpmsg.name}}</h1>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;{{gyfpmsg.msgs}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <hr class="linestyle" style="height:1px;border:none;border-top:2px dashed #0066CC;" />
+            <!--帮扶对象--带领脱贫致富-->
+            <p class="txtDetail pstyle" style="font-family: '楷体';font-size: 1.4em;">
+                帮扶对象--带领脱贫致富<i class="fa fa-handshake-o" aria-hidden="true"></i>
+            </p>
+
+            <div class="countryList">
+                <ul>
+                    <li v-for="cn in country"><a :href="cn.links" class="countrName">{{cn.countrysidename}}<i class="fa fa-paper-plane" aria-hidden="true"></i></a></li>
+                </ul>
+                <a href="javascript:;">
+                    <p class="blogMore pstyle" style="font-family: '楷体';font-size: 1.3em;">查看更多<i class="fa fa-chevron-circle-right" aria-hidden="true" style="margin: 2px;"></i></p>
+                </a>
+            </div>
+            <hr class="linestyle" style="height:1px;border:none;border-top:2px dashed #0066CC;" />
+            <!--农牧云的故事-->
+            <div class="txtDetail">
+                <p class="pstyle" style="font-family: '楷体';font-size: 1.3em;">农牧云的故事<i class="fa fa-book" aria-hidden="true"></i></p>
+                <p class="pstyle">我们公益的故事</p>
+                <p class="pstyle">无论是在高校还是在农村，农牧云携手合作伙伴，谱写一个又一个感人的故事</p>
+            </div>
+
+            <!--日志列表-->
+            <div class="blogList">
+                <div class="blogItem" v-for="msg in textdetial">
+                    <img :src="msg.imgs" />
+                    <h2 class="blogTitle" style="padding:8px; font-family: '楷体';font-size: 1.8em;">{{msg.gytitle}}</h2>
+                    <div class="blogDetail">{{msg.gymsg}}</div>
+                    <p class="blogMore pstyle"><i class="fa fa-chevron-right" aria-hidden="true"></i>点击进入</p>
+                </div>
             </div>
         </div>
         <!-- 网站底部 -->
         <div class="foot">
             <div class="nav-foot">
                 <p>四川省南充市西华师范大学数学与信息学院信息与计算科学专业2016级8班</p>
-                <p class="pppp"><b>Tel</b>:13350058238/3628098186&nbsp;&nbsp;<b>Email</b>:1653709489@qq.com</p>
+                <p class="pppp"><b style="color:white;">Tel</b>:13350058238/3628098186&nbsp;&nbsp;<b style="color:white;">Email</b>:1653709489@qq.com</p>
                 <p>农牧云平台</p>
             </div>
         </div>

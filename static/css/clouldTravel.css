@@ -1,0 +1,404 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    min-width: 1950px;
+    /* background-image: url(../img/cloudTravel-img/gulouImg1.JPG);
+    background-size: cover;
+    background-repeat: no-repeat; */
+}
+
+.heh {
+    width: 93px;
+    height: 70px;
+    position: absolute;
+    top: -7px;
+    right: 18%;
+    /* border: 1px solid black; */
+}
+
+.heh img {
+    width: 93px;
+    height: 70px;
+    /* border: 1px solid black; */
+}
+
+
+/* end导航 */
+
+#main {
+    padding-top: 100px;
+    height: 1200px;
+    background-image: url(/static/img/cloudTravel-img/gulouImg1.JPG);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#provence {
+    padding-top: 100px;
+    height: 1270px;
+    display: none;
+    background-image: url(/static/img/cloudTravel-img/gulouImg1.JPG);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#city {
+    padding-top: 100px;
+    height: 1366px;
+    width: 100%;
+    display: none;
+    background-image: url(/static/img/cloudTravel-img/gulouImg1.JPG);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.city-img {
+    width: 1200px;
+    margin: 0 auto;
+    height: 1171px;
+}
+
+
+/* .city-img div {
+    cursor: pointer;
+} */
+
+.city-img img {
+    width: 100%;
+    opacity: 0.8;
+}
+
+.city-img h1 {
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 189px;
+}
+
+
+/* 合作地区列表 */
+
+.cooperate {
+    position: relative;
+    top: -140px;
+    left: 175px;
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: none;
+}
+
+.cooperate ul {
+    padding-left: 0;
+    list-style: none;
+    font-size: 1.7em;
+}
+
+.cooperate ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.cooperate ul li a:hover {
+    color: orange;
+}
+
+
+/* 合作地点 圆点显示 */
+
+.gulou-cooperate0 {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: red;
+    animation: scale infinite 1s;
+    top: -184px;
+    left: 158px;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+#gulou-cooperate0-name {
+    text-decoration: none;
+    position: relative;
+    top: -202px;
+    left: 180px;
+    display: none;
+    z-index: 10000;
+}
+
+#gulou-cooperate0-name a {
+    font-size: 1.3em;
+    /* color: orange; */
+}
+
+#gulou-cooperate0-img {
+    width: 400px;
+    position: relative;
+    top: -243px;
+    left: -255px;
+    display: none;
+    animation: imgDisp 1s;
+}
+
+#gulou-cooperate0-img img {
+    opacity: 1;
+    width: 100%;
+}
+
+@keyframes imgDisp {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 200%;
+    }
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* 介绍图片 */
+
+.gulou {
+    width: 200px;
+    height: 15 0px;
+}
+
+
+/* 西充 */
+
+.xichong {
+    position: relative;
+    width: 194px;
+    height: 189px;
+    top: -722px;
+    left: 234px;
+}
+
+.xichong:hover .cooperate {
+    display: block;
+}
+
+
+/* 南充 */
+
+.nanchong {
+    position: relative;
+    width: 194px;
+    height: 189px;
+    top: -677px;
+    left: 409px;
+}
+
+.nanchong:hover h1 {
+    display: block;
+}
+
+.nanchong:hover .cooperate {
+    display: block;
+}
+
+
+/* 蓬安 */
+
+.pengan {
+    position: relative;
+    width: 180px;
+    height: 189px;
+    top: -1022px;
+    left: 641px;
+    /* line-height: 100px; */
+}
+
+
+/* 营山 */
+
+.yingshan {
+    position: relative;
+    width: 180px;
+    height: 189px;
+    top: -1352px;
+    left: 831px;
+}
+
+
+/* 仪陇 */
+
+.yilong {
+    position: relative;
+    width: 180px;
+    height: 189px;
+    top: -1775px;
+    left: 739px;
+}
+
+
+/* 阆中 */
+
+.langzhong {
+    position: relative;
+    width: 180px;
+    height: 189px;
+    top: -2080px;
+    left: 382px;
+}
+
+
+/* 南部 */
+
+.nanbu {
+    position: relative;
+    width: 180px;
+    height: 189px;
+    top: -2047px;
+    left: 294px;
+}
+
+.travel-list {
+    width: 1200px;
+    margin: 0 auto;
+    display: none;
+}
+
+.travel-title {
+    margin-top: 20px;
+    text-align: center;
+    color: green;
+    font-size: 2em;
+    letter-spacing: 10px;
+}
+
+.travel-title h3 {
+    margin-bottom: 0;
+}
+
+.travel-title h1 {
+    margin-top: 0;
+}
+
+.line {
+    margin: 0 auto;
+    width: 70px;
+    height: 20px;
+    border-bottom: 5px solid green;
+}
+
+.travel-desc {
+    width: 1100px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.desc-img {
+    width: 50%;
+    float: left;
+}
+
+.desc-content {
+    width: 50%;
+    float: left;
+}
+
+.desc-img img {
+    width: 92%;
+}
+
+.travel-place {
+    border: 2px solid green;
+    border-radius: 5px;
+    color: green;
+    padding: 3px;
+    font-size: 1.6em;
+    margin: 10px 0;
+    letter-spacing: 2px;
+}
+
+.travel-time {
+    color: grey;
+    margin: 10px 0;
+}
+
+.travel-time span {
+    color: orange;
+}
+
+.start-place {
+    color: grey;
+    margin: 10px 0;
+}
+
+.start-place span {
+    color: orange;
+}
+
+.bright-spot {
+    width: 80%;
+    color: grey;
+    margin: 10px 0;
+}
+
+.bright-spot span {
+    color: orange;
+}
+
+.travel-price {
+    margin: 5px 0;
+}
+
+.price {
+    color: red;
+    font-size: 2em;
+}
+
+.qi {
+    color: orange;
+}
+
+.order-button {
+    position: relative;
+    top: -7px;
+    color: white;
+    background-color: orange;
+    border: none;
+    border-radius: 8px;
+    padding: 5px;
+    margin: 0 25px 0 2px;
+}
+
+.score {
+    color: red;
+}
+
+.estimate {
+    color: grey;
+}
+
+.more {
+    color: orange;
+    margin: 0
+}

@@ -27,15 +27,25 @@ func init() {
 }
 
 type Gyfpmsg struct {
-	ID        int    `json:"id" form:"id"`
-	Imgs      string `json:"imgs" form:"imgs"`
-	Messtitle string `json:"messtitle" form:"messtitle"`
-	Msg       string `json:"msg" form:"msg"`
+	ID   int    `json:"id" form:"id"`
+	Imgs string `json:"imgs" form:"imgs"`
 }
 
-func GyfpMsg() (Gyfpmsg, error) {
-	mod := Gyfpmsg{}
-	err := dB.Get(&mod, `select * from gyfpmsg`)
+func GyfpImg() ([]Gyfpmsg, error) {
+	mod := make([]Gyfpmsg, 0)
+	err := dB.Select(&mod, `select * from gyfpimg`)
+	return mod, err
+}
+
+type Gyfpmsgs struct {
+	ID   int    `json:"id" form:"id"`
+	Name string `json:"name" form:"name"`
+	Msgs string `json:"msgs" form:"msgs"`
+}
+
+func GyMsgs() (Gyfpmsgs, error) {
+	mod := Gyfpmsgs{}
+	err := dB.Get(&mod, `select * from gyfpmsgs`)
 	return mod, err
 }
 

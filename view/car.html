@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>农牧云</title>
+    <link rel="icon" href="/static/img/农牧云logo1.png">
+    <link rel="stylesheet" href="/static/css/car.css">
+    <link rel="stylesheet" href="/static/css/publ.css">
+
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <script src="/static/cars/car.js"></script>
+</head>
+
+<body>
+    <div id="tall">
+        <!-- 导航栏 -->
+        <div id="marg-All">
+            <div class="navtit">
+                <img src="/static/img/农牧云logo1.png" alt="">
+                <ul>
+                    <a :href="na.hrefs" v-for="na in navcs">
+                        <div class="line-bottom"></div>
+                        <li>{{na.name}}</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 下面部分 -->
+        <div class="nav">
+            <div class="navinfor">
+                <img src="/static/img/images/banne1.jpg" alt="">
+                <p class="uName"><b>姓名：</b>{{users.name}}</p>
+                <p class="uEmail"><b>年龄：</b>{{users.email}}</p>
+                <p class="uTel"><b>电话：</b>{{users.tel}}</p>
+            </div>
+            <!-- 展示购物信息 -->
+            <div class="navName">
+                <ul>
+                    <li>产品图片</li>
+                    <li>产品信息</li>
+                    <li>产品价格</li>
+                    <li>产品数量</li>
+                </ul>
+            </div>
+            <div class="margGoods">
+                <ul class="margs">
+                    <li v-for="gs in gods">
+                        <a :href="'/single?id='+gs.goodsid" style="color:black;">
+                            <!-- <span>{{id}}</span> -->
+                            <!-- <input type="checkbox" @click="totalPrice()" v-model="tot"> -->
+                            <!-- <input type="checkbox" @click="totalPrice(gs.num,gs.price)"> -->
+                            <img :src="gs.imgs" alt="">
+                            <div class="margMsg">
+                                <p class="p1">{{gs.name}}</p>
+                                <p class="p2">{{gs.msgs}}</p>
+                            </div>
+                        </a>
+                        <div>
+                            <p class="addre"><b>收获地址：</b>{{gs.addr}}</p>
+                            <p class="nums">{{gs.num}}</p>
+                        </div>
+                        <p class="pri">{{gs.price}}</p>
+                        <p class="margA1" v-on:click="remove(gs.id)">移除商品</p>
+
+                    </li>
+                </ul>
+                <p class="total">总价：¥{{totalPrice()}}</p>
+                <button type="button" id="btn">立即购买</button>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

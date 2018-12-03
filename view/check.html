@@ -76,22 +76,12 @@
                     mima: pass
                 },
                 success: function(data) {
-                    // console.log(pass == data.Pass)
-                    // console.log(name == data.Name)
-                    // console.log(data)
-                    if (data == "信息错误") {
-                        alert("输入信息不正确")
-                        return false
+                    if (data == '信息错误') {
+                        alert(data)
                     }
-
-                    if (pass == data.Pass || name == data.Name) {
-                        alert("输入信息不正确")
-                        $("#name").val()
-                        $("#pass").val()
-                        return false
-                    }
-                    window.location.href = "/viewmain"
-
+                    data = JSON.parse(data)
+                    localStorage.setItem("token", data.data)
+                    window.location.href = "/yushangjs?token=" + localStorage.getItem("token")
                 }
             })
         }

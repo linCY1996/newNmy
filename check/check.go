@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	jwt "github.com/dgrijalva/jwt-go"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 )
@@ -36,7 +37,7 @@ type UserRegister struct {
 	Address   string `json:"address,omitempty"`
 	Tel       string `json:"tel,omitempty"`
 	Newname   string `json:"newname,omitempty"`
-	Pass      string `json:"pass,omitempty"`
+	Pass      string `json:"pass" form:"pass"`
 	Againpass string `json:"againpass,omitempty"`
 }
 
@@ -57,10 +58,10 @@ func CheckEmail(email string) ([]UserRegister, error) {
 }
 
 //在数据库中进行查找name和pass
-func CheckUser(name string, pass string) (UserRegister, error) {
+func CheckUser(name string) (UserRegister, error) {
 
 	mods := UserRegister{}
-	err := dB.Get(&mods, `select * from register where name=? and pass=?`, name, pass)
+	err := dB.Get(&mods, `select * from register where name=?`, name)
 	return mods, err
 }
 
@@ -75,4 +76,11 @@ func UpDataPass(pass string, againpass string, email string) (UserRegister, erro
 	udp := UserRegister{}
 	_, err := dB.Exec(`update register set pass=?, againpass=? where email=?`, pass, againpass, email)
 	return udp, err
+}
+
+// Jwt json web token
+type Jwt struct {
+	Id   int
+	Name string
+	jwt.StandardClaims
 }

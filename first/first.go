@@ -135,12 +135,13 @@ func SleYSJS() ([]YSJSprod, error) {
 
 //云上集市相关产品
 type YSJSpordu struct {
-	ID     int     `json:"id" form:"id"`
-	Imgs   string  `json:"imgs" form:"imgs"`
-	Mess   string  `json:"mess" form:"mess"`
-	Number string  `json:"number" form:"number"`
-	Price  float64 `json:"price" form:"price"`
-	Hrefs  string  `json:"hrefs" form:"hrefs"`
+	ID       int     `json:"id" form:"id"`
+	Imgs     string  `json:"imgs" form:"imgs"`
+	Mess     string  `json:"mess" form:"mess"`
+	Moremess string  `json:"moremess" form:"moremess"`
+	Number   string  `json:"number" form:"number"`
+	Price    float64 `json:"price" form:"price"`
+	Hrefs    string  `json:"hrefs" form:"hrefs"`
 }
 
 //云上集市罗列产品
@@ -153,7 +154,6 @@ func Sleprodu() ([]YSJSpordu, error) {
 func Sleprodu1() ([]YSJSpordu, error) {
 	mod := make([]YSJSpordu, 0)
 	err := dB.Select(&mod, `select * from yunshop1 limit 6,6`)
-	fmt.Println(err)
 	return mod, err
 }
 
@@ -170,18 +170,78 @@ func SelFriends() ([]Friends, error) {
 	return mod, err
 }
 
+type UserRegister struct {
+	ID    int    `json:"id,omitempty" form:"id"`
+	Name  string `json:"name,omitempty"`
+	Email string `json:"email" from:"email"`
+	Tel   string `json:"tel,omitempty"`
+}
+
 //购物车信息
 type GWC struct {
-	Userid   int `json:"userid" form:"userid"`
-	Goodsid  int `json:"goodsid" form:"goodsid"`
-	Sellerid int `json:"sellerid" form:"sellerid"`
+	ID      int    `json:"id" form:"id"`
+	Goodsid int    `json:"goodsid" form:"goodsid"`
+	Userid  int    `json:"userid" form:"userid"`
+	Num     int    `json:"num" form:"num"`
+	Addr    string `json:"addr" form:"addr"`
+	Imgs    string `json:"imgs" form:"imgs"`
+	Name    string `json:"name" form:"name"`
+	Msgs    string `json:"msgs" form:"msgs"`
+	Price   string `json:"price" form:"price"`
+}
+
+//在购物车中显示用户信息
+func ShowUserMsg(id int) (UserRegister, error) {
+	mod := UserRegister{}
+	err := dB.Get(&mod, `select name, email, tel from register where id=?`, id)
+	return mod, err
 }
 
 //购物车
-func InsertGWC(userid, goodsid int) (GWC, error) {
-	mod := GWC{}
-	_, err := dB.Exec(`insert into gwc(userid, goodsid, sellerid) values(?,?,'张三')`, userid, goodsid)
+func InsertGWC(goodsid, userid, num int, addr, imgs, name, msgs, price string) bool {
+	// mod := GWC{}
+	mod, _ := dB.Exec(`insert into gwc(goodsid,userid, num, addr,imgs,name,msgs,price) values(?,?,?,?,?,?,?,?)`, goodsid, userid, num, addr, imgs, name, msgs, price)
+	bef, _ := mod.LastInsertId()
+	if bef == 1 {
+		return true
+	}
+	return false
+}
+
+// 在购物车中展示用户的地址信息
+// func ShowAddre() ([]GWC, error) {
+// 	mod := make([]GWC, 0)
+// 	err := dB.Select(&mod, `select * from gwc where userid=2`)
+// 	return mod, err
+// }
+
+//显示在购物车上的信息
+func Showgwc(userid int) ([]GWC, error) {
+	mod := make([]GWC, 0, 2)
+	err := dB.Select(&mod, `select * from gwc where userid=?`, userid)
+	// err := dB.Select(&mod, `select * from yunshop1`)
+	// fmt.Println(4654)
 	return mod, err
+}
+
+//显示在购物车上的购物数量
+// func Showgwcnum() (GWC, error) {
+// 	mod := GWC{}
+// 	err := dB.Get(&mod, `select addr, num from gwc where userid=2`)
+// 	// err := dB.Select(&mod, `select * from yunshop1`)
+// 	// fmt.Println(4654)
+// 	return mod, err
+// }
+
+//从购物车中移除相应商品
+func RemoveGod(id int) bool {
+	mod, _ := dB.Exec(`delete from gwc where id=?`, id)
+	bef, _ := mod.RowsAffected()
+	if bef == 1 {
+		return true
+	} else {
+		return false
+	}
 }
 
 type Singleimgmsg struct {
@@ -227,6 +287,7 @@ func LunSingleImg(id int) ([]Singledetial, error) {
 //产品详情信息
 type Goodsmsg struct {
 	ID           int     `json:"id" form:"id"`
+	Imgs         string  `json:"imgs" form:"imgs"`
 	Goodsname    string  `json:"goodsname" form:"goodsname"`
 	GoodsMsg     string  `json:"goodsmsg"  form:"goodsmsg"`
 	Oldprice     float64 `json:"oldprice" form:"oldprice"`
@@ -242,16 +303,77 @@ func GoodsMSG(id int) (Goodsmsg, error) {
 
 type InserAdd struct {
 	ID      int    `json:"id" form:"id"`
-	Userid  string `json:"userid" form:"userid"`
-	Goodsid string `json:"goodsid" form:"goodsid"`
+	Userid  int    `json:"userid" form:"userid"`
+	Goodsid int    `json:"goodsid" form:"goodsid"`
 	Addr    string `json:"addr" form:"addr"`
+	Num     int    `json:"num" form:"num"`
 }
 
 //发送用户的收获地址信息
-func Inseradd(goodsid, address string) bool {
-	mod, _ := dB.Exec(`insert into address(goodsid,addr) values(?,?)`, goodsid, address)
+func Inseradd(userid, goodsid int, address string, num int) bool {
+	mod, _ := dB.Exec(`insert into address(userid,goodsid,addr,num) values(?,?,?,?)`, userid, goodsid, address, num)
 	ok, _ := mod.LastInsertId()
 	if ok == 1 {
+		return true
+	} else {
+		return false
+	}
+}
+
+//关于我们页面的相关数据库操作
+type Personinfor struct {
+	ID  int    `json:"id" form:"id"`
+	Msg string `json:"msg" form:"msg"`
+}
+
+//查询平台特色的相关信息
+func AllInfor() ([]Personinfor, error) {
+	mod := make([]Personinfor, 0)
+	err := dB.Select(&mod, `select * from perinfor`)
+	return mod, err
+}
+
+func Movemsg() ([]YSJSpordu, error) {
+	mod := make([]YSJSpordu, 0)
+	err := dB.Select(&mod, `select imgs,mess from yunshop1 where id<13`)
+	return mod, err
+}
+
+func Movenine() ([]YSJSpordu, error) {
+	mod := make([]YSJSpordu, 0)
+	err := dB.Select(&mod, `select imgs,mess from yunshop1 where id<3`)
+	return mod, err
+}
+
+func Moveeight() ([]YSJSpordu, error) {
+	mod := make([]YSJSpordu, 0)
+	err := dB.Select(&mod, `select imgs,mess from yunshop1 where id>=3 and id<6`)
+	return mod, err
+}
+func Moveseven() ([]YSJSpordu, error) {
+	mod := make([]YSJSpordu, 0)
+	err := dB.Select(&mod, `select imgs,mess from yunshop1 where id>=6 and id<10`)
+	return mod, err
+}
+func Movesix() ([]YSJSpordu, error) {
+	mod := make([]YSJSpordu, 0)
+	err := dB.Select(&mod, `select imgs,mess from yunshop1 where id>=10 and id<13`)
+	return mod, err
+}
+
+//用户反馈
+type FeedBack struct {
+	ID    int    `json:"id,omitempty"`
+	Name  string `json:"name,omitempty"`
+	Email string `json:"email,omitempty"`
+	Tel   string `json:"tel,omitempty"`
+	Msg   string `json:"msg,omitempty"`
+}
+
+func FeedMsgs(name, email, tel, msg string) bool {
+	mod, _ := dB.Exec(`insert into feedback(name, email, tel, msg) values(?,?,?,?)`, name, email, tel, msg)
+	bef, _ := mod.LastInsertId()
+	if bef == 1 {
 		return true
 	} else {
 		return false

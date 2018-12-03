@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>pesonalCenter</title>
+    <link rel="icon" href="/static/img/农牧云logo1.png">
+    <link rel="stylesheet" type="text/css" href="/static/css/personalCenter.css" />
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src="/static/js/personalCenter.js"></script> -->
+    <script src="/static/person/personal.js"></script>
+
+</head>
+
+<body>
+    <div id="subject">
+        <div class="banner">
+            <div class="tittle">
+                <a href="#Home"><img src="img/move-up.png" class="findHome" /></a>
+                <h2 id="Home">农牧云--Nong MuYun</h2>
+                <div class="form">
+                    <li>
+                        <div class="lineleft line"></div>
+                        <a href="https://www.linchongyang.cn:4320/">网站主页</a>
+                        <div class="lineright line"></div>
+                    </li>
+                    <li>
+                        <div class="lineleft line"></div>
+                        <a href="">公司简介</a>
+                        <div class="lineright line"></div>
+                    </li>
+                    <li>
+                        <div class="lineleft line"></div>
+                        <a href="">特色功能</a>
+                        <div class="lineright line"></div>
+                    </li>
+                    <li>
+                        <div class="lineleft line"></div>
+                        <a href="">团队介绍</a>
+                        <div class="lineright line"></div>
+                    </li>
+                    <li>
+                        <div class="lineleft line"></div>
+                        <a href="">公司动态</a>
+                        <div class="lineright line"></div>
+                    </li>
+                    <li>
+                        <div class="lineleft line"></div>
+                        <a href="">联系我们</a>
+                        <div class="lineright line"></div>
+                    </li>
+                </div>
+                <img src="/static/img/img/down.svg" class="down" />
+            </div>
+        </div>
+        <div id="welcome">
+            <h1>欢迎您的访问</h1>
+            <h5>公司简介</h5>
+            <p>农牧云是一个具有农产品销售、乡村旅游、公益扶贫等特色功能的互联网农业电商服务平台。 我们响应国家“精准扶贫、乡村振兴”战略，集合农村中小型农户的力量， 运用 “互联网”+“大数据”+“物联网”相关技术， 打造了云上集市、云游天下和公益扶贫三大板块。 分别从种植养殖、旅游开发、高校对口帮扶等方面帮助乡村更好的利用当地特色农业资源， 解决乡村特色农产品宣传不佳、销售不畅、供需失衡等问题。
+            </p>
+            <div class="intro">
+                <div class="box">
+                    <h6>企业文化</h6>
+                    <p>致力于打造生态、共享、扶贫为一体的互联网农业电商服务平台。</p>
+                    <img src="/static/img/img/cover01.png" />
+                </div>
+                <div class="box">
+                    <h6>平台理念</h6>
+                    <p>新鲜、便捷、实惠的消费体验，生态、扶贫、共享的互联网农业电商。</p>
+                    <img src="/static/img/img/cover02.png" />
+                </div>
+                <div class="box">
+                    <h6>政策支持</h6>
+                    <p>四川省南充市农牧业局大力支持高校大学生创新创业政策。</p>
+                    <img src="/static/img/img/cover03.png" />
+                </div>
+                <div class="box">
+                    <h6>优质产品</h6>
+                    <p>提供绿色、生态的农特产品，如藏香猪、霞脆桃、绿壳鸡蛋、食用菌等。</p>
+                    <img src="/static/img/img/cover04.png" />
+                </div>
+            </div>
+        </div>
+        <div class="about">
+            <h1>关于我们</h1>
+            <div class="ourLacation">
+                <img src="/static/img/img/Doufu.jpg" />
+                <br>
+                <p>基于农产品平台研发，以扶贫为初心，致力于产品上行， 从生产源头把握农产品品控，保证农产品绿色生态。 农牧云与具有一定养殖规模的贫困村的合作社、产业大户实现战略合作， 消费者通过认购投资与农户共享收益、共担风险。
+                </p>
+                <p>通过宣传推广农特产品，开设贫困销售专栏， 为村子全方位分析、打造，对其农产品以及环境资源进行最大化利用， 打造“一村一品”，实现为农户增收脱贫。
+                </p>
+            </div>
+            <div class="latformFeature">
+                <h6>平台特色</h6>
+                <p v-for="pe in msgs"><span>></span>{{pe.msg}}</p>
+            </div>
+        </div>
+        <div class="resultsShow">
+            <h1>成果展示</h1>
+            <div class="sales local">
+                <img src="/static/img/img/bluesales.svg" class="sty" />
+                <img src="/static/img/img/whitesales.svg" class="sty1" />
+                <div>891</div>
+                <div>季度销量</div>
+            </div>
+            <div class="help local">
+                <img src="/static/img/img/bluevillage.svg" class="sty" />
+                <img src="/static/img/img/whitevillage.svg" class="sty1" />
+                <div>15,324</div>
+                <div>帮扶村子</div>
+            </div>
+            <div class="interest local">
+                <img src="/static/img/img/blueinterest.svg" class="sty" />
+                <img src="/static/img/img/whiteinterest.svg" class="sty1" />
+                <div>23,456</div>
+                <div>帮扶人均收益</div>
+            </div>
+            <div class="stock local">
+                <img src="/static/img/img/bluestock.svg" class="sty" />
+                <img src="/static/img/img/whitestock.svg" class="sty1" />
+                <div>534,745</div>
+                <div>股价市值</div>
+            </div>
+        </div>
+        <div id="teamMembers">
+            <h1>团队成员</h1>
+            <div>
+                <!--<div class="bg"></div>
+					<div class="bg"></div>
+					<div class="bg"></div>
+					<div class="bg" style=" opacity: 0;"></div>-->
+                <img src="/static/img/img/left.svg" class="leftDirection" />
+                <img src="/static/img/img/right.svg" class="rightDirection" />
+                <div class="word" style="display: block;">
+                    <img src="/static/img/img/p1.png" class="bp" />
+                    <h3>池盈</h3>
+                    <p>美丽、善良、可爱、大方、认真、负责、一丝不苟、稳重、成熟、专业</p>
+                </div>
+                <img src="/static/img/img/曾梓涵1.jpg" class="sp" />
+            </div>
+            <div>
+                <div class="word">
+                    <img src="/static/img/img/p2.png" class="bp" />
+                    <h3>蔡汶宏</h3>
+                    <p>西华师范大学数学与信息学院2015级本科生。在团队中主要负责统领团队， 竞争对象分析和信息收集。个人思维灵活， 做事充满热情，致力于技术与实际应用的结合。
+                    </p>
+                </div>
+                <img src="/static/img/img/曾梓涵1.jpg" class="sp" style="right:270px ;" />
+            </div>
+            <div>
+                <div class="word">
+                    <img src="/static/img/img/p3.png" class="bp" />
+                    <h3>曾梓涵</h3>
+                    <p>西华师范大学商学院会计学专业2015级本科生。 在团队中主要负责会计信息处理及财务报表编制、 财务数据的计算与分析、财务风险的分析等。 个人做事严谨，熟悉财务分析和财务数据处理。
+                    </p>
+                </div>
+                <img src="/static/img/img/曾梓涵1.jpg" class="sp" style="right:390px ;" />
+            </div>
+            <div>
+                <div class="word">
+                    <img src="/static/img/img/p4.png" class="bp" />
+                    <h3>余思慧</h3>
+                    <p>西华师范大学数学与信息学院2015级本科生。 在团队中主要负责比赛的分工、任务安排以及进度的监督， 线下参与实地考察，与农户对接，进行需求分析， 有组织凝聚力，追求创新。
+                    </p>
+                </div>
+                <img src="/static/img/img/曾梓涵1.jpg" class="sp" style="right:510px ;border: 2px solid red;" />
+            </div>
+        </div>
+        <div id="companyDynamic">
+            <h1>公司动态</h1>
+            <ul>
+                <li>
+                    <a class="turnimg">全部</a>
+                </li>
+                <li>
+                    <a class="turnimg">2019年</a>
+                </li>
+                <li>
+                    <a class="turnimg">2018年</a>
+                </li>
+                <li>
+                    <a class="turnimg">2017年</a>
+                </li>
+                <li>
+                    <a class="turnimg">2016年</a>
+                </li>
+            </ul>
+            <div class="imag1" style="display: block;">
+                <div v-for="ms in moves">
+                    <img :src="ms.imgs" />
+                    <p>{{ms.mess}}</p>
+                </div>
+            </div>
+            <div class="imag1">
+                <div v-for="msn in movenine">
+                    <img :src="msn.imgs" />
+                    <p>{{msn.mess}}</p>
+                </div>
+            </div>
+            <div class="imag1">
+                <div v-for="ms in moveeight">
+                    <img :src="ms.imgs" />
+                    <p>{{ms.mess}}</p>
+                </div>
+            </div>
+            <div class="imag1">
+                <div v-for="ms in moveseven">
+                    <img :src="ms.imgs" />
+                    <p>{{ms.mess}}</p>
+                </div>
+            </div>
+            <div class="imag1">
+                <div v-for="ms in movesix">
+                    <img :src="ms.imgs" />
+                    <p>{{ms.mess}}</p>
+                </div>
+            </div>
+        </div>
+        <div id="contactUs">
+            <h1>联系我们</h1>
+            <div class="client">
+                <h2>尊敬的客户</h2>
+                <p>欢迎联系我们，给我们留言。感谢您一路的支持与肯定！</p>
+                <form action="">
+                    <p>
+                        <input type="text" value="姓名" class="input1" id="inp1" />
+                        <input type="text" value="邮箱地址" class="input1" id="inp2" />
+                        <input type="text" value="联系方式" class="input1" id="inp3" />
+                    </p>
+                    <p>
+                        <input type="text" value="留言信息填写..." class="input2" id="inp4" />
+                    </p>
+                    <input type="button" value="点击提交" class="input3" @click="btns()" />
+                </form>
+            </div>
+            <div class="msg">
+                <h2>Address:</h2>
+                <p><img src="/static/img/img/home.svg" />四川省南充市西华师范大学</p>
+                <h2>Phones:</h2>
+                <p> <img src="/static/img/img/call.svg" />028-2568XXX</p>
+                <p> <img src="/static/img/img/phone.svg" />123456789</p>
+                <h2>Email:</h2>
+                <p> <img src="/static/img/img/E-mail.svg" />Nongmuyun@163.com</p>
+            </div>
+        </div>
+        <!-- 网站底部 -->
+        <div class="foot">
+            <div class="nav-foot">
+                <p>四川省南充市西华师范大学数学与信息学院信息与计算科学专业2016级8班</p>
+                <p class="pppp"><b>Tel</b>:13350058238/3628098186&nbsp;&nbsp;<b>Email</b>:1653709489@qq.com</p>
+                <p>农牧云平台</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

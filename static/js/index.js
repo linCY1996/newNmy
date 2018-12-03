@@ -1,9 +1,8 @@
 window.onload = function() {
-    //Vue框架部分
+
     var nm = new Vue({
         el: '#tall',
         data: {
-            num: 0,
             vides: [],
             navcs: [],
             messg: [],
@@ -11,25 +10,28 @@ window.onload = function() {
             item: [],
             item1: [],
             item2: [],
-            lunimg: [],
-            goodrecom: [], //优质精选推荐
-            shoplist1: [],
-            shoplist2: [],
             friendlin: [],
-            // goodid: nm.shoplist1.id
+            href: "car.html?token=" + localStorage.getItem("token")
+                // goodid: nm.shoplist1.id
         },
         methods: {
-            goodre: function() {
-                axios({
-                    method: 'get',
-                    url: '/api/user/gysjs',
-                }).then(function(res) {
-                    console.log(res)
-                        // console.log(id)
-                    nm.goodrecom = res.data
-                }).catch(function(error) {
-                    console.log(error)
+            nec: function() {
+                axios.get('/car.html', {
+                    params: {
+                        token: localStorage.getItem("token")
+                    }
+                }).then(function(resp) {
+                    if (resp.data.code == 301) {
+                        window.location.href = ("/check")
+                    } else {
+                        window.location.href = "/car.html?token=" + localStorage.getItem("token")
+                    }
                 })
+            },
+            tui: function() {
+                localStorage.removeItem("token")
+                window.location.href = ("/check")
+                console.log("sadasd")
             },
             frien: function() {
                 axios({
@@ -42,40 +44,8 @@ window.onload = function() {
                     console.log(error)
                 })
             },
-            shops: function() {
-                axios({
-                    method: 'get',
-                    url: '/api/user/spyjsj'
-                }).then(function(res) {
-                    // console.log(res)
-                    nm.shoplist1 = res.data
-                }).catch(function(error) {
-                    console.log(error)
-                })
-            },
-            shops2: function() {
-                axios({
-                    method: 'get',
-                    url: '/api/user/spyjsj2'
-                }).then(function(res) {
-                    // console.log(res)
-                    nm.shoplist2 = res.data
-                }).catch(function(error) {
-                    console.log(error)
-                })
-            },
 
-            lunim: function() {
-                axios({
-                    method: 'get',
-                    url: '/api/user/lunims'
-                }).then(function(res) {
-                    // console.log(res)
-                    nm.lunimg = res.data
-                }).catch(function(error) {
-                    console.log(error)
-                })
-            },
+
             vide: function() {
                 axios({
                     method: 'get',
@@ -175,16 +145,7 @@ window.onload = function() {
             //         console.log(error)
             //     })
             // },
-            //轮播图实现部分
-            autoplay: function() {
-                this.num++;
-                if (this.num == this.lunimg.length) {
-                    this.num = 0
-                }
-            },
-            play: function() {
-                setInterval(this.autoplay, 2000)
-            },
+
 
         },
         mounted: function() {
@@ -195,13 +156,8 @@ window.onload = function() {
             this.send();
             this.send1();
             this.send2();
-            this.lunim();
-            this.play();
-            this.goodre(); //云上集市优质精选
-            this.shops();
-            this.shops2();
             this.frien(); //友情链接
-            this.nowsend();
+
         },
         components: {
             'my-message': { //组件

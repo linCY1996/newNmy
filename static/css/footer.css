@@ -1,0 +1,40 @@
+/* 网站底部 */
+
+.foot {
+    position: relative;
+    margin-top: 60px;
+    width: 100%;
+    height: 300px;
+    /* border: 1px solid black; */
+    background-color: black;
+    text-align: center;
+}
+
+.nav-foot {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin-top: 50px;
+    margin-left: 27%;
+    width: 800px;
+    height: 200px;
+    background: rgba(224, 224, 224, 0.3);
+    /* border: 1px solid white; */
+    text-align: center;
+    /* padding-top: 50px; */
+}
+
+.nav-foot p {
+    margin-top: 48px;
+    color: white;
+    font-family: '楷体';
+    font-size: 1.5em;
+}
+
+.pppp {
+    position: absolute;
+    top: 35px;
+    left: 132px;
+}

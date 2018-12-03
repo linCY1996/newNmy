@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/assets/css/amazeui.min.css">
+    <!-- <link rel="stylesheet" href="css/nav_foot.css"> -->
+    <link rel="stylesheet" href="/static/css/clouldTravel.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <link rel="stylesheet" href="/static/css/publ.css">
+    <link rel="stylesheet" href="/static/css/loginnp.css">
+    <link rel="icon" href="/static/img/农牧云logo1.png">
+    <script src="/static/jq/jquery.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+    <script src="/static/js/cloud.js"></script>
+    <!-- <script src="/static/pub/pub.js"></script> -->
+    <title>农牧云</title>
+</head>
+
+<body>
+    <div id="logonp">
+        <p>农牧云欢迎你！</p>
+        <div class="lo-re"><a href="https://www.linchongyang.cn:4320/check" id="logo">登录</a>
+            <div class="liness"></div>
+            <span id="register" @click="tui()" style="cursor:pointer;">退出</span>
+        </div>
+        <a class="heh" @click="nec()"><img src="/static/img/cart-hl.png" alt=""></a>
+    </div>
+    <!-- 导航栏 -->
+
+    <div id="marg-All">
+        <div class="navtit">
+            <img src="/static/img/农牧云logo1.png" alt="">
+            <ul>
+                <a href="/viewmain">
+                    <li>首页</li>
+                </a>
+                <a href="/yushangjs">
+                    <li>云上集市</li>
+                </a>
+                <a href="/yytx.html">
+                    <li>云游天下</li>
+                </a>
+                <a href="/viewgyfp">
+                    <li>云公益</li>
+                </a>
+                <a href="">
+                    <li>个人中心</li>
+                </a>
+                <a href="">
+                    <li>关于我们</li>
+                </a>
+            </ul>
+        </div>
+    </div>
+
+    <div id="main"></div>
+    <div id="provence"></div>
+    <div class="am-g" id="city">
+        <div class="city-img">
+            <img src="/static/img/cloudTravel-img/nanchong2.png" alt="">
+            <div class="xichong">
+                <h1>西充县</h1>
+
+                <div class="gulou-cooperate0" id="gulou">
+
+                </div>
+                <div id="gulou-cooperate0-name">
+                    <p>古楼镇</p>
+                    <p></p>
+                </div>
+                <div id="gulou-cooperate0-img">
+                    <img src="/static/img/cloudTravel-img/gulou-slider0.JPG" />
+                </div>
+
+            </div>
+            <div class="nanchong">
+                <h1>南充市</h1>
+
+            </div>
+            <div class="pengan">
+                <h1>蓬安县</h1>
+            </div>
+            <div class="yingshan">
+                <h1>营山县</h1>
+            </div>
+            <div class="yilong">
+                <h1>仪陇县</h1>
+            </div>
+            <div class="langzhong">
+                <h1>阆中市</h1>
+            </div>
+            <div class="nanbu">
+                <h1>南部县</h1>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+    <div class="am-g travel-list">
+        <div class="travel-title">
+            <p>绿之
+                <big>韵</big>∙
+                <big>乡</big> 之约∙
+                <big>云</big> 之旅
+            </p>
+            <h3>PROGRAMMES</h3>
+            <h1>旅游方案</h1>
+            <p class="line"></p>
+        </div>
+        <div class="travel-desc">
+            <div class="desc-img">
+                <img src="/static/img/cloudTravel-img/travel1.jpg" alt="">
+            </div>
+            <div class="desc-content">
+                <span class="travel-place">四川省南充市仪陇县县岩村两天一晚</span>
+                <p class="travel-time">出行时间:
+                    <span>3月-7月</span>
+                </p>
+                <p class="start-place">出发地:
+                    <span>南充市内</span>
+                </p>
+                <p class="bright-spot">玩乐亮点:
+                    <span>参观5A级红色景区朱德故居，入住特色农家乐，赏桃花、李花（3月），桃李采摘（6月），特色农家烧烤，农家菜品尝。</span>
+                </p>
+                <p class="travel-price">
+                    <span class="price">￥149</span>
+                    <span class="qi">起</span>
+                    <button class="order-button">立即预定</button>
+                    <span>
+						<span class="score">4.7</span>
+                    <span class="estimate">分&nbsp;&nbsp;&nbsp;已有57人评价</span>
+                    </span>
+                </p>
+                <p class="more">详情>></p>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <div class="travel-desc">
+
+            <div class="desc-content">
+                <span class="travel-place">四川省南充市仪陇县县岩村两天一晚</span>
+                <p class="travel-time">出行时间:
+                    <span>3月-7月</span>
+                </p>
+                <p class="start-place">出发地:
+                    <span>南充市内</span>
+                </p>
+                <p class="bright-spot">玩乐亮点:
+                    <span>参观5A级红色景区朱德故居，入住特色农家乐，赏桃花、李花（3月），桃李采摘（6月），特色农家烧烤，农家菜品尝。</span>
+                </p>
+                <p class="travel-price">
+                    <span class="price">￥149</span>
+                    <span class="qi">起</span>
+                    <button class="order-button">立即预定</button>
+                    <span>
+						<span class="score">4.7</span>
+                    <span class="estimate">分&nbsp;&nbsp;&nbsp;已有57人评价</span>
+                    </span>
+                </p>
+                <p class="more">详情>></p>
+            </div>
+            <div class="desc-img">
+                <img src="/static/img/cloudTravel-img/travel1.jpg" alt="">
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <div class="travel-desc">
+            <div class="desc-img">
+                <img src="/static/img/cloudTravel-img/travel1.jpg" alt="">
+            </div>
+            <div class="desc-content">
+                <span class="travel-place">四川省南充市仪陇县县岩村两天一晚</span>
+                <p class="travel-time">出行时间:
+                    <span>3月-7月</span>
+                </p>
+                <p class="start-place">出发地:
+                    <span>南充市内</span>
+                </p>
+                <p class="bright-spot">玩乐亮点:
+                    <span>参观5A级红色景区朱德故居，入住特色农家乐，赏桃花、李花（3月），桃李采摘（6月），特色农家烧烤，农家菜品尝。</span>
+                </p>
+                <p class="travel-price">
+                    <span class="price">￥149</span>
+                    <span class="qi">起</span>
+                    <button class="order-button">立即预定</button>
+                    <span>
+						<span class="score">4.7</span>
+                    <span class="estimate">分&nbsp;&nbsp;&nbsp;已有57人评价</span>
+                    </span>
+                </p>
+                <p class="more">详情>></p>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+    <div class="grey-line"></div>
+    <!-- 网站底部 -->
+    <div class="foot">
+        <div class="nav-foot">
+            <p>四川省南充市西华师范大学数学与信息学院信息与计算科学专业2016级8班</p>
+            <p class="pppp"><b>Tel</b>:13350058238/3628098186&nbsp;&nbsp;<b>Email</b>:1653709489@qq.com</p>
+            <p>农牧云平台</p>
+        </div>
+    </div>
+
+
+    <script src="/static/assets/js/amazeui.js "></script>
+    <script src="/static/assets/echarts-2.2.7/build/dist/echarts.js"></script>
+    <script src="/static/assets/echarts-2.2.7/build/dist/echarts-all.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".gulou-cooperate0").mouseover(function() {
+                $("#gulou-cooperate0-name").css("display", "block");
+                $("#gulou-cooperate0-img").css({
+
+                    "transition": "display linear 1s",
+                    "display": "block",
+                });
+            }).mouseleave(function() {
+                $("#gulou-cooperate0-name").css("display", "none")
+                $("#gulou-cooperate0-img").css({
+                    "display": "none",
+                });
+            });
+            $(".gulou-cooperate0").click(function() {
+                $(".travel-list").css("display", "block")
+            })
+        });
+        $(window).bind("scroll", function() {
+            var top = $(this).scrollTop(); // 当前窗口的滚动距离
+            // console.log($(this))
+            if (top > 1) {
+                $(".nav").css({
+                    "background": "white",
+                    "opacity": "1",
+                    "transition": "background-color 1s"
+                });
+                $(".nav-table a").css("color", "black");
+                $(".company a").css("color", "black");
+                $(".logo span").css("color", "black");
+                $(".am-input-group").css("opacity", "1")
+                $(".title").attr("src", "img/标题-黑.png")
+            }
+            if (top == 0) {
+                $(".nav").css({
+                    "background": "none",
+                    "opacity": "1",
+                });
+                $(".nav-table a").css("color", "white");
+                $(".company a").css("color", "white");
+                $(".logo span").css("color", "white");
+                $(".am-input-group").css("opacity", "0.5")
+                $(".title").attr("src", "img/标题.png")
+            }
+        });
+        // <!--地图 -->
+
+        require.config({
+            paths: {
+                echarts: '/static/assets/echarts-2.2.7/build/dist'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/map' // 使用柱状图就加载bar模块，按需加载
+            ],
+            function(ec) {
+
+                // --- 地图 ---
+                var myChart = ec.init(document.getElementById('main'));
+                myChart.setOption({
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{b}'
+                    },
+                    series: [{
+                        name: '中国',
+                        type: 'map',
+                        mapType: 'china',
+                        // tooltip: '1123',
+                        selectedMode: 'single',
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {
+                                    color: 'rgba(255,255,255,0.8)',
+                                },
+                                borderColor: 'grey',
+                                label: {
+                                    show: true
+                                }
+                            },
+                            emphasis: {
+                                areaStyle: {
+                                    color: 'rgba(255,130,71)',
+
+                                },
+                                label: {
+                                    show: true
+                                }
+                            }
+                        },
+                        data: [{
+                            name: '四川',
+                            selected: true
+                        }]
+                    }]
+                });
+                var ecConfig = require('echarts/config');
+                myChart.on(ecConfig.EVENT.MAP_SELECTED, function(param) {
+                    var selected = param.selected;
+                    var provence = param.target; //获取所选定的省份
+                    console.log(param.target)
+                    document.getElementById("provence").style.display = "block";
+                    mapDisplay(provence);
+                    chinaDisapper();
+                });
+            }
+        );
+
+        function chinaDisapper() {
+            var t = document.getElementById("main");
+            t.style.display = "none"
+        };
+
+        function mapDisplay(provence) {
+            var myChart = echarts.init(document.getElementById('provence'));
+            var option = {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: function(a) { //鼠标移到某个州市上弹出的提示内容。包括显示样式可以自定义，利用return返回样式即可。
+                        return a[1] + ":" + a[2]; //a[1]:州市名称，a[2]:data中的valuez值。
+                    }
+                },
+                // dataRange: {
+                // 	min: 0,
+                // 	max: 10,
+                // 	color: ['red', 'rgb(220,220,220)'],
+                // 	//color: ['orange', 'blue'],
+                // 	boder: 3,
+                // 	text: ['10', '0'], // 文本，默认为数值文本
+                // 	calculable: true
+                // },
+                series: [{
+                    //name: '数据名称',
+                    type: 'map',
+                    mapType: provence, //如果是其他省份，也可以改变，例如：上海，北京，天津等地。
+                    selectedMode: 'single',
+                    itemStyle: {
+                        normal: {
+                            areaStyle: {
+                                color: 'rgba(255,255,255,0.8)',
+                            },
+                            label: {
+                                show: true
+                            },
+                        },
+                        emphasis: {
+                            areaStyle: {
+                                color: 'rgba(255,130,71)',
+
+                            },
+                            label: {
+                                show: true
+                            }
+                        }
+                    },
+                    //data一定要有，不然没有图
+                    data: [{
+                        name: '阿坝藏族羌族自治州',
+                        value: 0
+                    }, {
+                        name: '巴中市',
+                        value: 0
+                    }, {
+                        name: '成都市',
+                        value: 0
+                    }, {
+                        name: '达州市',
+                        value: 0
+                    }, {
+                        name: '德阳市',
+                        value: 0
+                    }, {
+                        name: '甘孜藏族自治州',
+                        value: 0
+                    }, {
+                        name: '广安市',
+                        value: 0
+                    }, {
+                        name: '广元市',
+                        value: 0
+                    }, {
+                        name: '乐山市',
+                        value: 0
+                    }, {
+                        name: '凉山彝族自治州',
+                        value: 0
+                    }, {
+                        name: '泸州市',
+                        value: 0
+                    }, {
+                        name: '眉山市',
+                        value: 0
+                    }, {
+                        name: '绵阳市',
+                        value: 0
+                    }, {
+                        name: '内江市',
+                        value: 0
+                    }, {
+                        name: '南充市',
+                        value: 3,
+                        selected: true
+                    }, {
+                        name: '攀枝花市',
+                        value: 0
+                    }, {
+                        name: '遂宁市',
+                        value: 0
+                    }, {
+                        name: '雅安市',
+                        value: 0
+                    }, {
+                        name: '宜宾市',
+                        value: 0
+                    }, {
+                        name: '资阳市',
+                        value: 0
+                    }, {
+                        name: '自贡市',
+                        value: 0
+                    }]
+                }]
+            };
+            myChart.setOption(option);
+            var ecConfig = require('echarts/config');
+            myChart.on(ecConfig.EVENT.MAP_SELECTED, function(param) {
+                var selected = param.selected;
+                var provence = param.target;
+                console.log(param.target)
+                document.getElementById("provence").style.display = "none";
+                document.getElementById("city").style.display = "block";
+            });
+
+        }
+    </script>
+</body>
+
+</html>
