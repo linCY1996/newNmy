@@ -21,9 +21,14 @@
             <div class="navtit">
                 <img src="/static/img/农牧云logo1.png" alt="">
                 <ul>
-                    <a :href="na.hrefs" v-for="na in navcs">
+                    <a :href="na.hrefs" v-for="na in navcs" style="color:black;">
                         <div class="line-bottom"></div>
                         <li>{{na.name}}</li>
+
+                    </a>
+                    <a @click="singles()" style="cursor: pointer;">
+                        <div class="line-bottom"></div>
+                        <li>个人中心</li>
                     </a>
                 </ul>
             </div>
@@ -32,9 +37,9 @@
         <!-- 下面部分 -->
         <div class="nav">
             <div class="navinfor">
-                <img src="/static/img/images/banne1.jpg" alt="">
-                <p class="uName"><b>姓名：</b>{{users.name}}</p>
-                <p class="uEmail"><b>年龄：</b>{{users.email}}</p>
+                <img :src="users.imgs" alt="">
+                <p class="uName"><b>昵称：</b>{{users.tagname}}</p>
+                <p class="uEmail"><b>邮箱：</b>{{users.email}}</p>
                 <p class="uTel"><b>电话：</b>{{users.tel}}</p>
             </div>
             <!-- 展示购物信息 -->
@@ -51,7 +56,7 @@
                     <li v-for="gs in gods">
                         <a :href="'/single?id='+gs.goodsid" style="color:black;">
                             <!-- <span>{{id}}</span> -->
-                            <!-- <input type="checkbox" @click="totalPrice()" v-model="tot"> -->
+                            <!-- <input type="checkbox" @click="totalPrice()"> -->
                             <!-- <input type="checkbox" @click="totalPrice(gs.num,gs.price)"> -->
                             <img :src="gs.imgs" alt="">
                             <div class="margMsg">

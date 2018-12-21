@@ -1,0 +1,39 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    min-width: 1500px;
+}
+
+p {
+    font-family: '楷体';
+}
+
+#tall {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    margin: 100px auto;
+    border: 1px solid rgb(233, 230, 230);
+    background: rgba(233, 230, 230, 0.5);
+}
+
+.h2s {
+    position: absolute;
+    top: 46px;
+    left: 30px;
+    font-size: 1.5em;
+}
+
+.h2s span {
+    font-size: 1.6em;
+}
+
+.pps {
+    font-size: 1.3em;
+    position: absolute;
+    top: 105px;
+    left: 50px;
+}

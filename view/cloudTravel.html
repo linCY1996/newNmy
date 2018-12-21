@@ -28,7 +28,7 @@
             <div class="liness"></div>
             <span id="register" @click="tui()" style="cursor:pointer;">退出</span>
         </div>
-        <a class="heh" @click="nec()"><img src="/static/img/cart-hl.png" alt=""></a>
+        <a class="heh" @click="nec()"><img style="width:45px;height:48px;" src="/static/img/gwc.png" alt=""></a>
     </div>
     <!-- 导航栏 -->
 
@@ -37,22 +37,28 @@
             <img src="/static/img/农牧云logo1.png" alt="">
             <ul>
                 <a href="/viewmain">
+                    <div class="line-bottom"></div>
                     <li>首页</li>
                 </a>
                 <a href="/yushangjs">
+                    <div class="line-bottom"></div>
                     <li>云上集市</li>
                 </a>
                 <a href="/yytx.html">
+                    <div class="line-bottom"></div>
                     <li>云游天下</li>
                 </a>
                 <a href="/viewgyfp">
+                    <div class="line-bottom"></div>
                     <li>云公益</li>
                 </a>
-                <a href="">
-                    <li>个人中心</li>
-                </a>
-                <a href="">
+                <a href="/About.html">
+                    <div class="line-bottom"></div>
                     <li>关于我们</li>
+                </a>
+                <a @click="singles()" style="cursor: pointer;">
+                    <div class="line-bottom"></div>
+                    <li>个人中心</li>
                 </a>
             </ul>
         </div>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>client</title>
+    <link rel="stylesheet" href="/static/css/loginnp.css">
+    <link rel="stylesheet" href="/static/css/publ.css">
+    <link rel="stylesheet" type="text/css" href="/static/data/dist/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="static/css/client.css" />
+    <!-- <link rel="stylesheet" href="/static/css/single.css"> -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <!-- <script src="/static/data/dist/jquery.js" type="text/javascript" charset="utf-8"></script> -->
+    <script src="/static/data/dist/webuploader.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+    <!-- <script src="/static/single/single.js"></script> -->
+    <script src="/static/js/client.js"></script>
+</head>
+
+<body>
+    <div id="tall">
+        <div id="logonp">
+            <p style="font-family: '楷体';">农牧云欢迎你！</p>
+            <div class="lo-re"><a href="https://www.linchongyang.cn:4320/check" id="logo">登录</a>
+                <div class="line"></div>
+                <span id="register" @click="tui()" style="cursor:pointer;">退出</span>
+            </div>
+            <a class="heh" @click="nec()" style="position:absolute;top:-5px;right:343px;">
+                <img style="width:45px;height:48px;" src="/static/img/gwc.png" alt=""></a>
+        </div>
+
+        <!-- 导航栏 -->
+        <div id="marg-All">
+            <div class="navtit">
+                <img src="/static/img/农牧云logo1.png" alt="">
+                <ul>
+                    <a :href="na.hrefs" v-for="na in navcs" style="color:black;">
+                        <div class="line-bottom"></div>
+                        <li>{{na.name}}</li>
+                    </a>
+                    <a @click="singles()" style="cursor: pointer;">
+                        <div class="line-bottom"></div>
+                        <li>个人中心</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+
+        <canvas id="canvas">您的浏览器不支持cnavas绘图，请您更换浏览器!!</canvas>
+        <div class="bag">
+            <div class="item">
+                <div class="head">
+                    <img :src="tagsname.imgs" class="headImag" />
+                    <p class="name">{{tagsname.tagname}}</p>
+                    <div class="inform imag"><img src="static/img/img/inform.png" title="个人资料" /></div>
+                    <div class="attention imag"><img src="static/img/img/grayheart.png" title="关注" class="atn" /></div>
+                </div>
+                <ul class="co_item">
+                    <li class="li">我的账户 <img src="static/img/img/right.png" class="right" /></li>
+                    <li class="li">我的支付记录 <img src="static/img/img/right.png" class="right" /></li>
+                    <li class="li">我的交易 <img src="static/img/img/right.png" class="right" /></li>
+                    <li class="li" style="padding-left: 70px;display: none;">实物资产<img src="static/img/img/right.png" class="right" /></li>
+                    <li class="li" style="padding-left: 70px;display: none;">增资项目<img src="static/img/img/right.png" class="right" /></li>
+                    <li class="li">我的订单 <img src="static/img/img/right.png" class="right" /></li>
+                    <li class="li">我的关注 <img src="static/img/img/right.png" class="right" /></li>
+                    <li class="li">收货地址 <img src="static/img/img/right.png" class="right" /></li>
+                    <li class="li">认证中心 <img src="static/img/img/right.png" class="right" /></li>
+                    <li class="li">个人资料 <img src="static/img/img/right.png" class="right" /></li>
+                    <li class="li">消息中心 <img src="static/img/img/right.png" class="right" /></li>
+                </ul>
+            </div>
+            <div class="content">
+
+                <div class="myAccount con">
+                    <div class="title">我的账户</div>
+                    <div class="pro">账户信息
+                        <p>——————————————————————————————————————————————————————————————</p>
+                    </div>
+                    <div class="box2">
+                        <div class="alipay">
+                            <img src="static/img/img/true.png" />
+                            <div class="aliAccount">已绑定的支付宝账号：
+                                <span>152****0521</span>
+                                <br />
+                                <a href="">进入支付宝</a>|
+                                <a href="">更换支付宝</a>
+                            </div>
+                        </div>
+                        <div class="counttype">账户类型
+                            <span>个人账户</span>
+                        </div>
+                        <div class="counttype">实名认证
+                            <span>林**</span> |
+                            <span id="id">5******************8</span>
+                            <span id="id">已认证</span>
+                            <a href="">查看</a>
+                        </div>
+                        <div class="balance">账户余额：
+                            <div>13.14</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="paymentHistory con">
+                    <div class="title">我的支付记录</div>
+                    <div class="pro">支付信息
+                        <p>——————————————————————————————————————————————————————————————</p>
+                    </div>
+                    <div class="box2"></div>
+                </div>
+                <div class="deal con">
+                    <div class="title">我的交易</div>
+                    <div class="pro">交易信息
+                        <p>——————————————————————————————————————————————————————————————</p>
+
+                    </div>
+                    <div class="box2"></div>
+                </div>
+                <div class="asset con">
+                    <div class="title">实物资产</div>
+                    <div class="pro">资产信息
+                        <p>——————————————————————————————————————————————————————————————</p>
+
+                    </div>
+                    <div class="box2"></div>
+                </div>
+                <div class="project con">
+                    <div class="title">增资项目</div>
+                    <div class="pro">项目信息
+                        <p>——————————————————————————————————————————————————————————————</p>
+
+                    </div>
+                    <div class="box2"></div>
+                </div>
+                <div class="order con">
+                    <div class="title">我的订单</div>
+                    <div class="pro">订单信息
+                        <p>——————————————————————————————————————————————————————————————</p>
+
+                    </div>
+                    <div class="box2"></div>
+                </div>
+                <div class="atten con">
+                    <div class="title">我的关注</div>
+                    <div class="pro">关注信息
+                        <p>——————————————————————————————————————————————————————————————</p>
+
+                    </div>
+                    <div class="box2"></div>
+                </div>
+                <div class="quoted con">
+                    <div class="title">收货地址</div>
+                    <div class="pro">地址信息
+                        <p>——————————————————————————————————————————————————————————————</p>
+
+                    </div>
+                    <div class="box2">
+                        <p class="newLocation">新增收获地址</p>
+                        <div class="box">
+                            <span>地址信息:</span>
+                            <span class="star">*</span>
+                        </div>
+                        <div class="localInfo">
+                            <span>
+                                        <select  name="loca" id="loca"  v-model="prov">
+                                            <option v-for="option in arr" :value="option.name">
+                                                {{ option.name }}
+                                            </option>
+                                        </select>
+                                    </span>
+                            <span>
+                                    <select name="loca" id="locaCh" v-model="city">
+                                        <option v-for="option in cityArr" :value="option.name">
+                                            {{ option.name }}
+                                        </option>
+                                    </select>
+                                    </span>
+                            <span>
+                                   <select name="loca" id="locaCher"  v-model="district" v-show="district">
+                                        <option v-for="option in districtArr" :value="option.name">
+                                            {{ option.name }}
+                                        </option>
+                                    </select>
+                                    </span>
+                        </div>
+                        <!-- <input type="text" class="localInfo" value="请选择省/市/区/街道" /><br /> -->
+                        <div class="box">
+                            <span>详细地址:</span>
+                            <span class="star">*</span>
+                        </div>
+                        <input type="text" class="localInfo" v-model='detaaddress' placeholder="道路、小区、门牌号" /><br />
+                        <div class="box">
+                            <span>邮政编码:</span>
+                        </div><input type="text" class="localInfo" v-model='youbian' placeholder="请填写邮政编码" />
+                        <br />
+                        <div class="box">
+                            <span>收货人姓名:</span>
+                            <span class="star">*</span>
+                        </div><input type="text" class="localInfo" v-model='names' placeholder="长度不超过6个字符" /><br />
+                        <div class="box">
+                            <span>手机号码:</span>
+                            <span class="star">*</span>
+                        </div>
+                        <input type="text" class="localInfo" v-model='tel' placeholder="长度不超过11字符" /><br />
+                        <div class="local">
+                            <input type="checkbox" id="local" />
+                            <label for="local">设为默认地址</label>
+                        </div>
+                        <input type="submit" value="保存" @click='send()' class="store" />
+                        <div class="hrs">
+                            <div class="lkong" style="height:30px;"></div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;您的收货地址：
+                            <ul>
+                                <li v-for="ad in addre">
+                                    <p class="pp1">&nbsp;&nbsp;&nbsp;&nbsp;<b>地址:</b>{{ad.address+"."+ad.detaaddress}}</p>
+                                    <p class="pp2">&nbsp;&nbsp;&nbsp;&nbsp;<b>Tel:</b>{{ad.tel}}</p>
+                                    <p class="pp3">&nbsp;&nbsp;&nbsp;&nbsp;<b>姓名:</b>{{ad.names}}</p>
+                                    <span @click="remove(ad.id)">移除</span>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="AC con">
+                    <div class="title">认证中心</div>
+                    <div class="pro">账户安全
+                        <p>——————————————————————————————————————————————————————————————</p>
+
+                    </div>
+                    <div class="box2">
+                        <li class="status">
+                            <span><img src="static/img/img/false.png"/>未认证</span>
+                            <p>实名认证</p>
+                            <div>保障账户安全，确认用户身份</div>
+                            <a href="">立即认证</a>
+                        </li>
+                        <li class="status">
+                            <span><img src="static/img/img/true.png"/>已绑定</span>
+                            <p>手机绑定</p>
+                            <div>保障账户中重要信息，在设置、修改交易密码、登录密码等都需要手机短信验证
+                                <p style="padding-left: 40px;">152****0521</p>
+                            </div>
+                            <a href="">修改</a>
+                        </li>
+                        <li class="status">
+                            <span><img src="static/img/img/true.png"/>已设置</span>
+                            <p>登录密码</p>
+                            <div>保障投资者登录操作时使用，上次登录时间：
+                                <p>2018-12-05 09:41:16</p>
+                            </div>
+                            <a href="">修改</a>
+                        </li>
+                        <li class="status">
+                            <span><img src="static/img/img/false.png"/>未设置</span>
+                            <p>交易密码</p>
+                            <div>保障资金安全，充值、取现、付款等相关操作时使用</div>
+                            <a href="">立即设置</a>
+                        </li>
+                        <li class="status">
+                            <span><img src="static/img/img/false.png"/>未设置</span>
+                            <p>安全保护问题</p>
+                            <div>保障个人隐私，找回登录密码时使用</div>
+                            <a href="">立即设置</a>
+                        </li>
+                    </div>
+                </div>
+                <div class="personalData con">
+                    <div class="title">个人资料</div>
+                    <div class="pro">个人信息
+                        <p>——————————————————————————————————————————————————————————————</p>
+
+                    </div>
+                    <div class="person box2">
+                        <p>亲爱的<span>用户</span>，填写真实的资料，有助于交易哦。</p>
+                        <p>
+                            <div class="box">
+                                <span>当前头像：</span>
+                            </div>
+
+                            <div id="uploader" class="wu-example">
+                                <!--用来存放文件信息-->
+                                <div id="show" class="uploader-list" style="margin-left:150px;overflow:hidden;width:150px;height:150px;border: 1px solid rgb(197, 197, 197);border-radius: 50% 50%;">
+                                </div>
+                                <div id="btns">
+                                    <div id="pickers" style="margin-left:175px;margin-top: 10px;">选择头像</div>
+                                    <button id="ctlBtn" class="btn btn-default" style="margin-left:193px;margin-top: 10px;">开始上传</button>
+                                </div>
+                                <div id="list">
+
+                                </div>
+                            </div>
+                        </p>
+                        <p>
+                            <div class="box">
+                                <span>昵称：</span>
+                                <span class="star">*</span>
+                            </div>
+                            <input type="text" v-model="Tagname" class="nickName common" placeholder="填写昵称" />
+                        </p>
+                        <p>
+                            <div class="box">
+                                <span>真实姓名：</span>
+                            </div>
+                            <input type="text" v-model="Name" class="realName common" placeholder="填写姓名" />
+                        </p>
+                        <p>
+                            <div class="box">
+                                <span>性别：</span>
+                                <span class="star">*</span>
+                            </div>
+                            <div class="sex">
+                                <input type="radio" name="sex" id="male" v-model="Sexy" checked="checked" value="男" />
+                                <label id="sex" for="male" style="margin-right: 5px;">男</label>
+                            </div>
+                            <div class="sex">
+                                <input type="radio" v-model="Sexy" name="sex" id="female" value="女" />
+                                <label id="sex" for="female">女</label>
+                            </div>
+                        </p>
+                        <p>
+                            <div class="box">
+                                <span>身份证号：</span>
+                            </div>
+                            <input type="text" v-model="Idcard" class="common" placeholder="填写身份证号" />
+                        </p>
+                        <p>
+                            <div class="box"><span>邮箱：</span></div>
+                            <input type="text" v-model="Email" class="common" placeholder="填写邮箱" />
+                        </p>
+                        <p><input type="submit" id="submit" @click="smsg()" value="保存" /></p>
+                        <img class="timg" src="static/img/img/timg.jpg" />
+                    </div>
+                </div>
+                <div class="information con">
+                    <div class="title">消息中心</div>
+                    <div class="pro">关注信息
+                        <p>———————————————————————————————————————————————————</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- <script type="text/javascript" src="static/js/rainDay.js"></script> -->
+
+</html>

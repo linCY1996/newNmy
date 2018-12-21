@@ -78,7 +78,6 @@ body {
 
 .navBigImg img:nth-of-type(1):target {
     left: 0px;
-    /* z-index: 10; */
 }
 
 .navBigImg img:nth-of-type(2) {
@@ -87,7 +86,6 @@ body {
 
 .navBigImg img:nth-of-type(2):target {
     left: 0px;
-    /* z-index: 10; */
 }
 
 .navBigImg img:nth-of-type(3) {
@@ -96,7 +94,6 @@ body {
 
 .navBigImg img:nth-of-type(3):target {
     left: 0px;
-    /* z-index: 10; */
 }
 
 .navBigImg img:nth-of-type(4) {
@@ -105,7 +102,6 @@ body {
 
 .navBigImg img:nth-of-type(4):target {
     left: 0px;
-    /* z-index: 10; */
 }
 
 .navBigImg img:nth-of-type(5) {
@@ -114,83 +110,27 @@ body {
 
 .navBigImg img:nth-of-type(5):target {
     left: 0px;
-    /* z-index: 10; */
 }
 
 .navMoreImg {
     margin-top: 30px;
     width: 100%;
     height: 100px;
-    /* border: 1px solid rgb(6, 156, 26); */
     display: flex;
     justify-content: space-between;
-    /* margin: 0 auto; */
 }
 
 .navMoreImg a {
-    /* margin: 0 auto; */
-    /* margin-left: 15px; */
     content: "";
     display: block;
     width: 110px;
     height: 100px;
-    /* border: 1px solid rgb(142, 224, 193); */
-    /* position: absolute;
-    top: -70px;
-    left: 20px; */
-    /* border-radius: 50%;*/
 }
 
 .navMoreImg a img {
     width: 110px;
     height: 100px;
 }
-
-
-/* .navBigImg img:nth-of-type(1) {
-    left: -100%;
-}
-
-.navBigImg img:nth-of-type(1):target {
-    left: 0px;
-    z-index: 10;
-}
-
-.navBigImg img:nth-of-type(2) {
-    top: -100%;
-}
-
-.navBigImg img:nth-of-type(2):target {
-    top: 0;
-    z-index: 12;
-}
-
-.navBigImg img:nth-of-type(3) {
-    transform: scale(0);
-}
-
-.navBigImg img:nth-of-type(3):target {
-    transform: scale(1);
-    z-index: 20;
-}
-
-.navBigImg img:nth-of-type(4) {
-    transform: scale(1.5);
-}
-
-.navBigImg img:nth-of-type(4):target {
-    transform: scale(1);
-    z-index: 21;
-}
-
-.navBigImg img:nth-of-type(5) {
-    transform: scale(0) skew(180deg);
-}
-
-.navBigImg img:nth-of-type(5):target {
-    transform: scale(1) skew(0deg);
-    z-index: 25;
-} */
 
 .navText {
     width: 45%;
@@ -216,7 +156,7 @@ body {
     margin-top: 25px;
     width: 100%;
     height: 130px;
-    background-color: antiquewhite;
+    background-color: rgb(248, 201, 139);
 }
 
 .kong {
@@ -338,17 +278,18 @@ body {
 .nowBuy {
     /* font-family: '楷体'; */
     font-size: 1.3em;
-    font-weight: bolder;
+    /* font-weight: bolder; */
     margin-top: 50px;
     line-height: 50px;
     border-radius: 20px 20px;
+    border: none;
     height: 50px;
 }
 
 .add {
     color: rgb(243, 109, 0);
     width: 140px;
-    background-color: antiquewhite;
+    background-color: rgb(253, 199, 129);
     margin-left: 60px;
 }
 
@@ -379,9 +320,16 @@ body {
     height: 300px;
 }
 
+.msms {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 42px;
+}
+
 .otherMes span {
     display: inline-block;
-    margin-left: 236px;
+    /* margin-left: 236px; */
     /* position: absolute; */
     /* right: 5px; */
 }

@@ -1,10 +1,5 @@
 window.onload = function() {
-    new Vue({
-        el: "#logonp",
-        data: {
-            href: "car.html?token=" + localStorage.getItem("token")
-        }
-    })
+
     var gy = new Vue({
         el: '#tall',
         data: {
@@ -14,17 +9,39 @@ window.onload = function() {
             gyfpmsg: '',
             country: [], //乡村信息
             textdetial: [], //农牧云的故事
-
         },
         methods: {
+            singles: function() {
+                axios.get('/simble', {
+                    params: {
+                        token: localStorage.getItem("token")
+                    }
+                }).then(function(resp) {
+                    if (resp.data.code == 301 || resp.data.code == 302 || resp.data.code == 303) {
+                        window.location.href = ("/check")
+                    } else if (resp.data.code == 302) {
+                        window.location.href = ("/check")
+                            // window.location.href = "/single?id=" + id
+                            // return   
+
+                    } else {
+                        window.location.href = "simble?token=" + localStorage.getItem("token")
+                    }
+                })
+            },
             nec: function() {
                 axios.get('/car.html', {
                     params: {
                         token: localStorage.getItem("token")
                     }
                 }).then(function(resp) {
-                    if (resp.data.code == 301) {
+                    if (resp.data.code == 301 || resp.data.code == 302 || resp.data.code == 303) {
                         window.location.href = ("/check")
+                    } else if (resp.data.code == 302) {
+                        window.location.href = ("/check")
+                            // window.location.href = "/single?id=" + id
+                            // return   
+
                     } else {
                         window.location.href = "car.html?token=" + localStorage.getItem("token")
                     }

@@ -2110,6 +2110,24 @@ window.onload = function() {
             count: 1, //购买数量
         },
         methods: {
+            singles: function() {
+                axios.get('/car.html', {
+                    params: {
+                        token: localStorage.getItem("token")
+                    }
+                }).then(function(resp) {
+                    if (resp.data.code == 301 || resp.data.code == 302 || resp.data.code == 303) {
+                        window.location.href = ("/check")
+                    } else if (resp.data.code == 302) {
+                        window.location.href = ("/check")
+                            // window.location.href = "/single?id=" + id
+                            // return   
+
+                    } else {
+                        window.location.href = "simble?token=" + localStorage.getItem("token")
+                    }
+                })
+            },
             nec: function() {
                 axios.get('/car.html', {
                     params: {
@@ -2118,6 +2136,11 @@ window.onload = function() {
                 }).then(function(resp) {
                     if (resp.data.code == 301) {
                         window.location.href = ("/check")
+                    } else if (resp.data.code == 302) {
+                        window.location.href = ("/check")
+                            // window.location.href = "/single?id=" + id
+                            // return   
+
                     } else {
                         window.location.href = "/car.html?token=" + localStorage.getItem("token")
                     }
@@ -2130,7 +2153,6 @@ window.onload = function() {
             },
             Sgoods: function(imgs, gname, gmsgs, gprice) {
                 axios.get('/api/single/sgoods', { //加入到购物车
-                    // headers: { 'content-type': 'application/x-www-form-urlencoded' },
                     params: {
                         // userid: uid,
                         count: nsp.count,
@@ -2143,18 +2165,14 @@ window.onload = function() {
                         token: localStorage.getItem("token")
                     }
                 }).then(function(resp) {
-                    // console.log(resp.data.code)
                     if (resp.data.code == 301) {
+                        // return
                         window.location.href = ("/check")
-                        return
+                    } else if (resp.data.code == 302) {
+                        window.location.href = ("/check")
+                    } else {
+
                     }
-                    if (resp.data.code == 200) {
-                        window.location.href = ("/single?id=" + id)
-                        return
-                    }
-                    // data = JSON.parse(resp)
-                    // localStorage.setItem("token", data.data)
-                    // window.location.href = "/viewmain?token=" + localStorage.getItem("token")
                 }).catch(function(error) {
                     console.log(error)
                         // console.log(2)
@@ -2182,16 +2200,13 @@ window.onload = function() {
                         token: localStorage.getItem("token")
                     }
                 }).then(function(resp) {
-                    // console.log(resp)
-                    // console.log("sdad")
-                    // alert(resp)
                     if (resp.data.code == 301) {
+                        // return
                         window.location.href = ("/check")
-                        return
-                    }
-                    if (resp.data.code == 200) {
-                        window.location.href = ("/single?id=" + id)
-                        return
+                    } else if (resp.data.code == 302) {
+                        window.location.href = ("/check")
+                    } else {
+
                     }
                 }).catch(function(error) {
                     console.log(error)
@@ -2247,12 +2262,12 @@ window.onload = function() {
             },
             send1: function() {
                 axios.get('/api/single/litshop', {
-                    params: {
-                        kid: id
-                    }
+                    // params: {
+                    //     kid: id
+                    // }
                 }).then(function(resp) {
                     // console.log(id)
-                    // console.log(resp)
+                    console.log(resp)
                     nsp.littleshop = resp.data
                 }).catch(function(error) {
                     console.log(error)

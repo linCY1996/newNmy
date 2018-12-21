@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>云上集市-农牧云</title>
     <link rel="icon" href="/static/img/农牧云logo1.png">
-    <link rel="stylesheet" href="/static/css/ysjs.css">
     <link rel="stylesheet" href="/static/css/publ.css">
+    <link rel="stylesheet" href="/static/css/ysjs.css">
     <link rel="stylesheet" href="/static/css/loginnp.css">
     <script src="/static/js/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
@@ -24,7 +24,7 @@
                 <span id="register" @click="tui()" style="cursor:pointer;">退出</span>
             </div>
             <!-- <a class="heh" :href="hrr"><img src="/static/img/cart-hl.png" alt=""></a> -->
-            <a class="heh" @click="nec()"><img src="/static/img/cart-hl.png" alt=""></a>
+            <a class="heh" @click="nec()"><img style="width:45px;height:48px;" src="/static/img/gwc.png" alt=""></a>
         </div>
         <!-- 导航栏 -->
         <!-- 导航栏 -->
@@ -35,6 +35,10 @@
                     <a :href="na.hrefs" v-for="na in navcs">
                         <div class="line-bottom"></div>
                         <li>{{na.name}}</li>
+                    </a>
+                    <a @click="singles()" style="cursor: pointer;color: black;">
+                        <div class="line-bottom"></div>
+                        <li>个人中心</li>
                     </a>
                 </ul>
             </div>

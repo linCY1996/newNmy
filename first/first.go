@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"math/rand"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 )
@@ -52,10 +54,11 @@ func SleInfor3() ([]Infor, error) {
 }
 
 type Products struct {
-	ID      int     `json:"id" form:"id"`
-	Imgs    string  `json:"imgs" form:"imgs"`
-	Message string  `json:"message" form:"message"`
-	Price   float64 `json:"price" form:"price"`
+	ID      int     `json:"id,omitempty" form:"id"`
+	Imgs    string  `json:"imgs,omitempty" form:"imgs"`
+	Message string  `json:"message,omitempty" form:"message"`
+	Price   float64 `json:"price,omitempty" form:"price"`
+	Hrefs   string  `json:"hrefs,omitempty"`
 }
 
 //首页产品
@@ -170,11 +173,13 @@ func SelFriends() ([]Friends, error) {
 	return mod, err
 }
 
+//用户注册信息
 type UserRegister struct {
-	ID    int    `json:"id,omitempty" form:"id"`
-	Name  string `json:"name,omitempty"`
-	Email string `json:"email" from:"email"`
-	Tel   string `json:"tel,omitempty"`
+	ID      int    `json:"id" xml:"id"`
+	Tel     string `json:"tel" xml:"tel"`
+	Tagname string `json:"tagname" xml:"tagname"`
+	Email   string `json:"email" xml:"email"`
+	Imgs    string `json:"imgs" xml:"imgs"`
 }
 
 //购物车信息
@@ -193,7 +198,7 @@ type GWC struct {
 //在购物车中显示用户信息
 func ShowUserMsg(id int) (UserRegister, error) {
 	mod := UserRegister{}
-	err := dB.Get(&mod, `select name, email, tel from register where id=?`, id)
+	err := dB.Get(&mod, `select imgs, tagname, tel, email from regis where id=?`, id)
 	return mod, err
 }
 
@@ -251,17 +256,17 @@ type Singleimgmsg struct {
 	Price float64 `json:"price" form:"price"`
 }
 
-func SingleLittleShop(id int) ([]Singleimgmsg, error) {
-	mod := make([]Singleimgmsg, 0)
-	var k = (id - 1) * 2
-	err := dB.Select(&mod, `select * from singleimgmsg limit ?,7`, k)
+func SingleLittleShop() ([]YSJSpordu, error) {
+	mod := make([]YSJSpordu, 0)
+	var k = rand.Intn(8)
+	err := dB.Select(&mod, `select * from yunshop1 limit ?,4`, k)
 	return mod, err
 }
 
 func SingleBigShop(id int) ([]Singleimgmsg, error) {
 	mod := make([]Singleimgmsg, 0)
-	var k = (id - 1) * 6
-	err := dB.Select(&mod, `select * from singleimgmsg limit ?,6`, k)
+	var k = (id - 1) * 5
+	err := dB.Select(&mod, `select * from singleimgmsg limit ?,5`, k)
 	// fmt.Println(err)
 	return mod, err
 }
@@ -322,8 +327,8 @@ func Inseradd(userid, goodsid int, address string, num int) bool {
 
 //关于我们页面的相关数据库操作
 type Personinfor struct {
-	ID  int    `json:"id" form:"id"`
-	Msg string `json:"msg" form:"msg"`
+	ID  int    `json:"id,omitempty" form:"id"`
+	Msg string `json:"msg,omitempty" form:"msg"`
 }
 
 //查询平台特色的相关信息

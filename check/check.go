@@ -1,86 +1,99 @@
 package check
 
 import (
-	"fmt"
-	"os"
-
 	jwt "github.com/dgrijalva/jwt-go"
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/jmoiron/sqlx"
 )
 
-var dB *sqlx.DB
-
-//连接数据库
-func init() {
-	var err error
-	dB, err = sqlx.Open(`mysql`, `root:root@tcp(127.0.0.1:3306)/nmy?charsetutf8&parseTime=true`)
-	if err != nil {
-		fmt.Println("数据库请求失败")
-		os.Exit(1)
-	}
-	if err = dB.Ping(); err != nil {
-		fmt.Println("数据库连接失败")
-		os.Exit(1)
-	}
-
-	// fmt.Println("数据库连接成功")
+//用户注册信息
+type Regis struct {
+	ID      int    `json:"id" xml:"id"`
+	Num  string `json:"num" xml:"num"`
+	Tel     string `json:"tel" xml:"tel"`
+	Pass    string `json:"pass" xml:"pass"`
+	Tagname string `json:"tagname" xml:"tagname"`
+	Name    string `json:"name" xml:"name"`
+	Sex     string `json:"sex" xml:"sex"`
+	Idcard  string `json:"idcard" xml:"idcard"`
+	Email   string `json:"email" xml:"email"`
+	Imgs  string `json:"imgs" xml:"imgs"`
 }
 
-//定义用户注册的信息
-
-type UserRegister struct {
-	ID        int    `json:"id,omitempty" form:"id"`
-	Name      string `json:"name,omitempty"`
-	Idcard    string `json:"idcard,omitempty"`
-	Email     string `json:"email" from:"email"`
-	Address   string `json:"address,omitempty"`
-	Tel       string `json:"tel,omitempty"`
-	Newname   string `json:"newname,omitempty"`
-	Pass      string `json:"pass" form:"pass"`
-	Againpass string `json:"againpass,omitempty"`
+//用户注册生成得到账号
+func InsertUserNum(nums string, tel string) error {
+	_, err := dB.Exec(`update regis set num=? where tel=?`, nums, tel)
+	return err
 }
 
-//创建用户数据库
-
-//往数据库中插入用户注册的信息
-func Useradd(name string, idcard string, email string, address string, tel string, newname string, pass string, againpass string) (UserRegister, error) {
-	s := UserRegister{}
-	sm, err := dB.Exec(`insert into register(name, idcard, email, address, tel, newname, pass, againpass) values(?,?,?,?,?,?,?,?)`, name, idcard, email, address, tel, newname, pass, againpass)
-	sm.LastInsertId()
-	return s, err
-}
-
-func CheckEmail(email string) ([]UserRegister, error) {
-	mod := make([]UserRegister, 0)
-	err := dB.Select(&mod, `select * from register`)
+//显示用户昵称
+func ShowUsermsg(id int) (Regis, error) {
+	mod := Regis{}
+	err := dB.Get(&mod, `select imgs, tagname from regis where id=?`, id)
 	return mod, err
 }
 
-//在数据库中进行查找name和pass
-func CheckUser(name string) (UserRegister, error) {
+//显示用户所有个人信息
+func ShowUsermsgall(id int) (Regis, error) {
+	mod := Regis{}
+	err := dB.Get(&mod, `select tagname, name, sex, idcard, email from regis where id=?`, id)
+	return mod, err
+}
 
-	mods := UserRegister{}
-	err := dB.Get(&mods, `select * from register where name=?`, name)
+//用户注册操作
+func UserRegis(tel, pass, tagname, name, sex, idcard, email, imgs string) error   {
+	
+	_, err := dB.Exec(`insert into regis(tel, pass,tagname, name, sex, idcard, email, imgs) values(?,?,?,?,?,?,?,?)`, tel, pass, tagname, name, sex, idcard, email,imgs)
+	return err
+}
+
+//上传用户头像
+func UpUserimg(imgs string, id int) error {
+	_, err := dB.Exec(`update regis set imgs=? where id=?`, imgs, id)
+	return err
+}
+
+//用户添加个人信息
+func InsertMsg(id int, tagname, name, sex, idcard, email string) error {
+	_, err := dB.Exec(`update regis set tagname=?,name=?,sex=?, idcard=?, email=? where id=?`, tagname, name, sex, idcard, email, id)
+	return err
+}
+
+// //个人中心显示用户信息
+func UserName(id int) (Regis, error) {
+	mod := Regis{}
+	err := dB.Get(&mod, `select name from regis where id=?`, id)
+	return mod, err
+}
+
+// func CheckEmail(email string) ([]Regis, error) {
+// 	mod := make([]Regis, 0)
+// 	err := dB.Select(&mod, `select * from register`)
+// 	return mod, err
+// }
+
+//在数据库中进行查找tel和pass
+func CheckUser(num string) (Regis, error) {
+
+	mods := Regis{}
+	err := dB.Get(&mods, `select * from regis where num=?`, num)
 	return mods, err
 }
 
 //忘记密码进行的操作
-func Lostpass(email string) (UserRegister, error) {
-	dp := UserRegister{}
-	err := dB.Get(&dp, `select * from register where email=?`, email)
+func Lostpass(tel string) (Regis, error) {
+	dp := Regis{}
+	err := dB.Get(&dp, `select * from regis where tel=?`, tel)
 	return dp, err
 }
 
-func UpDataPass(pass string, againpass string, email string) (UserRegister, error) {
-	udp := UserRegister{}
-	_, err := dB.Exec(`update register set pass=?, againpass=? where email=?`, pass, againpass, email)
+func UpDataPass(pass string, tel string) (Regis, error) {
+	udp := Regis{}
+	_, err := dB.Exec(`update regis set pass=?where tel=?`, pass, tel)
 	return udp, err
 }
 
 // Jwt json web token
 type Jwt struct {
-	Id   int
-	Name string
+	Id  int
+	Tel string
 	jwt.StandardClaims
 }

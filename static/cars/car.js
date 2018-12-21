@@ -11,6 +11,14 @@ window.onload = function() {
             gods: [], //货物的信息
         },
         methods: {
+
+            totalPrice: function() {
+                var totalP = 0;
+                for (var i = 0, len = nm.gods.length; i < len; i++) {
+                    totalP += nm.gods[i].price * nm.gods[i].num;
+                }
+                return totalP;
+            },
             gds: function() {
                 axios({
                     method: 'get',
@@ -56,30 +64,38 @@ window.onload = function() {
                     console.log(error)
                 })
             },
-            totalPrice: function() {
-                var totalP = 0;
-                for (var i = 0, len = nm.gods.length; i < len; i++) {
-                    totalP += nm.gods[i].price * nm.gods[i].num;
-                }
-                return totalP;
-            },
             Users: function() {
                 axios.get('/api/gwc/user', {
                     params: { token: localStorage.getItem("token") } //用户的id
                 }).then(function(resp) {
                     // console.log(resp)
                     nm.users = resp.data
-                }).catch(function(error) {
-                    console.log(error)
                 })
             },
+            singles: function() {
+                axios.get('/simble', {
+                    params: {
+                        token: localStorage.getItem("token")
+                    }
+                }).then(function(resp) {
+                    if (resp.data.code == 301 || resp.data.code == 302 || resp.data.code == 303) {
+                        window.location.href = ("/check")
+                    } else if (resp.data.code == 302) {
+                        window.location.href = ("/check")
+                            // window.location.href = "/single?id=" + id
+                            // return   
 
+                    } else {
+                        window.location.href = "simble?token=" + localStorage.getItem("token")
+                    }
+                })
+            },
         },
         mounted: function() {
             this.gds();
             this.navs();
             this.Users(); //用户的信息展示
-            this.herfs();
+            // this.herfs();
 
         },
         // watch: {

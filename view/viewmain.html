@@ -28,7 +28,7 @@
                 <div class="line"></div>
                 <span id="register" @click="tui()" style="cursor:pointer;">退出</span>
             </div>
-            <a class="heh" @click="nec()"><img src="/static/img/cart-hl.png" alt=""></a>
+            <a class="heh" @click="nec()"><img style="width:45px;height:48px;" src="/static/img/gwc.png" alt=""></a>
         </div>
         <!-- 导航栏 -->
 
@@ -40,6 +40,10 @@
                     <a :href="na.hrefs" v-for="na in navcs">
                         <div class="line-bottom"></div>
                         <li>{{na.name}}</li>
+                    </a>
+                    <a @click="singles()" style="cursor: pointer;color: black;">
+                        <div class="line-bottom"></div>
+                        <li>个人中心</li>
                     </a>
                 </ul>
             </div>
@@ -66,13 +70,13 @@
                 <my-mess></my-mess>
             </P>
             <div class="food-Msg">
-                <div class="food-Msg-Ch1" v-for="pr in titl">
+                <a :href="pr.hrefs" class="food-Msg-Ch1" v-for="pr in titl">
                     <div>
                         <img :src="pr.imgs" alt="">
                         <p id="food-Msg-text">{{pr.message}}</p>
                         <p id="food-Msg-text1">单价：&nbsp;&nbsp;<b>¥{{pr.price}}元/份</b></p>
                     </div>
-                </div>
+                </a>
             </div>
             <p class="good-Msg">
                 <my-message></my-message>

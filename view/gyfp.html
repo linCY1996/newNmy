@@ -25,7 +25,7 @@
                 <div class="line"></div>
                 <span id="register" @click="tui()" style="cursor:pointer;">退出</span>
             </div>
-            <a class="heh" @click="nec()"><img src="/static/img/cart-hl.png" alt=""></a>
+            <a class="heh" @click="nec()"><img style="width:45px;height:48px;" src="/static/img/gwc.png" alt=""></a>
         </div>
 
         <!-- 导航栏 -->
@@ -37,6 +37,10 @@
                         <div class="line-bottom"></div>
                         <li>{{na.name}}</li>
                     </a>
+                    <a @click="singles()" style="cursor: pointer;">
+                        <div class="line-bottom"></div>
+                        <li>个人中心</li>
+                    </a>
                 </ul>
             </div>
         </div>
@@ -45,6 +49,7 @@
             <!--帮扶成果、数据展示-->
             <div class="txtDetail">
                 <p class="pstyle" style="font-family: '楷体';font-size: 1.3em;">帮扶成果、数据展示</p>
+                <p class="pstyle">以助力乡村电商扶贫为宗旨的实践团队也希望通过自己的努力能够把农村电子商务扎扎实实的普及推广到这里。</p>
             </div>
 
             <!--公益活动轮播-->
@@ -63,6 +68,7 @@
             </div>
             <hr class="linestyle" style="height:1px;border:none;border-top:2px dashed #0066CC;" />
             <!--帮扶对象--带领脱贫致富-->
+
             <p class="txtDetail pstyle" style="font-family: '楷体';font-size: 1.4em;">
                 帮扶对象--带领脱贫致富<i class="fa fa-handshake-o" aria-hidden="true"></i>
             </p>
@@ -89,7 +95,7 @@
                     <img :src="msg.imgs" />
                     <h2 class="blogTitle" style="padding:8px; font-family: '楷体';font-size: 1.8em;">{{msg.gytitle}}</h2>
                     <div class="blogDetail">{{msg.gymsg}}</div>
-                    <p class="blogMore pstyle"><i class="fa fa-chevron-right" aria-hidden="true"></i>点击进入</p>
+                    <p class="blogMore pstyle"><i class="fa fa-chevron-right" aria-hidden="true"></i><a style="cursor: pointer;" href="http://www.chinaol.org/jiaokewenwei/20180718/3668.html?from=groupmessage">点击进入</a></p>
                 </div>
             </div>
         </div>

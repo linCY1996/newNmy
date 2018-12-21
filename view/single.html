@@ -26,7 +26,7 @@
                 <div class="line"></div>
                 <span id="register" @click="tui()" style="cursor:pointer;">退出</span>
             </div>
-            <a class="heh" @click="nec()"><img src="/static/img/cart-hl.png" alt=""></a>
+            <a class="heh" @click="nec()"><img style="width:45px;height:48px;" src="/static/img/gwc.png" alt=""></a>
         </div>
         <!-- 导航栏 -->
         <!-- 导航栏 -->
@@ -34,9 +34,13 @@
             <div class="navtit">
                 <img src="/static/img/农牧云logo1.png" alt="">
                 <ul>
-                    <a :href="na.hrefs" v-for="na in navcs">
+                    <a :href="na.hrefs" v-for="na in navcs" style="color:black;">
                         <div class="line-bottom"></div>
                         <li>{{na.name}}</li>
+                    </a>
+                    <a @click="singles()" style="cursor: pointer;color: black;">
+                        <div class="line-bottom"></div>
+                        <li>个人中心</li>
                     </a>
                 </ul>
             </div>
@@ -70,7 +74,8 @@
                     </div>
                 </div>
                 <div class="margs">
-                    <p class="location">配送地：&nbsp;&nbsp;<span>
+                    <p class="location">配送地：&nbsp;&nbsp;
+                        <span>
                         <select  name="loca" id="loca"  v-model="prov">
                             <option v-for="option in arr" :value="option.name">
                                 {{ option.name }}
@@ -106,9 +111,9 @@
         <div class="moreMes">
             <div class="otherMes">
                 <div class="liteMes" v-for="lts in littleshop">
-                    <a :href="'single?id='+lts.id" style="color:black;">
-                        <img :src="lts.hrefs" alt="">
-                        <p>{{lts.mess}}<span>¥{{lts.price}}</span></p>
+                    <a :href="lts.hrefs" style="color:black;">
+                        <img :src="lts.imgs" alt="">
+                        <p class="msms">{{lts.mess}}<span>¥{{lts.price}}</span></p>
                     </a>
                 </div>
             </div>

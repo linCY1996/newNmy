@@ -1,0 +1,561 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    cursor: default;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+#tall {
+    width: 100%;
+}
+
+.bag {
+    position: absolute;
+    width: 1400px;
+    height: 900px;
+    border: 1px solid gainsboro;
+    left: 50%;
+    top: 50%;
+    margin-left: -700px;
+    margin-top: -350px;
+    box-shadow: 0px 0px 5px 5px rgb(238, 238, 238);
+}
+
+.item {
+    margin: 20px;
+    height: 500px;
+}
+
+.head {
+    height: 200px;
+    width: 220px;
+    /*border: 1px solid yellow;*/
+    position: relative;
+    /*background: rgb(241, 241, 239);*/
+    /*background: rgb(255, 245, 245);*/
+    background: rgb(243, 241, 239);
+}
+
+.name {
+    font-weight: bold;
+    text-align: center;
+    color: rgb(90, 90, 90);
+}
+
+.inform {
+    left: 60px;
+}
+
+.attention {
+    left: 130px;
+}
+
+.imag {
+    position: absolute;
+    top: 145px;
+    height: 27px;
+    width: 27px;
+    border: 1px solid gainsboro;
+    border-radius: 27px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.imag img {
+    height: 18px;
+    width: 18px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.headImag {
+    height: 80px;
+    width: 80px;
+    margin-left: 70px;
+    margin-top: 20px;
+    border: 4px solid rgb(255, 255, 255);
+    border-radius: 80px;
+    box-shadow: 0px 5px 4px #aaaaaa;
+}
+
+.co_item {
+    width: 220px;
+    /*border: 1px solid red;*/
+}
+
+.co_item li {
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    height: 40px;
+    /*border: 1px solid gray;
+	box-sizing: border-box;*/
+    padding-left: 40px;
+    line-height: 40px;
+    font-family: arial;
+    font-size: 14px;
+    background: rgb(243, 241, 239);
+    /*background: rgb(255, 245, 245);*/
+    color: rgb(100, 100, 100);
+    font-weight: bold;
+}
+
+.co_item li:hover {
+    background: white;
+}
+
+.co_item img {
+    float: right;
+    padding-right: 20px;
+    padding-top: 10px;
+    height: 20px;
+    width: 20px;
+}
+
+.content {
+    position: absolute;
+    width: 1100px;
+    height: 600px;
+    /*border: 1px solid red;*/
+    left: 270px;
+    top: 20px;
+}
+
+.title {
+    margin-top: 20px;
+    font-family: "宋体";
+    font-weight: bold;
+    font-size: 18px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgb(230, 230, 230);
+    box-sizing: border-box;
+}
+
+.pro {
+    font-size: 14px;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.pro p {
+    float: right;
+    display: inline-block;
+    color: rgb(255, 219, 205);
+    font-weight: bold;
+}
+
+.alipay {
+    position: relative;
+    height: 100px;
+    /* border: 1px solid red; */
+    background: rgb(237, 254, 208);
+}
+
+.alipay img {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    left: 100px;
+    top: 25px;
+}
+
+.aliAccount {
+    position: relative;
+    left: 150px;
+    top: 20px;
+}
+
+.aliAccount span {
+    color: #f40;
+    font-weight: bold;
+}
+
+.aliAccount a {
+    color: rgb(99, 109, 204);
+}
+
+.aliAccount a:hover {
+    text-decoration: underline;
+    color: #f40;
+}
+
+.counttype {
+    height: 50px;
+    line-height: 50px;
+    padding-left: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-bottom: 1px solid gainsboro;
+}
+
+.counttype span {
+    margin-left: 100px;
+    color: #999;
+    font-size: 15px;
+}
+
+#id {
+    margin-left: 0px;
+}
+
+.counttype a {
+    margin-left: 470px;
+    font-size: 14px;
+    color: rgb(84, 102, 206);
+}
+
+.counttype a:hover {
+    color: #f40;
+}
+
+.balance {
+    position: relative;
+    left: 900px;
+    top: 300px;
+    font-weight: bold;
+    height: 100px;
+    line-height: 80px;
+    text-align: center;
+    width: 100px;
+    border-radius: 50%;
+    background: rgb(237, 254, 208);
+    border: 1px solid rgb(237, 254, 208);
+}
+
+.balance div {
+    position: relative;
+    top: -55px;
+}
+
+.star {
+    color: #FF4500;
+}
+
+.newLocation {
+    margin-top: 10px;
+    color: rgb(255, 204, 132);
+    margin-left: 30px;
+}
+
+.status {
+    border: 1px solid lightgray;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+}
+
+.quoted {
+    font-size: 14px;
+}
+
+.box {
+    display: inline-block;
+    width: 120px;
+    text-indent: 10px;
+}
+
+.box span {
+    float: right;
+    font-size: 14px;
+    color: black;
+}
+
+.quoted input {
+    margin: 10px 0px 10px 10px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+.localInfo {
+    height: 30px;
+    width: 300px;
+    margin-left: 134px;
+    font-size: 1.1em;
+    margin-top: -24px;
+    color: black;
+}
+
+#loca {
+    width: 80px;
+    height: 25px;
+    border: 1px solid lightgray;
+}
+
+#locaCh {
+    width: 80px;
+    height: 25px;
+    border: 1px solid lightgray;
+}
+
+#locaCher {
+    width: 100px;
+    height: 25px;
+    border: 1px solid lightgray;
+}
+
+input[type="checkbox"]+label::before {
+    content: "\a0";
+    display: inline-block;
+    margin-top: 2px;
+    width: 1em;
+    height: 1em;
+    margin-right: .2em;
+    border-radius: .2em;
+    background: white;
+    border: 1px solid gainsboro;
+    text-indent: .15em;
+    line-height: 0.9;
+}
+
+input[type="checkbox"]:checked+label::before {
+    content: "\2713";
+    background: rgb(62, 113, 247);
+    color: white;
+    font-size: 14px;
+}
+
+.local {
+    margin-left: 105px;
+}
+
+.local input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+
+.monkey {
+    width: 300px;
+    position: absolute;
+    left: 300px;
+}
+
+.status {
+    position: relative;
+}
+
+.store {
+    position: absolute;
+    width: 50px;
+    height: 31px;
+    color: white;
+    background: rgb(62, 113, 240);
+    left: 95px;
+}
+
+.store:hover {
+    background: rgb(62, 113, 255);
+    cursor: pointer;
+}
+
+.status img {
+    padding-left: 10px;
+    padding-right: 3px;
+    height: 20px;
+    width: 20px;
+    vertical-align: -5px;
+}
+
+.status span {
+    display: inline-block;
+    background: rgb(234, 234, 234);
+    padding-right: 40px;
+    font-weight: bold;
+}
+
+.status>p {
+    display: inline-block;
+    padding-left: 10px;
+    font-weight: bold;
+    width: 100px;
+}
+
+.status div {
+    display: inline-block;
+    color: rgb(160, 160, 160);
+}
+
+.status div p {
+    display: inline-block;
+}
+
+.status a {
+    color: orangered;
+    width: 80px;
+    position: absolute;
+    right: 0px;
+}
+
+.status a:hover {
+    text-decoration: underline;
+}
+
+.box2 {
+    position: relative;
+    border: 1px solid rgb(216, 216, 216);
+    border-radius: 5px;
+    height: 750px;
+    color: rgb(27, 27, 27);
+}
+
+.hrs {
+    width: 100%;
+    height: 405px;
+    border: 1px solid gainsboro;
+    position: absolute;
+    margin-top: 60px;
+    font-size: 1.1em;
+    overflow: scroll;
+}
+
+.hrs ul {
+    width: 100%;
+    /* background-color: aliceblue; */
+}
+
+.hrs ul li {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid rgb(148, 148, 148);
+    margin: 15px auto;
+}
+
+.pp1 {
+    font-size: 1.1em;
+    /* display: block; */
+    width: 450px;
+    overflow: hidden;
+    border: 1px solid rgb(235, 235, 235);
+}
+
+.pp2,
+.pp3 {
+    border: 1px solid rgb(235, 235, 235);
+    font-size: 1.1em;
+    display: block;
+    width: 200px;
+}
+
+.hrs ul li span {
+    width: 40px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.person p {
+    padding: 5px 0px 5px 20px;
+}
+
+.person p span {
+    font-weight: bold;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.person p span:hover {
+    text-decoration: underline;
+    color: rgb(244, 161, 18);
+}
+
+.a {
+    border: 3px solid gainsboro;
+    height: 100px;
+    width: 100px;
+    vertical-align: -90px;
+}
+
+.common {
+    height: 30px;
+    border: 1px solid gainsboro;
+    text-indent: 5px;
+    border-radius: 5px;
+}
+
+.nickName {
+    width: 200px;
+}
+
+.realName {
+    width: 150px;
+}
+
+.sex {
+    display: inline-block;
+}
+
+#sex {
+    font-size: 14px;
+}
+
+input[type="radio"]+label::before {
+    content: "";
+    display: inline-block;
+    width: 0.5em;
+    height: 0.5em;
+    border: 1px solid rgb(248, 227, 89);
+    border-radius: 50%;
+    margin-right: 3px;
+    padding: 3px;
+    vertical-align: -3px;
+}
+
+input[type="radio"]:checked+label::before {
+    background: rgb(244, 161, 18);
+    background-clip: content-box;
+}
+
+input[type="radio"] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+
+input[type="date"] {
+    height: 20px;
+}
+
+#submit {
+    height: 31px;
+    width: 50px;
+    margin-left: 90px;
+    background: rgb(244, 161, 18);
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+}
+
+#submit:hover {
+    cursor: pointer;
+    background: rgb(255, 161, 18);
+}
+
+.timg {
+    position: absolute;
+    height: 400px;
+    width: 450px;
+    bottom: 0px;
+    right: 0px;
+}
+
+#canvas {
+    background: white;
+    display: block;
+}

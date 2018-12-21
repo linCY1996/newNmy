@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>农牧云</title>
+    <link rel="icons" href="/static/img/农牧云logo1.png">
+    <link rel="stylesheet" type="text/css" href="/static/css/register1.css" />
+    <script src="https://cdn.bootcss.com/vue/2.5.18-beta.0/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
+    <script src="/static/js/regis.js"></script>
+    <!-- <script type="text/javascript " src="/static/js/register1.js"></script> -->
+</head>
+
+<body>
+    <div id="tall">
+        <img class="imim" src="/static/img/kapian/bg5.jpg" alt=" ">
+        <div id="box">
+            <!-- <img src="/static/img/农牧云logo1.png " class="logo " /> -->
+            <div class="top">农牧云账号注册</div>
+            <div class="sub">
+                <div class="tel">
+                    <span class="text"><img src="/static/img/img/tel.png"/>电话：</span>
+                    <input type="text" v-model='tel' placeholder="手机号码" />
+                    <div class="hint">手机号码长度11位字符</div>
+                    <div class="warnHint ">手机号已被注册</div>
+                </div>
+
+                <div class="tel pwd">
+
+                    <span class="text"><img src="/static/img/img/lock.png"/>密码：</span><input type="password" v-model='pass' placeholder="请输入密码 " />
+                    <div class="hint">密码长度6-15字符</div>
+                    <div class="warnHint">请按要求设置密码</div>
+                </div>
+                <div class="repwd tel">
+                    <span class="text">确认密码：</span><input type="password" v-model='againpass' placeholder="请输入密码 " />
+                    <div class="hint">请输入刚才的密码</div>
+                    <div class="warnHint ">前后密码不一致</div>
+                </div>
+
+                <div class="code">
+                    <input type="text" v-model='codes' /><span class="varcode">DSFHK</span>
+                    <div class="codeHint ">请输入验证码</div>
+                    <div class="codeWarnHint ">验证码错误</div>
+                </div>
+
+                <input class="submit" type="submit" @click="send()" value="提交" />
+                <div class="other ">
+                    <p>—————— 其他方式登录 —————</p>
+                    <div>
+                        <img src="/static/img/img/qq.png" />
+                        <img src="/static/img/img/wechat.png" />
+                        <img src="/static/img/img/weibo.png" />
+                        <img src="/static/img/img/alipay.png" />
+                    </div>
+                </div>
+                <div class="foot"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</script>
+
+</html>

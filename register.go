@@ -2,10 +2,16 @@ package main
 
 import (
 	"NMY/check"
+	"NMY/control"
 	"NMY/first"
 	"NMY/gyfpmsg"
 	"NMY/util"
 	"encoding/json"
+	"fmt"
+	"io"
+	"os"
+	"path"
+
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -19,26 +25,26 @@ const tokenKey = "this is a bdd"
 //核对用户登录时的用户名和密码是否一致
 func Checklogo(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	var uName = r.FormValue(`name`)
+	var num = r.FormValue("num")
 	// var uPass = r.FormValue(`mima`)
-	pass := r.Form.Get("mima")
-	mods, err := check.CheckUser(uName)
+	var pass = r.Form.Get("mima")
+	mods, err := check.CheckUser(num)
 	if err != nil {
-		w.Write([]byte(`信息错误`))
+		w.Write([]byte(`信息错误1`))
 		return
 	}
-	if uName != mods.Name {
-		w.Write([]byte(`信息错误`))
+	if num != mods.Num {
+		w.Write([]byte(`信息错误2`))
 		return
 	}
 
 	if mods.Pass != pass {
-		w.Write([]byte(`信息错误`))
+		w.Write([]byte(`信息错误3`))
 		return
 	}
 	data := check.Jwt{
-		Id:   mods.ID,
-		Name: mods.Name,
+		Id:  mods.ID,
+		Tel: mods.Tel,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(2 * time.Hour).Unix(),
 		},
@@ -54,56 +60,16 @@ func Checklogo(w http.ResponseWriter, r *http.Request) {
 
 }
 
-//将用户的注册信息提交到数据库
-func RegUser(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
-	var name = r.FormValue(`name`)
-	var idcard = r.FormValue(`idcard`)
-	var email = r.FormValue(`email`)
-	var address = r.FormValue(`address`)
-	var tel = r.FormValue(`tel`)
-	var newname = r.FormValue(`new_name`)
-	var pass = r.FormValue(`pass`)
-	var againpass = r.FormValue(`again_pass`)
-
-	mod, err := check.Useradd(name, idcard, email, address, tel, newname, pass, againpass)
-	if err != nil {
-		w.Write([]byte(`注册失败`))
-		return
-	}
-	if mod.Email == email {
-		w.Write([]byte(`该邮箱已经被注册过，请重新注册新的邮箱`))
-		return
-	}
-	// dd, _ := json.Marshal(mod)
-	// w.Header().Set(`Content-Type`, `application/json`)
-	w.Write([]byte(`注册成功`))
-}
-
-func CheckEmail(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
-	var email = r.FormValue(`email`)
-	mods, err := check.CheckEmail(email)
-	if err != nil {
-		w.Write([]byte(`查询信息错误`))
-		return
-	}
-	dd, _ := json.Marshal(mods)
-	w.Header().Set(`Content-Ttpe`, `application/json`)
-	w.Write(dd)
-}
-
 func Lostpa(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	var mail = r.FormValue(`email`)
+	var mail = r.FormValue(`tel`)
 	var pass = r.FormValue(`pass1`)
-	var againpass = r.FormValue(`againpass1`)
 
 	lop, _ := check.Lostpass(mail)
 	if lop.Email != mail {
 		w.Write([]byte(`此邮箱未被注册`))
 	} else {
-		_, err := check.UpDataPass(pass, againpass, mail)
+		_, err := check.UpDataPass(pass, mail)
 		if err != nil {
 			w.Write([]byte(`输入不合法`))
 			return
@@ -322,15 +288,8 @@ func Gwcmess(w http.ResponseWriter, r *http.Request) {
 
 //singleLittleShop信息
 func Singlelittleshop(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
-	var id = r.Form.Get(`kid`)
-	kid, err := strconv.Atoi(id)
-	if err != nil {
-		w.Write([]byte(`类型转换错误`))
-		return
-	}
-	// fmt.Println(id)
-	mod, err := first.SingleLittleShop(kid)
+
+	mod, err := first.SingleLittleShop()
 	if err != nil {
 		w.Write([]byte(`信息错误延时`))
 		return
@@ -468,45 +427,6 @@ func Gystory(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set(`Content-Type`, `application/json`)
 	w.Write(md)
 }
-
-//关于我们页面信息
-// func ViewAbout(w http.ResponseWriter, r *http.Request) {
-// 	buf, _ := ioutil.ReadFile(`view/nmyabout.html`)
-// 	w.Write(buf)
-// }
-
-// func AboutMymsg(w http.ResponseWriter, r *http.Request) {
-// 	mod, err := abouts.Aboutmymsg()
-// 	if err != nil {
-// 		w.Write([]byte(`查询信息错误`))
-// 		return
-// 	}
-// 	md, _ := json.Marshal(mod)
-// 	w.Header().Set(`Content-Type`, `application/json`)
-// 	w.Write(md)
-// }
-
-// func AboutMy(w http.ResponseWriter, r *http.Request) {
-// 	mod, err := abouts.Aboutmy()
-// 	if err != nil {
-// 		w.Write([]byte(`查询信息错误`))
-// 		return
-// 	}
-// 	md, _ := json.Marshal(mod)
-// 	w.Header().Set(`Content-Type`, `application/json`)
-// 	w.Write(md)
-// }
-
-// func Aboutfriend(w http.ResponseWriter, r *http.Request) {
-// 	mod, err := abouts.Aboutfr()
-// 	if err != nil {
-// 		w.Write([]byte(`查询信息错误`))
-// 		return
-// 	}
-// 	md, _ := json.Marshal(mod)
-// 	w.Header().Set(`Content-Type`, `application/json`)
-// 	w.Write(md)
-// }
 
 func viewCar(w http.ResponseWriter, r *http.Request) {
 	buf, _ := ioutil.ReadFile(`view/car.html`)
@@ -651,6 +571,7 @@ func MoveSix(w http.ResponseWriter, r *http.Request) {
 	md, _ := json.Marshal(mod)
 	w.Header().Set(`Content-Type`, `application/json`)
 	w.Write(md)
+
 }
 
 //用户反馈的信息
@@ -666,6 +587,212 @@ func FedBackMsg(w http.ResponseWriter, r *http.Request) {
 	} else {
 		w.Write([]byte(`提交成功`))
 	}
+}
+
+func ViewSimble(w http.ResponseWriter, r *http.Request) {
+	buf, _ := ioutil.ReadFile(`view/client.html`)
+	w.Write(buf)
+}
+
+//用户注册的逻辑操作
+func Uregister(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	var tel = r.FormValue(`tel`)
+	// fmt.Println(tel)
+	var pass = r.FormValue(`pass`)
+	var againpass = r.FormValue(`againpass`)
+	var tagname = r.FormValue(`tagname`)
+	var name = r.FormValue(`name`)
+	var sex = r.FormValue(`sex`)
+	var idcard = r.FormValue(`idcard`)
+	var email = r.FormValue(`email`)
+	var imgs = r.FormValue(`imgs`)
+	if tel == "" || len(tel) != 11 {
+		w.Write([]byte(`电话号码有误`))
+		return
+	}
+	if pass != againpass {
+		w.Write([]byte(`密码不一致`))
+		return
+	}
+	mods := check.UserRegis(tel, pass, tagname, name, sex, idcard, email, imgs)
+	if mods != nil {
+		w.Write([]byte(`添加失败`))
+	} else {
+		w.Write([]byte(`添加成功`))
+	}
+}
+
+////个人中心用户添加收货地址到数据库
+func InsertAddres(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	var uid = r.FormValue(`id`) // 用户ID
+	userid, _ := strconv.Atoi(uid)
+	// fmt.Println(userid)
+	var address = r.FormValue(`addres`)
+	// fmt.Println(address)
+	var detaaddress = r.FormValue(`detaaddress`)
+	var youbian = r.FormValue(`youbian`)
+	youb, _ := strconv.Atoi(youbian)
+	var name = r.FormValue(`names`)
+	var tel = r.FormValue(`tel`)
+
+	err := check.InserAddr(userid, address, detaaddress, youb, name, tel)
+	if err != nil {
+		w.Write([]byte(`添加失败`))
+	} else {
+		w.Write([]byte(`添加成功`))
+	}
+}
+
+//显示用户添加得到收货地址
+func ShowUAddre(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	var uid = r.FormValue(`id`)
+	userid, _ := strconv.Atoi(uid)
+	mod, err := check.ShowAddre(userid)
+	if err != nil {
+		w.Write([]byte(`查询失败`))
+		return
+	}
+	w.Header().Set(`Content-Type`, `application/json`)
+	md, _ := json.Marshal(mod)
+	w.Write(md)
+}
+
+//用户删除相应的地址信息
+func RemoveAddre(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	var id = r.FormValue(`kid`)
+	kid, _ := strconv.Atoi(id)
+	err := check.Removeaddr(kid)
+	if err != nil {
+		w.Write([]byte(`操作失败`))
+		return
+	}
+	w.Write([]byte(`移除成功`))
+}
+
+//显示用户昵称
+func ShowUserMsg(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	var uid = r.FormValue(`id`)
+	userid, _ := strconv.Atoi(uid)
+	mod, err := check.ShowUsermsg(userid)
+	if err != nil {
+		w.Write([]byte(`查询信息错误`))
+		return
+	}
+	w.Header().Set(`Content-Type`, `application/json`)
+	md, _ := json.Marshal(mod)
+	// fmt.Println(md)
+
+	w.Write(md)
+}
+
+//显示用户所有信息
+func ShowUserMsgAll(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	var uid = r.FormValue(`id`)
+	userid, _ := strconv.Atoi(uid)
+	mod, err := check.ShowUsermsgall(userid)
+	if err != nil {
+		w.Write([]byte(`查询信息错误`))
+		return
+	}
+	md, _ := json.Marshal(mod)
+	// fmt.Println(md)
+	w.Header().Set(`Content-Type`, `application/json`)
+	w.Write(md)
+}
+
+//用户添加个人信息
+func InsertUsermsg(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	var uid = r.FormValue(`id`)
+	// fmt.Println(uid)
+	id, _ := strconv.Atoi(uid)
+	// fmt.Println(id)
+	var tagname = r.FormValue(`tagname`)
+	var name = r.FormValue(`name`)
+	var sex = r.FormValue(`sex`)
+	var idcard = r.FormValue(`idcard`)
+	var email = r.FormValue(`email`)
+	err := check.InsertMsg(id, tagname, name, sex, idcard, email)
+	if err != nil {
+		w.Write([]byte(`信息错误`))
+		return
+	}
+	w.Write([]byte(`添加成功`))
+}
+
+//上传头像
+var Userid int
+
+func InsertUserImg(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set(`Access-Control-Allow-Origin`, `*`)
+	r.ParseForm()
+	var uid = r.Form.Get(`id`)
+	Userid, _ = strconv.Atoi(uid)
+
+}
+
+//上传用户头像
+func Upload(w http.ResponseWriter, r *http.Request) {
+
+	fmt.Println(Userid)
+	w.Header().Set(`Content-Type`, `application/json`)
+	w.Header().Set(`Access-Control-Allow-Origin`, `*`)
+	//	fmt.Println(r.Method)
+	if r.Method == "OPTIONS" {
+		w.WriteHeader(200)
+		return
+	}
+	r.ParseMultipartForm(1 << 32)
+	_, h, _ := r.FormFile("file")
+	// fmt.Println(err)
+	ext := path.Ext(h.Filename)
+	dir := `static/img/singleuser` + time.Now().Format("2006-01-02") + "/" //yyyy-MM-rr
+	os.MkdirAll(dir, 0666)
+	f, _ := h.Open()
+	name := util.RandStr() + ext
+	var da = "/" + dir + name
+
+	fmt.Println(da)
+	err := check.UpUserimg(da, Userid)
+	if err != nil {
+		w.Write([]byte(`上传失败`))
+		return
+	}
+	w.Write([]byte(`上传成功`))
+	f1, _ := os.Create(dir + name)
+	io.Copy(f1, f)
+	f.Close()
+	f1.Close()
+	w.Write([]byte("/" + dir + name))
+}
+
+//查看生成账号页面
+func ViewNumber(w http.ResponseWriter, r *http.Request) {
+	buf, _ := ioutil.ReadFile(`view/number.html`)
+	w.Write(buf)
+}
+
+func RandNum(w http.ResponseWriter, r *http.Request) {
+
+	nums := util.Randone() + util.Rand() + util.Randone() + util.Randone() + util.Randone()
+	//	num, _ := strconv.Atoi(nums)
+	r.ParseForm()
+	var tel = r.FormValue(`tel`)
+	//	fmt.Println("tel:" + tel)
+	//	num, _ := strconv.Atoi(nums)
+	//	fmt.Println(nums)
+	err := check.InsertUserNum(nums, tel)
+	if err != nil {
+		w.Write([]byte(`失败`))
+		return
+	}
+	w.Write([]byte(nums))
 }
 
 //中间件
@@ -696,29 +823,32 @@ func mid(next http.HandlerFunc) http.HandlerFunc {
 			// var id = j.Claims.(jwt.MapClaims)["Id"]
 			// buf, _ := json.Marshal(d1)
 			var id = d1.Id
+			// fmt.Println(id)
 			buf, _ := json.Marshal(id)
 			// str := string(buf)
-			// // fmt.Println(str)
+			// fmt.Println(str)
 			r.Form.Add("id", string(buf))
 			next.ServeHTTP(w, r)
 		} else { // 不合法
 			w.Write(util.NewResult(303, "不合法,请重试"))
 			return
 		}
-
 	})
 }
 
 func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	// http.Handle(`/check`, mid(http.HandlerFunc(Viewcheck)))
-	http.HandleFunc(`/register`, ViewLogin)
 	http.HandleFunc(`/check`, Viewcheck)
+	http.HandleFunc(`/register1`, control.VeiwRegister1)
+	http.HandleFunc(`/api/user/regis`, Uregister) //用户注册表
+
+	// http.HandleFunc(`/register`, ViewLogin)
 	http.HandleFunc(`/`, ViewMain)
 	// http.HandleFunc(`/viewmain`, ViewMain)
 	http.HandleFunc(`/yushangjs`, Viewysjs)
-	http.HandleFunc(`/regis`, RegUser)
-	http.HandleFunc(`/regis/email`, CheckEmail)
+	// http.HandleFunc(`/regis`, RegUser)
+	// http.HandleFunc(`/regis/email`, CheckEmail)
 	http.HandleFunc(`/checknp`, Checklogo)
 	http.HandleFunc(`/lostpass`, Lostpa)
 	http.HandleFunc(`/viewlost`, ViewLost)
@@ -733,6 +863,11 @@ func main() {
 	http.HandleFunc(`/api/user/gysjs`, Goodmes)
 	http.HandleFunc(`/api/user/spyjsj`, Yunsproduct)
 	http.HandleFunc(`/api/user/spyjsj2`, Yunsproduct2)
+
+	http.HandleFunc(`/viewNumber`, ViewNumber) //生成账号页面
+	//	http.Handle(`/viewNumber`, mid(http.HandlerFunc(ViewNumber)))
+	http.HandleFunc(`/api/user/nums`, RandNum) //生成账号
+	//	http.Handle(`/api/user/nums`, mid(http.HandlerFunc(RandNum)))
 
 	http.HandleFunc(`/api/user/frined`, Frined)
 	// http.HandleFunc(`/api/single/sgoods`, Gwcmess)
@@ -749,11 +884,6 @@ func main() {
 	http.HandleFunc(`/api/gyfp/gyfpmsg`, GyMsg)
 	http.HandleFunc(`/api/gyfp/country`, Gycountry)
 	http.HandleFunc(`/api/gyfp/textdetial`, Gystory)
-
-	// http.HandleFunc(`/viewabout`, ViewAbout) //关于我们
-	// http.HandleFunc(`/api/about/aboutmsgleft`, AboutMymsg)
-	// http.HandleFunc(`/api/about/aboutmsg1`, AboutMy)
-	// http.HandleFunc(`/api/about/aboutfri`, Aboutfriend)
 
 	// http.HandleFunc(`/car.html`, viewCar)
 	http.Handle(`/car.html`, mid(http.HandlerFunc(viewCar)))
@@ -775,7 +905,27 @@ func main() {
 	http.HandleFunc(`/api/per/movemsgsix`, MoveSix)
 	http.HandleFunc(`/api/per/sends`, FedBackMsg) //用户反馈信息
 
-	// http.ListenAndServe(":8080", nil)
+	//	http.HandleFunc(`/simble`, ViewSimble) // 个人中心页面
+	http.Handle(`/simble`, mid(http.HandlerFunc(ViewSimble)))
+	//	http.HandleFunc(`/api/client/send`, InsertAddres) //////个人中心用户添加收货地址到数据库
+	http.Handle(`/api/client/send`, mid(http.HandlerFunc(InsertAddres)))
+	//	http.HandleFunc(`/api/client/showaddr`, ShowUAddre) // 个人中心显示用户添加地址信息
+	http.Handle(`/api/client/showaddr`, mid(http.HandlerFunc(ShowUAddre)))
+	http.HandleFunc(`/api/client/remove`, RemoveAddre) // 个人中心用户移除相应地址信息
+	//	http.Handle(`/api/client/remove`, mid(http.HandlerFunc(RemoveAddre)))
+	http.Handle(`/api/client/usermsg`, mid(http.HandlerFunc(ShowUserMsg)))        //显示用户的昵称
+	http.Handle(`/api/client/umsgshowall`, mid(http.HandlerFunc(ShowUserMsgAll))) //显示用户所有个人信息
+	//	http.HandleFunc(`/api/client/msg`, InsertUsermsg) //用户添加个人信息
+	http.Handle(`/api/client/msg`, mid(http.HandlerFunc(InsertUsermsg)))
+	http.HandleFunc(`/upload`, Upload) //上传头像
+	//	http.Handle(`/upload`, mid(http.HandlerFunc(Upload)))
+	http.Handle(`/api/uploaders`, mid(http.HandlerFunc(InsertUserImg)))
+
+	// http.HandleFunc(`/api/name`, ShowUserName) //个人中心显示用户信息
+	// http.Handle(`/api/name`, mid(http.HandlerFunc(ShowUserName)))
+
+	//	http.ListenAndServe(":8080", nil)
+
 	// fmt.Println("run on 8080")
 	http.ListenAndServeTLS(":4320", "cert-1542427206238_www.linchongyang.cn.crt", "cert-1542427206238_www.linchongyang.cn.key", nil)
 	// fmt.Println(err)

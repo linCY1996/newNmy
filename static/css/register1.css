@@ -1,0 +1,215 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    /* background-size: 1920px 980px; */
+    width: 100%;
+    min-width: 1500px;
+}
+
+#tall {
+    min-width: 1500px;
+    width: 100%;
+    /* background: url(/static/img/img/bag.jpg) no-repeat; */
+    overflow-y: hidden;
+}
+
+.imim {
+    width: 100%;
+    height: 100%;
+}
+
+#box {
+    position: absolute;
+    height: 600px;
+    width: 580px;
+    border: 1px solid whitesmoke;
+    left: 50%;
+    /* top: 50%; */
+    animation: bs 2s;
+    animation-fill-mode: forwards;
+    margin-left: -290px;
+    margin-top: -300px;
+}
+
+@keyframes bs {
+    from {
+        top: -100%;
+    }
+    to {
+        top: 50%;
+    }
+}
+
+.top {
+    height: 50px;
+    background: rgb(49, 183, 255);
+    line-height: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-family: "楷体";
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    opacity: 0.7;
+}
+
+.sub {
+    position: relative;
+    height: 550px;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0.9;
+}
+
+.tel {
+    position: absolute;
+    left: 120px;
+    top: 20px;
+}
+
+.text {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    color: white;
+    /*border: 1px solid red;*/
+    text-align: right;
+}
+
+.text img {
+    position: absolute;
+    left: 20px;
+    top: 5px;
+}
+
+.tel input {
+    width: 200px;
+    height: 40px;
+    border: 1px solid green;
+    text-indent: 20px;
+    border-radius: 20px;
+    outline: none;
+}
+
+.hint {
+    margin-top: 5px;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    margin-left: 140px;
+}
+
+.warnHint {
+    margin-top: 5px;
+    display: none;
+    color: red;
+    font-size: 14px;
+    margin-left: 140px;
+}
+
+.pwd {
+    margin-top: 80px;
+}
+
+.repwd {
+    margin-top: 160px;
+}
+
+.code {
+    position: absolute;
+    margin-top: 260px;
+    margin-left: 140px;
+}
+
+.code input {
+    width: 150px;
+    height: 40px;
+    border: 1px solid green;
+    text-indent: 20px;
+    border-radius: 20px;
+    outline: none;
+}
+
+.codeHint {
+    margin-top: 5px;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    margin-left: 20px;
+}
+
+.codeWarnHint {
+    margin-top: 5px;
+    display: none;
+    color: red;
+    font-size: 14px;
+    margin-left: 20px;
+}
+
+.varcode {
+    position: absolute;
+    height: 45px;
+    width: 100px;
+    /*border: 1px solid red;*/
+    background: rgb(249, 200, 98);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 45px;
+    font-style: italic;
+    margin-left: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    letter-spacing: 3px;
+    -webkit-user-select: none;
+}
+
+.submit {
+    position: absolute;
+    top: 340px;
+    left: 130px;
+    height: 40px;
+    background: rgb(70, 146, 186);
+    width: 300px;
+    color: white;
+    font-weight: 22px;
+    letter-spacing: 20px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.other {
+    position: absolute;
+    color: rgb(255, 255, 255);
+    left: 130px;
+    top: 420px;
+}
+
+.other div {
+    margin-left: 80px;
+    margin-top: 20px;
+}
+
+.other div img {
+    cursor: pointer;
+}
+
+.foot {
+    position: absolute;
+    bottom: 0px;
+    height: 10px;
+    width: 100%;
+    background: rgb(49, 181, 252);
+}
+
+.logo {
+    position: absolute;
+    left: -10px;
+    top: -90px;
+    height: 120px;
+    width: 180px;
+}
