@@ -2090,6 +2090,8 @@ var arrAll = [
 // }
 // })
 window.onload = function() {
+
+
     var id = location.search.replace('?id=', "")
     var nsp = new Vue({
         el: '#tall',
@@ -2189,29 +2191,29 @@ window.onload = function() {
                     console.log(error)
                 })
             },
-            nowbuy: function() {
-                //添加用户地址信息
-                // var qs = require('qs')
-                axios.get('/api/single/address', {
-                    params: {
-                        address: nsp.prov + '.' + nsp.city + '.' + nsp.district,
-                        goodsid: id,
-                        count: nsp.count,
-                        token: localStorage.getItem("token")
-                    }
-                }).then(function(resp) {
-                    if (resp.data.code == 301) {
-                        // return
-                        window.location.href = ("/check")
-                    } else if (resp.data.code == 302) {
-                        window.location.href = ("/check")
-                    } else {
+            // nowbuy: function() {
+            //     //添加用户地址信息
+            //     // var qs = require('qs')
+            //     axios.get('/api/single/address', {
+            //         params: {
+            //             address: nsp.prov + '.' + nsp.city + '.' + nsp.district,
+            //             goodsid: id,
+            //             count: nsp.count,
+            //             token: localStorage.getItem("token")
+            //         }
+            //     }).then(function(resp) {
+            //         if (resp.data.code == 301) {
+            //             // return
+            //             window.location.href = ("/check")
+            //         } else if (resp.data.code == 302) {
+            //             window.location.href = ("/check")
+            //         } else {
 
-                    }
-                }).catch(function(error) {
-                    console.log(error)
-                })
-            },
+            //         }
+            //     }).catch(function(error) {
+            //         console.log(error)
+            //     })
+            // },
             sMsgimgs: function() {
                 axios({
                     method: 'get',
@@ -2267,7 +2269,7 @@ window.onload = function() {
                     // }
                 }).then(function(resp) {
                     // console.log(id)
-                    console.log(resp)
+                    // console.log(resp)
                     nsp.littleshop = resp.data
                 }).catch(function(error) {
                     console.log(error)
@@ -2309,7 +2311,7 @@ window.onload = function() {
             this.frien();
             this.sMsgimgs();
             this.goodsMsg();
-            this.nowbuy();
+            // this.nowbuy();
             // this.Sgoods();
             // console.log(this.$route.params.id)
         },
@@ -2326,5 +2328,36 @@ window.onload = function() {
                 this.updateDistrict();
             }
         }
+    })
+
+    $("#nowBuy").click(function() {
+        // console.log("123")
+        layui.use('layer', function() {
+            var layer = layui.layer;
+            // layer.open({
+
+            //     content: '本网站暂无实际商品，还无法立即购买'
+            // });
+            var text = '本网站暂无实际商品，还无法立即购买'
+            layer.open({
+                skin: 'nowBuy',
+                type: 1,
+                offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                    ,
+                // id: 'layerDemo' + type //防止重复弹出
+                // ,
+                area: ['500px', '400px'],
+                content: '<div style="width:500px;height:285px;background:black;color:white;">' + text + '</div>',
+                btn: '关闭全部',
+                btnAlign: 'c' //按钮居中
+                    ,
+                shade: 0 //不显示遮罩
+                    ,
+                time: 2000,
+                yes: function() {
+                    layer.closeAll();
+                }
+            });
+        });
     })
 }

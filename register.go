@@ -62,14 +62,15 @@ func Checklogo(w http.ResponseWriter, r *http.Request) {
 
 func Lostpa(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	var mail = r.FormValue(`tel`)
+	var tel = r.FormValue(`tel`)
+	//	fmt.Println(tel)
 	var pass = r.FormValue(`pass1`)
 
-	lop, _ := check.Lostpass(mail)
-	if lop.Email != mail {
-		w.Write([]byte(`此邮箱未被注册`))
+	lop, _ := check.Lostpass(tel)
+	if lop.Tel != tel {
+		w.Write([]byte(`此账号不存在`))
 	} else {
-		_, err := check.UpDataPass(pass, mail)
+		_, err := check.UpDataPass(pass, tel)
 		if err != nil {
 			w.Write([]byte(`输入不合法`))
 			return
@@ -350,33 +351,34 @@ func Goodsmsgs(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set(`Content-Type`, `application/json`)
 	w.Write(md)
 }
-func Inseraddress(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
-	var addr = r.FormValue(`address`)
-	if addr == ".." {
-		w.Write([]byte(`地址不能为空`))
-		return
-	}
-	var uid = r.FormValue(`id`)
-	userid, _ := strconv.Atoi(uid)
-	var godsid = r.Form.Get(`goodsid`)
-	goodsid, _ := strconv.Atoi(godsid)
-	var nums = r.Form.Get(`count`)
-	num, _ := strconv.Atoi(nums)
-	if num == 0 {
-		w.Write([]byte(`未购买数量`))
-		return
-	}
-	// fmt.Println(addr)
-	ok := first.Inseradd(userid, goodsid, addr, num)
-	w.Header().Set(`Content-Type`, `application/json`)
-	if ok {
-		w.Write([]byte(`地址错误`))
-		return
-	} else {
-		w.Write([]byte(`地址正确`))
-	}
-}
+
+//func Inseraddress(w http.ResponseWriter, r *http.Request) {
+//	r.ParseForm()
+//	var addr = r.FormValue(`address`)
+//	if addr == ".." {
+//		w.Write([]byte(`地址不能为空`))
+//		return
+//	}
+//	var uid = r.FormValue(`id`)
+//	userid, _ := strconv.Atoi(uid)
+//	var godsid = r.Form.Get(`goodsid`)
+//	goodsid, _ := strconv.Atoi(godsid)
+//	var nums = r.Form.Get(`count`)
+//	num, _ := strconv.Atoi(nums)
+//	if num == 0 {
+//		w.Write([]byte(`未购买数量`))
+//		return
+//	}
+//	// fmt.Println(addr)
+//	ok := first.Inseradd(userid, goodsid, addr, num)
+//	w.Header().Set(`Content-Type`, `application/json`)
+//	if ok {
+//		w.Write([]byte(`地址错误`))
+//		return
+//	} else {
+//		w.Write([]byte(`地址正确`))
+//	}
+//}
 
 //公益扶贫
 func viewGYFP(w http.ResponseWriter, r *http.Request) {
@@ -877,7 +879,7 @@ func main() {
 	http.HandleFunc(`/api/single/bigshop`, SingleBShop)
 	http.HandleFunc(`/api/user/sMsgimg`, Lunsingleimg)
 	http.HandleFunc(`/api/user/goodsmsg`, Goodsmsgs)
-	http.Handle(`/api/single/address`, mid(http.HandlerFunc(Inseraddress)))
+	//	http.Handle(`/api/single/address`, mid(http.HandlerFunc(Inseraddress)))
 	// http.HandleFunc(`/api/single/address`, Inseraddress)
 	http.HandleFunc(`/viewgyfp`, viewGYFP) //公益扶贫
 	http.HandleFunc(`/api/gyfp/gyfpimg`, GyImg)
@@ -885,14 +887,14 @@ func main() {
 	http.HandleFunc(`/api/gyfp/country`, Gycountry)
 	http.HandleFunc(`/api/gyfp/textdetial`, Gystory)
 
-	// http.HandleFunc(`/car.html`, viewCar)
-	http.Handle(`/car.html`, mid(http.HandlerFunc(viewCar)))
-	// http.HandleFunc(`/api/gwc/goods`, Lookgods)
-	http.Handle(`/api/gwc/goods`, mid(http.HandlerFunc(Lookgods)))
-	// http.HandleFunc(`/api/gwc/user`, usermsg) //购物车中显示用户信息
-	http.Handle(`/api/gwc/user`, mid(http.HandlerFunc(usermsg)))
-	http.HandleFunc(`/api/car/remove`, Remove)
-	// http.Handle(`/api/car/remove`, mid(http.HandlerFunc(Remove)))
+	http.HandleFunc(`/car.html`, viewCar)
+	//	http.Handle(`/car.html`, mid(http.HandlerFunc(viewCar)))
+	http.HandleFunc(`/api/gwc/goods`, Lookgods)
+	//	http.Handle(`/api/gwc/goods`, mid(http.HandlerFunc(Lookgods)))
+	http.HandleFunc(`/api/gwc/user`, usermsg) //购物车中显示用户信息
+	//	http.Handle(`/api/gwc/user`, mid(http.HandlerFunc(usermsg)))
+	//	http.HandleFunc(`/api/car/remove`, Remove)
+	http.Handle(`/api/car/remove`, mid(http.HandlerFunc(Remove)))
 
 	http.HandleFunc(`/yytx.html`, Viewyuntx) //云游天下
 
@@ -924,9 +926,9 @@ func main() {
 	// http.HandleFunc(`/api/name`, ShowUserName) //个人中心显示用户信息
 	// http.Handle(`/api/name`, mid(http.HandlerFunc(ShowUserName)))
 
-	//	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8080", nil)
 
 	// fmt.Println("run on 8080")
-	http.ListenAndServeTLS(":4320", "cert-1542427206238_www.linchongyang.cn.crt", "cert-1542427206238_www.linchongyang.cn.key", nil)
+	//	http.ListenAndServeTLS(":4320", "cert-1542427206238_www.linchongyang.cn.crt", "cert-1542427206238_www.linchongyang.cn.key", nil)
 	// fmt.Println(err)
 }

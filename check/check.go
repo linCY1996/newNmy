@@ -87,7 +87,7 @@ func Lostpass(tel string) (Regis, error) {
 
 func UpDataPass(pass string, tel string) (Regis, error) {
 	udp := Regis{}
-	_, err := dB.Exec(`update regis set pass=?where tel=?`, pass, tel)
+	_, err := dB.Exec(`update regis set pass=? where tel=?`, pass, tel)
 	return udp, err
 }
 

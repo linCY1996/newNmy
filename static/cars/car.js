@@ -11,14 +11,6 @@ window.onload = function() {
             gods: [], //货物的信息
         },
         methods: {
-
-            totalPrice: function() {
-                var totalP = 0;
-                for (var i = 0, len = nm.gods.length; i < len; i++) {
-                    totalP += nm.gods[i].price * nm.gods[i].num;
-                }
-                return totalP;
-            },
             gds: function() {
                 axios({
                     method: 'get',
@@ -33,6 +25,13 @@ window.onload = function() {
                     console.log(error)
                 })
             },
+            totalPrice: function() {
+                var totalP = 0;
+                for (var i = 0, len = this.gods.length; i < len; i++) {
+                    totalP += nm.gods[i].price * nm.gods[i].num;
+                }
+                return totalP;
+            },
             navs: function() {
                 axios({
                     method: 'get',
@@ -45,24 +44,35 @@ window.onload = function() {
                 })
             },
             remove: function(id) {
-                axios({
-                    method: 'POST',
-                    url: '/api/car/remove',
-                    headers: { 'content-type': 'application/x-www-form-urlencoded' },
-                    params: {
-                        kid: id
-                    }
-                }).then(function(resp) {
-                    // console.log(resp)
-                    console.log(id)
-                    if (resp == "删除成功") {
-                        alert("删除成功")
-                    } else {
-                        location.reload();
-                    }
-                }).catch(function(error) {
-                    console.log(error)
-                })
+                var that = this
+                var params = new URLSearchParams()
+                params.append('kid', id)
+                axios.post('/api/car/remove', params, {
+                        headers: {
+                            'content-type': 'application/x-www-form-urlencoded'
+                        }
+                    }).then(function(resp) {
+                        console.log(id)
+                        console.log(resp.data.msg)
+                        if (resp.data.msg == "删除成功") {
+                            // nm.gods = resp.data
+                            that.gds()
+                                // alert("删除成功")
+                        }
+                    })
+                    // axios({
+                    //     method: 'POST',
+                    //     url: '',
+                    //     headers: {  },
+                    //     params: {
+                    //         kid: id
+                    //     }
+                    // }).then(function(resp) {
+                    //     // console.log(resp)
+
+                // }).catch(function(error) {
+                //     console.log(error)
+                // })
             },
             Users: function() {
                 axios.get('/api/gwc/user', {
@@ -104,5 +114,36 @@ window.onload = function() {
         //     }
         // }
 
+    })
+
+    $("#btn").click(function() {
+        console.log("123")
+        layui.use('layer', function() {
+            var layer = layui.layer;
+            // layer.open({
+
+            //     content: '本网站暂无实际商品，还无法立即购买'
+            // });
+            var text = '本网站暂无实际商品，还无法立即购买'
+            layer.open({
+                skin: 'btn',
+                type: 1,
+                offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                    ,
+                // id: 'layerDemo' + type //防止重复弹出
+                // ,
+                area: ['500px', '400px'],
+                content: '<div style="width:500px;height:285px;background:black;color:white;">' + text + '</div>',
+                btn: '关闭全部',
+                btnAlign: 'c' //按钮居中
+                    ,
+                shade: 0 //不显示遮罩
+                    ,
+                time: 2000,
+                yes: function() {
+                    layer.closeAll();
+                }
+            });
+        });
     })
 }

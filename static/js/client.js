@@ -2092,9 +2092,20 @@ window.onload = function() {
                         // ys.Imgs = resp.data.imgs
                 })
             },
+            //显示用户昵称
+            showmsg: function() {
+                axios.get('/api/client/usermsg', {
+                    params: {
+                        token: localStorage.getItem("token")
+                    }
+                }).then(function(resp) {
+                    // console.log(resp.email)
+                    ys.tagsname = resp.data
+                })
+            },
             //添加用户详细信息
             smsg: function() {
-
+                var that = this
                 var params = new URLSearchParams()
                 params.append('tagname', this.Tagname)
                 params.append('name', this.Name)
@@ -2107,28 +2118,19 @@ window.onload = function() {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 }).then(function(resp) {
-
+                    console.log(resp.data)
                     if (resp.data == "添加成功") {
-                        // alert("修改成功")
-                        location.reload()
+                        that.showmsgall()
+                        that.showmsg()
                     }
                 })
             },
 
-            //显示用户昵称
-            showmsg: function() {
-                axios.get('/api/client/usermsg', {
-                    params: {
-                        token: localStorage.getItem("token")
-                    }
-                }).then(function(resp) {
-                    // console.log(resp.email)
-                    ys.tagsname = resp.data
-                })
-            },
+
             //保存用户发货地址信息
             send: function() {
-                // console.log(this.youbian)
+                var that = this
+                    // console.log(this.youbian)
                 var params = new URLSearchParams();
                 params.append('addres', this.prov + '.' + this.city + '.' + this.district);
                 params.append('detaaddress', this.detaaddress);
@@ -2141,7 +2143,9 @@ window.onload = function() {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 }).then(function(resp) {
-                    location.reload()
+                    if (resp.data == '添加成功') {
+                        that.showaddr()
+                    }
                 })
             },
             //显示用户添加地址信息
@@ -2261,7 +2265,7 @@ window.onload = function() {
     //上传页面
     var uploader = WebUploader.create({
         swf: '/static/data/dist/Uploader.swf',
-        server: 'https://www.linchongyang.cn:4320/upload',
+        server: '/upload',
         pick: '#pickers',
     });
     uploader.on('uploadSuccess', function() {
@@ -2393,4 +2397,8 @@ window.onload = function() {
             }
         }(i))
     }
+
+
+    //查看弹出层
+
 }

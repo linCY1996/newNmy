@@ -315,15 +315,15 @@ type InserAdd struct {
 }
 
 //发送用户的收获地址信息
-func Inseradd(userid, goodsid int, address string, num int) bool {
-	mod, _ := dB.Exec(`insert into address(userid,goodsid,addr,num) values(?,?,?,?)`, userid, goodsid, address, num)
-	ok, _ := mod.LastInsertId()
-	if ok == 1 {
-		return true
-	} else {
-		return false
-	}
-}
+//func Inseradd(userid, goodsid int, address string, num int) bool {
+//	mod, _ := dB.Exec(`insert into address(userid,goodsid,addr,num) values(?,?,?,?)`, userid, goodsid, address, num)
+//	ok, _ := mod.LastInsertId()
+//	if ok == 1 {
+//		return true
+//	} else {
+//		return false
+//	}
+//}
 
 //关于我们页面的相关数据库操作
 type Personinfor struct {

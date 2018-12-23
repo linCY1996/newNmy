@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>农牧云</title>
+    <link rel="icon" href="/static/img/农牧云logo1.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/css/lost.css">
 </head>
@@ -13,8 +14,8 @@
 
     <div class="fon">
         <div style="height:90px;"></div>
-        <div class="left"><b>账号：</b></div>
-        <div class="right"><input type="text" name="email" id="email"></div>
+        <div class="left"><b>电话：</b></div>
+        <div class="right"><input type="text" name="tel" id="tel"></div>
         <br>
         <div class="left"><b>新密码：</b></div>
         <div class="right"><input type="password" name="pass1" id="pass1"></div>
@@ -29,7 +30,7 @@
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
 <script>
     function btn() {
-        var email = $("#email").val()
+        var tel = $("#tel").val()
         var pass1 = $("#pass1").val()
         var againpass1 = $("#againpass1").val()
 
@@ -46,13 +47,18 @@
 
 
         $.get("/lostpass", {
-            email: email,
+            tel: tel,
             pass1: pass1,
 
         }, function(rep) {
             alert(rep)
         })
     }
+    $(document).keyup(function(event) {
+        if (event.keyCode == 13) {
+            $("#btn").trigger("click")
+        }
+    })
 </script>
 
 </html>

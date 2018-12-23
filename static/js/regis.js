@@ -30,13 +30,12 @@ window.onload = function() {
     getCode();
     //点击执行函数getCode()更换验证码
     code.onclick = function() {
+        console.log("13")
         getCode();
     }
 
-
-
-
     var nm = new Vue({
+
         el: '#box',
         data: {
             tel: '',

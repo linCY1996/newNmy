@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="/static/css/publ.css">
     <link rel="stylesheet" href="/static/css/loginnp.css">
     <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <script src="/static/layui/layui.js"></script>
+    <!-- <script src="/static/layui/lay/modules/layer.js"></script> -->
+    <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
     <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
     <!-- <script src="/static/pub/pub.js"></script> -->
@@ -104,7 +107,7 @@
                     </div>
                 </div>
                 <button class="add" @click="Sgoods(goodsmsgs.imgs,goodsmsgs.goodsname,goodsmsgs.goodsmsg,goodsmsgs.newprice)">加入购物车</button>
-                <button class="nowBuy" @click="nowbuy()">立即购买</button>
+                <button class="nowBuy" id="nowBuy">立即购买</button>
             </div>
         </div>
         <!-- 其它相应信息 -->
@@ -136,5 +139,6 @@
         </div>
     </div>
 </body>
+
 
 </html>

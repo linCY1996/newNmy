@@ -4,9 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <title>农牧云</title>
-    <link rel="icons" href="/static/img/农牧云logo1.png">
+    <link rel="icon" href="/static/img/农牧云logo1.png">
     <link rel="stylesheet" type="text/css" href="/static/css/register1.css" />
     <script src="https://cdn.bootcss.com/vue/2.5.18-beta.0/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
     <script src="/static/js/regis.js"></script>
     <!-- <script type="text/javascript " src="/static/js/register1.js"></script> -->
@@ -39,7 +40,7 @@
                 </div>
 
                 <div class="code">
-                    <input type="text" v-model='codes' /><span class="varcode">DSFHK</span>
+                    <input type="text" v-model='codes' /><span id="varcode" class="varcode">DSFHK</span>
                     <div class="codeHint ">请输入验证码</div>
                     <div class="codeWarnHint ">验证码错误</div>
                 </div>
