@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/static/css/publ.css">
     <link rel="stylesheet" href="/static/css/ysjs.css">
     <link rel="stylesheet" href="/static/css/loginnp.css">
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <script src="/static/layui/layui.js"></script>
     <script src="/static/js/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
     <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
@@ -17,15 +19,22 @@
 
 <body>
     <div id="tall">
-        <div id="logonp">
-            <p>农牧云欢迎你！</p>
-            <div class="lo-re"><a href="https://www.linchongyang.cn:4320/check" id="logo">登录</a>
-                <div class="line"></div>
-                <span id="register" @click="tui()" style="cursor:pointer;">退出</span>
-            </div>
-            <!-- <a class="heh" :href="hrr"><img src="/static/img/cart-hl.png" alt=""></a> -->
-            <a class="heh" @click="nec()"><img style="width:45px;height:48px;" src="/static/img/gwc.png" alt=""></a>
-        </div>
+        <ul class="layui-nav" style="background:rgb(9, 182, 101);height: 38px;position: relative;">
+            <li class="layui-nav-item" style="position: absolute;right: 550px;height: 38px;">
+                <p style="color:white;font-size:1.4em;font-family:'楷体';font-weight: bold;line-height: 38px;">农牧云欢迎您!</p>
+            </li>
+            <li class="layui-nav-item" style="position: absolute;right: 350px;height: 38px;">
+
+                <a href="" style="height: 38px;margin-top:-12px;color: white;"><img :src="ims.imgs" class="layui-nav-img" style="line-height: 38px;">{{ims.tagname}}</a>
+                <dl class="layui-nav-child" style="text-align:center;margin-top:-25px;">
+                    <dd><a href="https://www.linchongyang.cn:4320/check">登录</a></dd>
+                    <dd><a @click="nec()" style="cursor:pointer;">购物车</a></dd>
+                    <dd>
+                        <a @click="tui()" style="cursor:pointer;">退出</a>
+                    </dd>
+                </dl>
+            </li>
+        </ul>
         <!-- 导航栏 -->
         <!-- 导航栏 -->
         <div id="marg-All">

@@ -2067,13 +2067,23 @@ window.onload = function() {
             Idcard: '', //身份证
             Email: '',
             // Imgs: '',
+            ims: '', //显示用户头像
         },
 
         // updated:function () {
 
         // },
         methods: {
-
+            showim: function() {
+                axios.get('/api/user/ims', {
+                    params: {
+                        token: localStorage.getItem("token")
+                    }
+                }).then(function(resp) {
+                    console.log(resp)
+                    ys.ims = resp.data
+                })
+            },
 
             //显示用户所有信息
 
@@ -2122,6 +2132,7 @@ window.onload = function() {
                     if (resp.data == "添加成功") {
                         that.showmsgall()
                         that.showmsg()
+                        that.showim()
                     }
                 })
             },
@@ -2241,6 +2252,7 @@ window.onload = function() {
             }
         },
         mounted: function() {
+            this.showim();
             this.navs();
             this.showmsg();
             this.showmsgall();
@@ -2397,7 +2409,14 @@ window.onload = function() {
             }
         }(i))
     }
+    layui.use('element', function() {
+        var element = layui.element;
 
+        //一些事件监听
+        element.on('tab(demo)', function(data) {
+            console.log(data);
+        });
+    });
 
     //查看弹出层
 

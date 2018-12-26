@@ -1,10 +1,20 @@
 window.onload = function() {
-    new Vue({
-        el: '#logonp',
+    var gy = new Vue({
+        el: '.layui-nav',
         data: {
-
+            ims: '', //显示用户头像
         },
         methods: {
+            showim: function() {
+                axios.get('/api/user/ims', {
+                    params: {
+                        token: localStorage.getItem("token")
+                    }
+                }).then(function(resp) {
+                    console.log(resp)
+                    gy.ims = resp.data
+                })
+            },
             singles: function() {
                 axios.get('/car.html', {
                     params: {
@@ -46,6 +56,18 @@ window.onload = function() {
                 window.location.href = ("/check")
                     // console.log("sadasd")
             },
+        },
+        mounted: function() {
+            this.showim();
         }
     })
+    layui.use('element', function() {
+        var element = layui.element;
+
+        //一些事件监听
+        element.on('tab(demo)', function(data) {
+            console.log(data);
+        });
+    });
+
 }

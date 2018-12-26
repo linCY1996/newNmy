@@ -9,8 +9,19 @@ window.onload = function() {
             gyfpmsg: '',
             country: [], //乡村信息
             textdetial: [], //农牧云的故事
+            ims: '', //显示用户头像
         },
         methods: {
+            showim: function() {
+                axios.get('/api/user/ims', {
+                    params: {
+                        token: localStorage.getItem("token")
+                    }
+                }).then(function(resp) {
+                    console.log(resp)
+                    gy.ims = resp.data
+                })
+            },
             singles: function() {
                 axios.get('/simble', {
                     params: {
@@ -108,6 +119,7 @@ window.onload = function() {
             },
         },
         mounted: function() {
+            this.showim();
             this.play();
             this.navs();
             this.Gyfpimg();
@@ -117,4 +129,13 @@ window.onload = function() {
         }
 
     })
+    layui.use('element', function() {
+        var element = layui.element;
+
+        //一些事件监听
+        element.on('tab(demo)', function(data) {
+            console.log(data);
+        });
+    });
+
 }

@@ -11,10 +11,21 @@ window.onload = function() {
             item1: [],
             item2: [],
             friendlin: [],
+            ims: '', //显示用户头像
             href: "car.html?token=" + localStorage.getItem("token")
                 // goodid: nm.shoplist1.id
         },
         methods: {
+            showim: function() {
+                axios.get('/api/user/ims', {
+                    params: {
+                        token: localStorage.getItem("token")
+                    }
+                }).then(function(resp) {
+                    console.log(resp)
+                    nm.ims = resp.data
+                })
+            },
             singles: function() {
                 axios.get('/car.html', {
                     params: {
@@ -172,6 +183,7 @@ window.onload = function() {
 
         },
         mounted: function() {
+            this.showim();
             this.vide(); //生命周期
             this.navs();
             this.mess();
@@ -191,6 +203,15 @@ window.onload = function() {
             }
         }
     });
+    layui.use('element', function() {
+        var element = layui.element;
+
+        //一些事件监听
+        element.on('tab(demo)', function(data) {
+            console.log(data);
+        });
+    });
+
     $(".nav-body-text1-ch1 li").mouseover(function() {
         //通过 .index()方法获取元素下标，从0开始，赋值给某个变量
         var index = $(this).index();

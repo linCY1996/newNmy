@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/static/css/publ.css">
     <link rel="stylesheet" href="/static/css/footer.css">
     <link rel="stylesheet" href="/static/css/loginnp.css">
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <script src="/static/layui/layui.js"></script>
     <script src="/static/js/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
     <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
@@ -19,14 +21,22 @@
 
 <body>
     <div id="tall">
-        <div id="logonp">
-            <p style="font-family: '楷体';">农牧云欢迎你！</p>
-            <div class="lo-re"><a href="https://www.linchongyang.cn:4320/check" id="logo">登录</a>
-                <div class="line"></div>
-                <span id="register" @click="tui()" style="cursor:pointer;">退出</span>
-            </div>
-            <a class="heh" @click="nec()"><img style="width:45px;height:48px;" src="/static/img/gwc.png" alt=""></a>
-        </div>
+        <ul class="layui-nav" style="background:rgb(9, 182, 101);height: 38px;position: relative;">
+            <li class="layui-nav-item" style="position: absolute;right: 550px;height: 38px;">
+                <p style="color:white;font-size:1.4em;font-family:'楷体';font-weight: bold;line-height: 38px;">农牧云欢迎您!</p>
+            </li>
+            <li class="layui-nav-item" style="position: absolute;right: 350px;height: 38px;">
+
+                <a href="" style="height: 38px;margin-top:-12px;color: white;"><img :src="ims.imgs" class="layui-nav-img" style="line-height: 38px;">{{ims.tagname}}</a>
+                <dl class="layui-nav-child" style="text-align:center;margin-top:-25px;">
+                    <dd><a href="https://www.linchongyang.cn:4320/check">登录</a></dd>
+                    <dd><a @click="nec()" style="cursor:pointer;">购物车</a></dd>
+                    <dd>
+                        <a @click="tui()" style="cursor:pointer;">退出</a>
+                    </dd>
+                </dl>
+            </li>
+        </ul>
 
         <!-- 导航栏 -->
         <div id="marg-All">
@@ -48,8 +58,8 @@
         <div class="navMargs">
             <!--帮扶成果、数据展示-->
             <div class="txtDetail">
-                <p class="pstyle" style="font-family: '楷体';font-size: 1.3em;">帮扶成果、数据展示</p>
-                <p class="pstyle">以助力乡村电商扶贫为宗旨的实践团队也希望通过自己的努力能够把农村电子商务扎扎实实的普及推广到这里。</p>
+                <p class="pstyle" style="font-family: 'STCaiyun';font-size: 1.3em;color: black;text-shadow: 2px 2px 2px 2px rgb(54, 54, 54);">帮扶成果、数据展示</p>
+                <p class="pstyle" style="color:white;font-family: 'STXinwei';font-size: 1.2em;">以助力乡村电商扶贫为宗旨的实践团队也希望通过自己的努力能够把农村电子商务扎扎实实的普及推广到这里。</p>
             </div>
 
             <!--公益活动轮播-->
@@ -60,8 +70,8 @@
                     </div>
                     <a href="javascript:;" class="newsTxt" style="display: block;">
                         <div id="newsTxt">
-                            <h1>{{gyfpmsg.name}}</h1>
-                            <p>&nbsp;&nbsp;&nbsp;&nbsp;{{gyfpmsg.msgs}}</p>
+                            <h1 style="font-family:'STCaiyun';">{{gyfpmsg.name}}</h1>
+                            <p style="font-family:'STXinwei';font-size: 1.4em;font-weight: 200;">&nbsp;&nbsp;&nbsp;&nbsp;{{gyfpmsg.msgs}}</p>
                         </div>
                     </a>
                 </div>
@@ -69,33 +79,33 @@
             <hr class="linestyle" style="height:1px;border:none;border-top:2px dashed #0066CC;" />
             <!--帮扶对象--带领脱贫致富-->
 
-            <p class="txtDetail pstyle" style="font-family: '楷体';font-size: 1.4em;">
+            <p class="txtDetail pstyle" style="font-family: 'STCaiyun';font-size: 1.4em;">
                 帮扶对象--带领脱贫致富<i class="fa fa-handshake-o" aria-hidden="true"></i>
             </p>
 
             <div class="countryList">
                 <ul>
-                    <li v-for="cn in country"><a :href="cn.links" class="countrName">{{cn.countrysidename}}<i class="fa fa-paper-plane" aria-hidden="true"></i></a></li>
+                    <li v-for="cn in country"><a :href="cn.links" class="countrName" style="font-family:'STXingkai';color: white;">{{cn.countrysidename}}<i class="fa fa-paper-plane" aria-hidden="true"></i></a></li>
                 </ul>
                 <a href="javascript:;">
-                    <p class="blogMore pstyle" style="font-family: '楷体';font-size: 1.3em;">查看更多<i class="fa fa-chevron-circle-right" aria-hidden="true" style="margin: 2px;"></i></p>
+                    <p class="blogMore pstyle" style="font-family: 'STXingkai';font-size: 1.3em;">查看更多<i class="fa fa-chevron-circle-right" aria-hidden="true" style="margin: 2px;"></i></p>
                 </a>
             </div>
             <hr class="linestyle" style="height:1px;border:none;border-top:2px dashed #0066CC;" />
             <!--农牧云的故事-->
             <div class="txtDetail">
-                <p class="pstyle" style="font-family: '楷体';font-size: 1.3em;">农牧云的故事<i class="fa fa-book" aria-hidden="true"></i></p>
-                <p class="pstyle">我们公益的故事</p>
-                <p class="pstyle">无论是在高校还是在农村，农牧云携手合作伙伴，谱写一个又一个感人的故事</p>
+                <p class="pstyle" style="font-family: 'STCaiyun';font-size: 1.3em;">农牧云的故事<i class="fa fa-book" aria-hidden="true"></i></p>
+                <p class="pstyle" style="color:white;font-family: 'STXinwei';font-size: 1.2em;">我们公益的故事</p>
+                <p class="pstyle" style="color:white;font-family: 'STXinwei';font-size: 1.2em;">无论是在高校还是在农村，农牧云携手合作伙伴，谱写一个又一个感人的故事</p>
             </div>
 
             <!--日志列表-->
             <div class="blogList">
                 <div class="blogItem" v-for="msg in textdetial">
                     <img :src="msg.imgs" />
-                    <h2 class="blogTitle" style="padding:8px; font-family: '楷体';font-size: 1.8em;">{{msg.gytitle}}</h2>
-                    <div class="blogDetail">{{msg.gymsg}}</div>
-                    <p class="blogMore pstyle"><i class="fa fa-chevron-right" aria-hidden="true"></i><a style="cursor: pointer;" href="http://www.chinaol.org/jiaokewenwei/20180718/3668.html?from=groupmessage">点击进入</a></p>
+                    <h2 class="blogTitle" style="padding:8px; font-family: 'STCaiyun';font-size: 1.8em;">{{msg.gytitle}}</h2>
+                    <div class="blogDetail" style="font-family:'STXinwei';font-size: 1.2em;">{{msg.gymsg}}</div>
+                    <p class="blogMore pstyle" style="font-family:'STXinwei';"><i class="fa fa-chevron-right" aria-hidden="true"></i><a style="cursor: pointer;" href="http://www.chinaol.org/jiaokewenwei/20180718/3668.html?from=groupmessage">点击进入</a></p>
                 </div>
             </div>
         </div>

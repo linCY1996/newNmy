@@ -14,9 +14,20 @@ window.onload = function() {
             goodrecom: [], //优质精选推荐
             shoplist1: [],
             shoplist2: [],
+            ims: '', //显示用户头像
             hrr: "car.html?token=" + localStorage.getItem("token")
         },
         methods: {
+            showim: function() {
+                axios.get('/api/user/ims', {
+                    params: {
+                        token: localStorage.getItem("token")
+                    }
+                }).then(function(resp) {
+                    console.log(resp)
+                    ys.ims = resp.data
+                })
+            },
             singles: function() {
                 axios.get('/car.html', {
                     params: {
@@ -128,6 +139,7 @@ window.onload = function() {
             },
         },
         mounted: function() {
+            this.showim();
             this.navs();
             this.goodre(); //云上集市优质精选
             this.shops();
@@ -136,4 +148,13 @@ window.onload = function() {
             this.lunim();
         }
     })
+    layui.use('element', function() {
+        var element = layui.element;
+
+        //一些事件监听
+        element.on('tab(demo)', function(data) {
+            console.log(data);
+        });
+    });
+
 }

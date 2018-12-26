@@ -797,6 +797,22 @@ func RandNum(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(nums))
 }
 
+//显示用户头像
+func ShowUSerImg(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	var uid = r.FormValue(`id`)
+	userid, _ := strconv.Atoi(uid)
+	mod, err := check.ShowUserims(userid)
+	if err != nil {
+		w.Write([]byte(`查询失败`))
+	}
+	md, _ := json.Marshal(mod)
+	// fmt.Println(md)
+	w.Header().Set(`Content-Type`, `application/json`)
+	w.Write(md)
+
+}
+
 //中间件
 func mid(next http.HandlerFunc) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -820,8 +836,18 @@ func mid(next http.HandlerFunc) http.HandlerFunc {
 		}
 		// 合法
 		if j.Valid {
+			oldtoken, ok := util.Get(d1.Id)
+			if !ok {
+				util.Set(d1.Id, token)
+				//				w.Header().Set(`Content-Type`, `application/json`)
+				//				return next(w)
+				return
+			}
+			if oldtoken != token {
+				w.Write([]byte(`您的账号在别处登录`))
+				return
+			}
 			// fmt.Println(d1)
-
 			// var id = j.Claims.(jwt.MapClaims)["Id"]
 			// buf, _ := json.Marshal(d1)
 			var id = d1.Id
@@ -887,14 +913,14 @@ func main() {
 	http.HandleFunc(`/api/gyfp/country`, Gycountry)
 	http.HandleFunc(`/api/gyfp/textdetial`, Gystory)
 
-	http.HandleFunc(`/car.html`, viewCar)
-	//	http.Handle(`/car.html`, mid(http.HandlerFunc(viewCar)))
-	http.HandleFunc(`/api/gwc/goods`, Lookgods)
-	//	http.Handle(`/api/gwc/goods`, mid(http.HandlerFunc(Lookgods)))
-	http.HandleFunc(`/api/gwc/user`, usermsg) //购物车中显示用户信息
-	//	http.Handle(`/api/gwc/user`, mid(http.HandlerFunc(usermsg)))
-	//	http.HandleFunc(`/api/car/remove`, Remove)
-	http.Handle(`/api/car/remove`, mid(http.HandlerFunc(Remove)))
+	//	http.HandleFunc(`/car.html`, viewCar)
+	http.Handle(`/car.html`, mid(http.HandlerFunc(viewCar)))
+	//	http.HandleFunc(`/api/gwc/goods`, Lookgods)
+	http.Handle(`/api/gwc/goods`, mid(http.HandlerFunc(Lookgods)))
+	//	http.HandleFunc(`/api/gwc/user`, usermsg) //购物车中显示用户信息
+	http.Handle(`/api/gwc/user`, mid(http.HandlerFunc(usermsg)))
+	http.HandleFunc(`/api/car/remove`, Remove)
+	//	http.Handle(`/api/car/remove`, mid(http.HandlerFunc(Remove)))
 
 	http.HandleFunc(`/yytx.html`, Viewyuntx) //云游天下
 
@@ -923,12 +949,13 @@ func main() {
 	//	http.Handle(`/upload`, mid(http.HandlerFunc(Upload)))
 	http.Handle(`/api/uploaders`, mid(http.HandlerFunc(InsertUserImg)))
 
+	http.Handle(`/api/user/ims`, mid(http.HandlerFunc(ShowUSerImg)))
 	// http.HandleFunc(`/api/name`, ShowUserName) //个人中心显示用户信息
 	// http.Handle(`/api/name`, mid(http.HandlerFunc(ShowUserName)))
 
-	http.ListenAndServe(":8080", nil)
+	//	http.ListenAndServe(":8080", nil)
 
 	// fmt.Println("run on 8080")
-	//	http.ListenAndServeTLS(":4320", "cert-1542427206238_www.linchongyang.cn.crt", "cert-1542427206238_www.linchongyang.cn.key", nil)
+	http.ListenAndServeTLS(":4320", "cert-1542427206238_www.linchongyang.cn.crt", "cert-1542427206238_www.linchongyang.cn.key", nil)
 	// fmt.Println(err)
 }

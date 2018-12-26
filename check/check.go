@@ -18,6 +18,8 @@ type Regis struct {
 	Imgs  string `json:"imgs" xml:"imgs"`
 }
 
+
+
 //用户注册生成得到账号
 func InsertUserNum(nums string, tel string) error {
 	_, err := dB.Exec(`update regis set num=? where tel=?`, nums, tel)
@@ -89,6 +91,13 @@ func UpDataPass(pass string, tel string) (Regis, error) {
 	udp := Regis{}
 	_, err := dB.Exec(`update regis set pass=? where tel=?`, pass, tel)
 	return udp, err
+}
+
+//显示用户头像
+func ShowUserims(id int) (Regis, error) {
+	mod := Regis{}
+	err := dB.Get(&mod, `select imgs,tagname from regis where id=?`, id)
+	return mod, err
 }
 
 // Jwt json web token

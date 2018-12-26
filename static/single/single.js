@@ -2110,8 +2110,19 @@ window.onload = function() {
             sMsgimg: [], //头部展示轮播信息
             goodsmsgs: [], //产品价格详情
             count: 1, //购买数量
+            ims: '', //显示用户头像
         },
         methods: {
+            showim: function() {
+                axios.get('/api/user/ims', {
+                    params: {
+                        token: localStorage.getItem("token")
+                    }
+                }).then(function(resp) {
+                    console.log(resp)
+                    nsp.ims = resp.data
+                })
+            },
             singles: function() {
                 axios.get('/car.html', {
                     params: {
@@ -2305,6 +2316,7 @@ window.onload = function() {
 
         mounted: function() {
             //生命周期函数
+            this.showim();
             this.send1();
             this.navs();
             this.bigsh();
@@ -2360,4 +2372,13 @@ window.onload = function() {
             });
         });
     })
+    layui.use('element', function() {
+        var element = layui.element;
+
+        //一些事件监听
+        element.on('tab(demo)', function(data) {
+            console.log(data);
+        });
+    });
+
 }
